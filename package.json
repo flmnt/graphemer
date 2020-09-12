@@ -1,0 +1,44 @@
+{
+  "name": "grapheme-splitter",
+  "version": "1.0.4",
+  "description": "A JavaScript library that breaks strings into their individual user-perceived characters. It supports emojis!",
+  "homepage": "https://github.com/orling/grapheme-splitter",
+  "author": "Orlin Georgiev",
+  "contributors": [
+    {
+      "name": "Lucas Tadeu Teixeira",
+      "email": "lucas@fastmail.nl",
+      "url": "https://lucas.is"
+    }
+  ],
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "utf-8",
+    "strings",
+    "emoji",
+    "split"
+  ],
+  "scripts": {
+    "build": "babel src/index.js --out-file index.js",
+    "pretest": "npm run build",
+    "test": "tape tests/grapheme_splitter_tests.js",
+    "pack": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/orling/grapheme-splitter.git"
+  },
+  "bugs": "https://github.com/orling/grapheme-splitter/issues",
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "tape": "^4.6.3"
+  }
+}
