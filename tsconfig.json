@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
+    "esModuleInterop": true,
+    "lib": ["ES6"],
+    "moduleResolution": "Node",
+    "module": "CommonJS",
+    "target": "ESNext",
+    "outDir": "lib"
+  },
+  "exclude": ["node_modules"],
+  "include": ["src/**/*"]
+}

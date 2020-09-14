@@ -9,13 +9,16 @@
  * We recommend that you paste the code in IDE since the generated code snippet does not take care any code indent.
  * We will leverage IDE to ident the generated code for aesthetic pleasure.
  */
-const fs = require("fs");
-const path = require("path");
-const convert = require("./converter");
+const fs = require('fs');
+const path = require('path');
+const convert = require('./converter');
 
-const content = fs.readFileSync(path.resolve(__dirname, "./GraphemeBreakProperty.txt"), {
-    encoding: 'utf8'
-});
+const content = fs.readFileSync(
+  path.resolve(__dirname, './GraphemeBreakProperty.txt'),
+  {
+    encoding: 'utf8',
+  },
+);
 
 // print processed JavaScript code to stdout
 console.log(convert(content));

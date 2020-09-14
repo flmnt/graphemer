@@ -1,20 +1,18 @@
 {
-  "name": "grapheme-splitter",
-  "version": "1.0.4",
+  "name": "graphemer",
+  "version": "1.0.0",
   "description": "A JavaScript library that breaks strings into their individual user-perceived characters. It supports emojis!",
   "homepage": "https://github.com/orling/grapheme-splitter",
-  "author": "Orlin Georgiev",
+  "author": "Matt Davies <matt@filament.so> (https://github.com/mattpauldavies)",
   "contributors": [
-    {
-      "name": "Lucas Tadeu Teixeira",
-      "email": "lucas@fastmail.nl",
-      "url": "https://lucas.is"
-    }
+    "Orlin Georgiev (https://github.com/orling)",
+    "Huáng Jùnliàng (https://github.com/JLHwung)"
   ],
-  "main": "index.js",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "files": [
-    "index.js",
-    "index.d.ts"
+    "./lib/index.js",
+    "./lib/index.d.ts"
   ],
   "license": "MIT",
   "keywords": [
@@ -24,10 +22,12 @@
     "split"
   ],
   "scripts": {
-    "build": "babel src/index.js --out-file index.js",
+    "prepublishOnly": "npm run build",
+    "build": "tsc --project tsconfig.json",
     "pretest": "npm run build",
     "test": "tape tests/grapheme_splitter_tests.js",
-    "pack": "npm run build"
+    "prettier:check": "prettier --check .",
+    "prettier:fix": "prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -36,9 +36,19 @@
   "bugs": "https://github.com/orling/grapheme-splitter/issues",
   "dependencies": {},
   "devDependencies": {
-    "@babel/cli": "^7.2.0",
-    "@babel/core": "^7.2.0",
-    "@babel/preset-env": "^7.2.0",
-    "tape": "^4.6.3"
+    "husky": "^4.3.0",
+    "lint-staged": "^10.3.0",
+    "prettier": "^2.1.1",
+    "tape": "^4.6.3",
+    "typescript": "^4.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm test"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,md,json}": "prettier --write"
   }
 }

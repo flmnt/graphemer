@@ -1,45 +1,90 @@
-# Development
+# General Development
 
-## Install dependencies
+## Install Dependencies
+
 ```bash
 npm install
 ```
 
-## Run test
+## Run Tests
+
 ```bash
 npm test
 ```
 
-Note that it will call `npm run build` to compile the artifacts and the unit test is test against the compiled source
+Note that `npm run build` will run prior to tests and the unit tests are run against the compiled source
 instead of the original source code.
 
-## Build artifacts only
-```bash
-npm run build
-```
+## Committing Changes
 
-It is used to test the babel configuration only. If you are developing, you should use `npm test` in most cases.
+Linter and prettier check will run...
+
+If Prettier fails, use npm run fix:prettier
+
+If linter fails you can try npm run fix:lint
+
+Note the linter will take a long time to run because the file is so large...
+
+# New Features
+
+We welcome contributions to the code base, please feel free to [open an issue](https://github.com/flmnt/graphemer/issues/new) to discuss ideas or fork the repository and open a pull request.
+
+If you do open a pull request, please ensure all tests are passing, and you have listed your changes in the [CHANGELOG](https://github.com/flmnt/graphemer/blob/master/CHANGELOG.md).
+
+## Adding Functionality
+
+If you have an idea for new functionality please create a new issue so we can discuss design of the new feature.
+
+Once we have agreed an approach please fork the repository, make your chnages and open a pull request.
+
+We aim to respond quickly, but please be aware it's a small team maintaining this library.
 
 ## New Unicode Version Adoption
+
+We aim to keep up to date with the latest Unicode versions, however, if we are late in releasing a new version feel free to follow the steps below and create a pull request with an updated Unicode version.
+
+**Step 1**
+
+Find the latest version : http://www.unicode.org/versions/latest/
+
+Find the Unicode Character Database for the latest version...
+
+https://www.unicode.org/Public/13.0.0/
+
 On changes to any new version of `GraphemeBreakProperty.txt` or `emoji-data.txt`, run the following scripts
 to synchronize upstream changes to JavaScript codes:
 
 For example, if you would like to update the `GraphemeBreakProperty.txt` to a new Unicode version, download
-to the `/scripts` folder and synchronize the changes:
+to the `/scripts` folder and synchronize the changes.
+
+**Step 2**
+
+On Linux copy the required code with:
 
 ```bash
-# This script will output the generated codes ready to copy paste into the source
-node ./scripts/generate-grapheme-break
+node ./scripts/generate-grapheme-break | xclip
+```
 
-# use `pbcopy` to copy into pasteboard if you are on a Mac
+On Mac use `pbcopy` like this:
+
+```bash
 node ./scripts/generate-grapheme-break | pbcopy
 ```
 
-Now replace the code by the pasteboard in a decent IDE which offers automatic text indent.
+**Step 3**
 
-## Publish
-```bash
-npm publish
-```
+Then paste the generated code into `which file?` and run `npm run fix:prettier` to format.
 
-Note that `npm publish` will also call `npm run build` since we should publish the compiled source only.
+# Bug Fixes
+
+If you notice a bug in the code, please report it via a [new issue](https://github.com/flmnt/graphemer/issues/new). And even better, try and fix it via a pull request!
+
+We'll do our very best to support anyone looking to fix and bugs. Your help is very much appreciated.
+
+If you do open a pull request, please ensure all tests are passing, and you have listed your changes in the [CHANGELOG](https://github.com/flmnt/graphemer/blob/master/CHANGELOG.md).
+
+# Publishing
+
+When updates are merged via a pull request, we will create a new release.
+
+This automatically publishes the library to NPM.
