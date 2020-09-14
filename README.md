@@ -1,6 +1,6 @@
-**Graphemer: Unicode Character Splitter** 🪓
+# Graphemer: Unicode Character Splitter 🪓
 
-# Introduction
+## Introduction
 
 This library continues the work of [Grapheme Splitter](https://github.com/orling/grapheme-splitter) and supports the following unicode versions:
 
@@ -45,7 +45,7 @@ There are also the unusual letter+combining mark combinations which have no dedi
 
 Enter the `graphemer` library. It can be used to properly split JavaScript strings into what a human user would call separate letters (or "extended grapheme clusters" in Unicode terminology), no matter what their internal representation is. It is an implementation on the [Default Grapheme Cluster Boundary](http://unicode.org/reports/tr29/#Default_Grapheme_Cluster_Table) of [UAX #29](http://www.unicode.org/reports/tr29/).
 
-# Installation
+## Installation
 
 Install `graphemer` using the NPM command below:
 
@@ -53,9 +53,9 @@ Install `graphemer` using the NPM command below:
 $ npm i graphemer
 ```
 
-# Usage
+## Usage
 
-If you're using [Typescript](https://www.typescriptlang.org/) or a compiler like [Babel](https://babeljs.io/) (or something like Create React App) just import, initialize and use!
+If you're using [Typescript](https://www.typescriptlang.org/) or a compiler like [Babel](https://babeljs.io/) (or something like Create React App) things are pretty simple; just import, initialize and use!
 
 ```javascript
 import Graphemer from 'graphemer';
@@ -82,7 +82,7 @@ const splitter = new Graphemer();
 const graphemes = splitter.splitGraphemes(string);
 ```
 
-# Examples
+## Examples
 
 ```javascript
 import Graphemer from 'graphemer';
@@ -108,11 +108,11 @@ splitter.splitGraphemes('अनुच्छेद'); // returns ["अ","नु",
 splitter.splitGraphemes('Z͑ͫ̓ͪ̂ͫ̽͏̴̙̤̞͉͚̯̞̠͍A̴̵̜̰͔ͫ͗͢L̠ͨͧͩ͘G̴̻͈͍͔̹̑͗̎̅͛́Ǫ̵̹̻̝̳͂̌̌͘!͖̬̰̙̗̿̋ͥͥ̂ͣ̐́́͜͞'); // returns ["Z͑ͫ̓ͪ̂ͫ̽͏̴̙̤̞͉͚̯̞̠͍","A̴̵̜̰͔ͫ͗͢","L̠ͨͧͩ͘","G̴̻͈͍͔̹̑͗̎̅͛́","Ǫ̵̹̻̝̳͂̌̌͘","!͖̬̰̙̗̿̋ͥͥ̂ͣ̐́́͜͞"]
 ```
 
-# TypeScript
+## TypeScript
 
 Graphemer is built with TypeScript and, of course, includes type declarations.
 
-```typescript
+```javascript
 import Graphemer from 'graphemer';
 
 const splitter = new Graphemer();
@@ -120,11 +120,11 @@ const splitter = new Graphemer();
 const split: string[] = splitter.splitGraphemes('Z͑ͫ̓ͪ̂ͫ̽͏̴̙̤̞͉͚̯̞̠͍A̴̵̜̰͔ͫ͗͢L̠ͨͧͩ͘G̴̻͈͍͔̹̑͗̎̅͛́Ǫ̵̹̻̝̳͂̌̌͘!͖̬̰̙̗̿̋ͥͥ̂ͣ̐́́͜͞');
 ```
 
-# Contributing
+## Contributing
 
 See [Contribution Guide](./CONTRIBUTING.md).
 
-# Acknowledgements
+## Acknowledgements
 
 This library is a fork of the incredible work done by Orlin Georgiev and Huáng Jùnliàng at https://github.com/orling/grapheme-splitter.
 
