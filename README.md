@@ -55,7 +55,7 @@ $ npm i graphemer
 
 # Usage
 
-Import, initialize and use!
+If you're using [Typescript](https://www.typescriptlang.org/) or a compiler like [Babel](https://babeljs.io/) (or something like Create React App) just import, initialize and use!
 
 ```javascript
 import Graphemer from 'graphemer';
@@ -70,6 +70,16 @@ const graphemeIterator = splitter.iterateGraphemes(string);
 
 // or do this if you just need their number
 const graphemeCount = splitter.countGraphemes(string);
+```
+
+If you're using vanilla Node you can use the `require()` method.
+
+```javascript
+const Graphemer = require('graphemer').default;
+
+const splitter = new Graphemer();
+
+const graphemes = splitter.splitGraphemes(string);
 ```
 
 # Examples

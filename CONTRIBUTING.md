@@ -39,39 +39,7 @@ We aim to respond quickly, but please be aware it's a small team maintaining thi
 
 ## New Unicode Version Adoption
 
-We aim to keep up to date with the latest Unicode versions, however, if we are late in releasing a new version feel free to follow the steps below and create a pull request with an updated Unicode version.
-
-**Step 1**
-
-Find the latest version : http://www.unicode.org/versions/latest/
-
-Find the Unicode Character Database for the latest version...
-
-https://www.unicode.org/Public/13.0.0/
-
-On changes to any new version of `GraphemeBreakProperty.txt` or `emoji-data.txt`, run the following scripts
-to synchronize upstream changes to JavaScript codes:
-
-For example, if you would like to update the `GraphemeBreakProperty.txt` to a new Unicode version, download
-to the `/scripts` folder and synchronize the changes.
-
-**Step 2**
-
-On Linux copy the required code with:
-
-```bash
-node ./scripts/generate-grapheme-break | xclip
-```
-
-On Mac use `pbcopy` like this:
-
-```bash
-node ./scripts/generate-grapheme-break | pbcopy
-```
-
-**Step 3**
-
-Then paste the generated code into `which file?` and run `npm run fix:prettier` to format.
+Coming soon...
 
 # Bug Fixes
 
