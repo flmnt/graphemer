@@ -6,7 +6,7 @@ This library continues the work of [Grapheme Splitter](https://github.com/orling
 
 - Unicode 13.1 `Coming Soon`
 - Unicode 13 and below `[v1.1.0]`
-- Unicode 10 and below `[v1.0.0]` (supported by `grapheme-splitter`)
+- Unicode 11 and below `[v1.0.0]` (Unicode 10 supported by `grapheme-splitter`)
 
 In JavaScript there is not always a one-to-one relationship between string characters and what a user would call a separate visual "letter". Some symbols are represented by several characters. This can cause issues when splitting strings and inadvertently cutting a multi-char letter in half, or when you need the actual number of letters in a string.
 

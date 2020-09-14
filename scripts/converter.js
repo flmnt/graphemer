@@ -1,8 +1,13 @@
+const formatCategory = (category) =>
+  category === 'Extended_Pictographic'
+    ? `${category.toUpperCase()}`
+    : `CLUSTER_BREAK.${category.toUpperCase()}`;
+
 const ifTemplate = (condition, category) => `
 if(
   ${condition}
 ){
-  return ${category};
+  return ${formatCategory(category)};
 }`;
 
 const conditionExpressionTemplate = (condition, comment, isLast) =>
