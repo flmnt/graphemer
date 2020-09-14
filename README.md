@@ -1,6 +1,4 @@
-**Graphemer**
-
-# 🪓
+**Graphemer: Unicode Character Splitter** 🪓
 
 # Introduction
 

@@ -1,222 +1,6 @@
-/**
- * The Grapheme_Cluster_Break property value
- * @see https://www.unicode.org/reports/tr29/#Default_Grapheme_Cluster_Table
- * @type {number}
- */
-const CR = 0;
-const LF = 1;
-const Control = 2;
-const Extend = 3;
-const Regional_Indicator = 4;
-const SpacingMark = 5;
-const L = 6;
-const V = 7;
-const T = 8;
-const LV = 9;
-const LVT = 10;
-const Other = 11;
-const Prepend = 12;
-const E_Base = 13;
-const E_Modifier = 14;
-const ZWJ = 15;
-const Glue_After_Zwj = 16;
-const E_Base_GAZ = 17;
+import { CLUSTER_BREAK, EXTENDED_PICTOGRAPHIC } from './boundaries';
+import GraphemerHelper from './helper';
 
-/**
- * The Emoji character property is an extension of UCD but shares the same namespace and structure
- * @see http://www.unicode.org/reports/tr51/tr51-14.html#Emoji_Properties_and_Data_Files
- *
- * Here we model Extended_Pictograhpic only to implement UAX #29 GB11
- * \p{Extended_Pictographic} Extend* ZWJ	×	\p{Extended_Pictographic}
- *
- * The Emoji character property should not be mixed with Grapheme_Cluster_Break since they are not exclusive
- */
-const Extended_Pictographic = 101;
-// BreakTypes
-// @type {BreakType}
-const NotBreak = 0;
-const BreakStart = 1;
-const Break = 2;
-const BreakLastRegional = 3;
-const BreakPenultimateRegional = 4;
-
-class GSHelper {
-  /**
-   * Check if the the character at the position {pos} of the string is surrogate
-   * @param str {string}
-   * @param pos {number}
-   * @returns {boolean}
-   */
-  static isSurrogate(str: string, pos: number): boolean {
-    return (
-      0xd800 <= str.charCodeAt(pos) &&
-      str.charCodeAt(pos) <= 0xdbff &&
-      0xdc00 <= str.charCodeAt(pos + 1) &&
-      str.charCodeAt(pos + 1) <= 0xdfff
-    );
-  }
-
-  /**
-   * The String.prototype.codePointAt polyfill
-   * Private function, gets a Unicode code point from a JavaScript UTF-16 string
-   * handling surrogate pairs appropriately
-   * @param str {string}
-   * @param idx {number}
-   * @returns {number}
-   */
-  static codePointAt(str: string, idx: number): number {
-    if (idx === undefined) {
-      idx = 0;
-    }
-    const code = str.charCodeAt(idx);
-
-    // if a high surrogate
-    if (0xd800 <= code && code <= 0xdbff && idx < str.length - 1) {
-      const hi = code;
-      const low = str.charCodeAt(idx + 1);
-      if (0xdc00 <= low && low <= 0xdfff) {
-        return (hi - 0xd800) * 0x400 + (low - 0xdc00) + 0x10000;
-      }
-      return hi;
-    }
-
-    // if a low surrogate
-    if (0xdc00 <= code && code <= 0xdfff && idx >= 1) {
-      const hi = str.charCodeAt(idx - 1);
-      const low = code;
-      if (0xd800 <= hi && hi <= 0xdbff) {
-        return (hi - 0xd800) * 0x400 + (low - 0xdc00) + 0x10000;
-      }
-      return low;
-    }
-
-    // just return the char if an unmatched surrogate half or a
-    // single-char codepoint
-    return code;
-  }
-
-  //
-  /**
-   * Private function, returns whether a break is allowed between the two given grapheme breaking classes
-   * Implemented the UAX #29 3.1.1 Grapheme Cluster Boundary Rules on extended grapheme clusters
-   * @param start {number}
-   * @param mid {Array<number>}
-   * @param end {number}
-   * @param startEmoji {number}
-   * @param midEmoji {Array<number>}
-   * @param endEmoji {number}
-   * @returns {number}
-   */
-  static shouldBreak(
-    start: number,
-    mid: number[],
-    end: number,
-    startEmoji: number,
-    midEmoji: number[],
-    endEmoji: number,
-  ): number {
-    const all = [start].concat(mid).concat([end]);
-    const allEmoji = [startEmoji].concat(midEmoji).concat([endEmoji]);
-    const previous = all[all.length - 2];
-    const next = end;
-    const nextEmoji = endEmoji;
-
-    // Lookahead terminator for:
-    // GB12. ^ (RI RI)* RI ? RI
-    // GB13. [^RI] (RI RI)* RI ? RI
-    const rIIndex = all.lastIndexOf(Regional_Indicator);
-    if (
-      rIIndex > 0 &&
-      all.slice(1, rIIndex).every(function (c) {
-        return c === Regional_Indicator;
-      }) &&
-      [Prepend, Regional_Indicator].indexOf(previous) === -1
-    ) {
-      if (
-        all.filter(function (c) {
-          return c === Regional_Indicator;
-        }).length %
-          2 ===
-        1
-      ) {
-        return BreakLastRegional;
-      } else {
-        return BreakPenultimateRegional;
-      }
-    }
-
-    // GB3. CR × LF
-    if (previous === CR && next === LF) {
-      return NotBreak;
-    }
-    // GB4. (Control|CR|LF) ÷
-    else if (previous === Control || previous === CR || previous === LF) {
-      return BreakStart;
-    }
-    // GB5. ÷ (Control|CR|LF)
-    else if (next === Control || next === CR || next === LF) {
-      return BreakStart;
-    }
-    // GB6. L × (L|V|LV|LVT)
-    else if (
-      previous === L &&
-      (next === L || next === V || next === LV || next === LVT)
-    ) {
-      return NotBreak;
-    }
-    // GB7. (LV|V) × (V|T)
-    else if (
-      (previous === LV || previous === V) &&
-      (next === V || next === T)
-    ) {
-      return NotBreak;
-    }
-    // GB8. (LVT|T) × (T)
-    else if ((previous === LVT || previous === T) && next === T) {
-      return NotBreak;
-    }
-    // GB9. × (Extend|ZWJ)
-    else if (next === Extend || next === ZWJ) {
-      return NotBreak;
-    }
-    // GB9a. × SpacingMark
-    else if (next === SpacingMark) {
-      return NotBreak;
-    }
-    // GB9b. Prepend ×
-    else if (previous === Prepend) {
-      return NotBreak;
-    }
-
-    // GB11. \p{Extended_Pictographic} Extend* ZWJ × \p{Extended_Pictographic}
-    const previousNonExtendIndex = allEmoji
-      .slice(0, -1)
-      .lastIndexOf(Extended_Pictographic);
-    if (
-      previousNonExtendIndex !== -1 &&
-      allEmoji[previousNonExtendIndex] === Extended_Pictographic &&
-      all.slice(previousNonExtendIndex + 1, -2).every(function (c) {
-        return c === Extend;
-      }) &&
-      previous === ZWJ &&
-      nextEmoji === Extended_Pictographic
-    ) {
-      return NotBreak;
-    }
-
-    // GB12. ^ (RI RI)* RI × RI
-    // GB13. [^RI] (RI RI)* RI × RI
-    if (mid.indexOf(Regional_Indicator) !== -1) {
-      return Break;
-    }
-    if (previous === Regional_Indicator && next === Regional_Indicator) {
-      return NotBreak;
-    }
-
-    // GB999. Any ? Any
-    return BreakStart;
-  }
-}
 export default class Graphemer {
   /**
    * Returns the next grapheme break in the string after the given index
@@ -234,22 +18,29 @@ export default class Graphemer {
     if (index >= string.length - 1) {
       return string.length;
     }
-    const prevCP = GSHelper.codePointAt(string, index);
+    const prevCP = GraphemerHelper.codePointAt(string, index);
     const prev = Graphemer.getGraphemeBreakProperty(prevCP);
     const prevEmoji = Graphemer.getEmojiProperty(prevCP);
     const mid = [];
     const midEmoji = [];
     for (let i = index + 1; i < string.length; i++) {
       // check for already processed low surrogates
-      if (GSHelper.isSurrogate(string, i - 1)) {
+      if (GraphemerHelper.isSurrogate(string, i - 1)) {
         continue;
       }
 
-      const nextCP = GSHelper.codePointAt(string, i);
+      const nextCP = GraphemerHelper.codePointAt(string, i);
       const next = Graphemer.getGraphemeBreakProperty(nextCP);
       const nextEmoji = Graphemer.getEmojiProperty(nextCP);
       if (
-        GSHelper.shouldBreak(prev, mid, next, prevEmoji, midEmoji, nextEmoji)
+        GraphemerHelper.shouldBreak(
+          prev,
+          mid,
+          next,
+          prevEmoji,
+          midEmoji,
+          nextEmoji,
+        )
       ) {
         return i;
       }
@@ -261,7 +52,7 @@ export default class Graphemer {
   }
 
   /**
-   * Breaks the given string into an array of grapheme cluster strings
+   * Breaks the given string into an array of grapheme clusters
    * @param str {string}
    * @returns {string[]}
    */
@@ -280,13 +71,16 @@ export default class Graphemer {
   }
 
   /**
-   * Returns the iterator of grapheme clusters there are in the given string
+   * Returns an iterator of grapheme clusters in the given string
    * @param str {string}
-   * @returns {Iterator<string|undefined>}
+   * @returns {Iterator<string>}
    */
-  iterateGraphemes(str: string): Iterator<string | undefined> {
+  iterateGraphemes(str: string): Iterator<string> {
     let index = 0;
     const res = {
+      [Symbol.iterator]: () => {
+        return this;
+      },
       next: () => {
         let brk;
         if ((brk = this.nextBreak(str, index)) < str.length) {
@@ -302,17 +96,11 @@ export default class Graphemer {
         return { value: undefined, done: true };
       },
     };
-    // ES2015 @@iterator method (iterable) for spread syntax and for...of statement
-    if (typeof Symbol !== 'undefined' && Symbol.iterator) {
-      res[Symbol.iterator] = function () {
-        return res;
-      };
-    }
     return res;
   }
 
   /**
-   * Returns the number of grapheme clusters there are in the given string
+   * Returns the number of grapheme clusters in the given string
    * @param str {string}
    * @returns {number}
    */
@@ -336,7 +124,7 @@ export default class Graphemer {
    * @returns {number}
    */
   static getGraphemeBreakProperty(code: number): number {
-    // grapheme break property for Unicode 11.0.0,
+    // Grapheme break property for Unicode 11.0.0,
     // taken from http://www.unicode.org/Public/11.0.0/ucd/auxiliary/GraphemeBreakProperty.txt
     // and generated by
     // node ./scripts/generate-grapheme-break.js
@@ -354,17 +142,17 @@ export default class Graphemer {
       (0x11a86 <= code && code <= 0x11a89) || // Lo   [4] SOYOMBO CLUSTER-INITIAL LETTER RA..SOYOMBO CLUSTER-INITIAL LETTER SA
       0x11d46 === code // Lo       MASARAM GONDI REPHA
     ) {
-      return Prepend;
+      return CLUSTER_BREAK.PREPEND;
     }
     if (
       0x000d === code // Cc       <control-000D>
     ) {
-      return CR;
+      return CLUSTER_BREAK.CR;
     }
     if (
       0x000a === code // Cc       <control-000A>
     ) {
-      return LF;
+      return CLUSTER_BREAK.LF;
     }
     if (
       (0x0000 <= code && code <= 0x0009) || // Cc  [10] <control-0000>..<control-0009>
@@ -394,7 +182,7 @@ export default class Graphemer {
       (0xe0080 <= code && code <= 0xe00ff) || // Cn [128] <reserved-E0080>..<reserved-E00FF>
       (0xe01f0 <= code && code <= 0xe0fff) // Cn [3600] <reserved-E01F0>..<reserved-E0FFF>
     ) {
-      return Control;
+      return CLUSTER_BREAK.CONTROL;
     }
     if (
       (0x0300 <= code && code <= 0x036f) || // Mn [112] COMBINING GRAVE ACCENT..COMBINING LATIN SMALL LETTER X
@@ -740,13 +528,13 @@ export default class Graphemer {
       (0xe0020 <= code && code <= 0xe007f) || // Cf  [96] TAG SPACE..CANCEL TAG
       (0xe0100 <= code && code <= 0xe01ef) // Mn [240] VARIATION SELECTOR-17..VARIATION SELECTOR-256
     ) {
-      return Extend;
+      return CLUSTER_BREAK.EXTEND;
     }
     if (
       0x1f1e6 <= code &&
       code <= 0x1f1ff // So  [26] REGIONAL INDICATOR SYMBOL LETTER A..REGIONAL INDICATOR SYMBOL LETTER Z
     ) {
-      return Regional_Indicator;
+      return CLUSTER_BREAK.REGIONAL_INDICATOR;
     }
     if (
       0x0903 === code || // Mc       DEVANAGARI SIGN VISARGA
@@ -901,25 +689,25 @@ export default class Graphemer {
       0x1d166 === code || // Mc       MUSICAL SYMBOL COMBINING SPRECHGESANG STEM
       0x1d16d === code // Mc       MUSICAL SYMBOL COMBINING AUGMENTATION DOT
     ) {
-      return SpacingMark;
+      return CLUSTER_BREAK.SPACINGMARK;
     }
     if (
       (0x1100 <= code && code <= 0x115f) || // Lo  [96] HANGUL CHOSEONG KIYEOK..HANGUL CHOSEONG FILLER
       (0xa960 <= code && code <= 0xa97c) // Lo  [29] HANGUL CHOSEONG TIKEUT-MIEUM..HANGUL CHOSEONG SSANGYEORINHIEUH
     ) {
-      return L;
+      return CLUSTER_BREAK.L;
     }
     if (
       (0x1160 <= code && code <= 0x11a7) || // Lo  [72] HANGUL JUNGSEONG FILLER..HANGUL JUNGSEONG O-YAE
       (0xd7b0 <= code && code <= 0xd7c6) // Lo  [23] HANGUL JUNGSEONG O-YEO..HANGUL JUNGSEONG ARAEA-E
     ) {
-      return V;
+      return CLUSTER_BREAK.V;
     }
     if (
       (0x11a8 <= code && code <= 0x11ff) || // Lo  [88] HANGUL JONGSEONG KIYEOK..HANGUL JONGSEONG SSANGNIEUN
       (0xd7cb <= code && code <= 0xd7fb) // Lo  [49] HANGUL JONGSEONG NIEUN-RIEUL..HANGUL JONGSEONG PHIEUPH-THIEUTH
     ) {
-      return T;
+      return CLUSTER_BREAK.T;
     }
     if (
       0xac00 === code || // Lo       HANGUL SYLLABLE GA
@@ -1322,7 +1110,7 @@ export default class Graphemer {
       0xd76c === code || // Lo       HANGUL SYLLABLE HYI
       0xd788 === code // Lo       HANGUL SYLLABLE HI
     ) {
-      return LV;
+      return CLUSTER_BREAK.LV;
     }
     if (
       (0xac01 <= code && code <= 0xac1b) || // Lo  [27] HANGUL SYLLABLE GAG..HANGUL SYLLABLE GAH
@@ -1725,16 +1513,16 @@ export default class Graphemer {
       (0xd76d <= code && code <= 0xd787) || // Lo  [27] HANGUL SYLLABLE HYIG..HANGUL SYLLABLE HYIH
       (0xd789 <= code && code <= 0xd7a3) // Lo  [27] HANGUL SYLLABLE HIG..HANGUL SYLLABLE HIH
     ) {
-      return LVT;
+      return CLUSTER_BREAK.LVT;
     }
     if (
       0x200d === code // Cf       ZERO WIDTH JOINER
     ) {
-      return ZWJ;
+      return CLUSTER_BREAK.ZWJ;
     }
 
     // all unlisted characters have a grapheme break property of "Other"
-    return Other;
+    return CLUSTER_BREAK.OTHER;
   }
 
   static getEmojiProperty(code: number): number {
@@ -1980,9 +1768,9 @@ export default class Graphemer {
       (0x1fa60 <= code && code <= 0x1fa6d) || // 11.0 [14] (🩠️..🩭️)    XIANGQI RED GENERAL..XIANGQI BLACK SOLDIER
       (0x1fa6e <= code && code <= 0x1fffd) //   NA[1424] (🩮️..🿽️)   <reserved-1FA6E>..<reserved-1FFFD>
     ) {
-      return Extended_Pictographic;
+      return EXTENDED_PICTOGRAPHIC;
     }
 
-    return Other;
+    return CLUSTER_BREAK.OTHER;
   }
 }

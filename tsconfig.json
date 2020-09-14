@@ -6,7 +6,7 @@
     "lib": ["ES6"],
     "moduleResolution": "Node",
     "module": "CommonJS",
-    "target": "ESNext",
+    "target": "ES6",
     "outDir": "lib"
   },
   "exclude": ["node_modules"],

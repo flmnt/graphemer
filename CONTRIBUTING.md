@@ -15,15 +15,13 @@ npm test
 Note that `npm run build` will run prior to tests and the unit tests are run against the compiled source
 instead of the original source code.
 
-## Committing Changes
+## Committing & Pushing Changes
 
-Linter and prettier check will run...
+When you commit changes [Prettier](https://prettier.io/) will run automatically.
 
-If Prettier fails, use npm run fix:prettier
+If you want to manually run prettier you can use `npm run prettier:check` or `npm run prettier:fix`.
 
-If linter fails you can try npm run fix:lint
-
-Note the linter will take a long time to run because the file is so large...
+When you push changes `npm test` will automatically run. All tests need to pass for a push to be successful.
 
 # New Features
 
