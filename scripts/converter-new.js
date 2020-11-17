@@ -54,11 +54,25 @@ function genTree(ranges) {
     const loRange = ranges.slice(0, mid);
     const hiRange = ranges.slice(mid);
     const m = ranges[mid];
-    let result = `if (code < 0x${m.range[0].toString(16)}) {
-        ${genTree(loRange)}
-      } else {
-        ${genTree(hiRange)}
-      }`;
+    let result;
+    if (
+      loRange.length === 1 &&
+      hiRange.length === 1 &&
+      loRange[0].range.length === 1 &&
+      hiRange[0].range.length === 1
+    ) {
+      const l = loRange[0];
+      const h = hiRange[0];
+      result = `\
+          ${ifTemplate(conditionTemplate(l.range), l.category, l.comment)}
+          ${ifTemplate(conditionTemplate(h.range), h.category, h.comment)}`;
+    } else {
+      result = `if (code < 0x${m.range[0].toString(16)}) {
+          ${genTree(loRange)}
+        } else {
+          ${genTree(hiRange)}
+        }`;
+    }
     return result;
   }
 }

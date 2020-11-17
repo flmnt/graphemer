@@ -390,16 +390,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.SPACINGMARK;
                         }
                       } else {
-                        if (code < 0x93b) {
-                          // Mn       DEVANAGARI VOWEL SIGN OE
-                          if (0x93a === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
-                        } else {
-                          // Mc       DEVANAGARI VOWEL SIGN OOE
-                          if (0x93b === code) {
-                            return CLUSTER_BREAK.SPACINGMARK;
-                          }
+                        // Mn       DEVANAGARI VOWEL SIGN OE
+                        if (0x93a === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                        // Mc       DEVANAGARI VOWEL SIGN OOE
+                        if (0x93b === code) {
+                          return CLUSTER_BREAK.SPACINGMARK;
                         }
                       }
                     }
@@ -479,16 +476,13 @@ export default class Graphemer {
                 } else {
                   if (code < 0x9cb) {
                     if (code < 0x9bf) {
-                      if (code < 0x9be) {
-                        // Mn       BENGALI SIGN NUKTA
-                        if (0x9bc === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                      } else {
-                        // Mc       BENGALI VOWEL SIGN AA
-                        if (0x9be === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
+                      // Mn       BENGALI SIGN NUKTA
+                      if (0x9bc === code) {
+                        return CLUSTER_BREAK.EXTEND;
+                      }
+                      // Mc       BENGALI VOWEL SIGN AA
+                      if (0x9be === code) {
+                        return CLUSTER_BREAK.EXTEND;
                       }
                     } else {
                       if (code < 0x9c1) {
@@ -518,16 +512,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.SPACINGMARK;
                         }
                       } else {
-                        if (code < 0x9d7) {
-                          // Mn       BENGALI SIGN VIRAMA
-                          if (0x9cd === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
-                        } else {
-                          // Mc       BENGALI AU LENGTH MARK
-                          if (0x9d7 === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
+                        // Mn       BENGALI SIGN VIRAMA
+                        if (0x9cd === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                        // Mc       BENGALI AU LENGTH MARK
+                        if (0x9d7 === code) {
+                          return CLUSTER_BREAK.EXTEND;
                         }
                       }
                     } else {
@@ -556,16 +547,13 @@ export default class Graphemer {
                 if (code < 0xabc) {
                   if (code < 0xa4b) {
                     if (code < 0xa3e) {
-                      if (code < 0xa3c) {
-                        // Mc       GURMUKHI SIGN VISARGA
-                        if (0xa03 === code) {
-                          return CLUSTER_BREAK.SPACINGMARK;
-                        }
-                      } else {
-                        // Mn       GURMUKHI SIGN NUKTA
-                        if (0xa3c === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
+                      // Mc       GURMUKHI SIGN VISARGA
+                      if (0xa03 === code) {
+                        return CLUSTER_BREAK.SPACINGMARK;
+                      }
+                      // Mn       GURMUKHI SIGN NUKTA
+                      if (0xa3c === code) {
+                        return CLUSTER_BREAK.EXTEND;
                       }
                     } else {
                       if (code < 0xa41) {
@@ -712,16 +700,13 @@ export default class Graphemer {
                 if (code < 0xb62) {
                   if (code < 0xb47) {
                     if (code < 0xb3f) {
-                      if (code < 0xb3e) {
-                        // Mn       ORIYA SIGN NUKTA
-                        if (0xb3c === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                      } else {
-                        // Mc       ORIYA VOWEL SIGN AA
-                        if (0xb3e === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
+                      // Mn       ORIYA SIGN NUKTA
+                      if (0xb3c === code) {
+                        return CLUSTER_BREAK.EXTEND;
+                      }
+                      // Mc       ORIYA VOWEL SIGN AA
+                      if (0xb3e === code) {
+                        return CLUSTER_BREAK.EXTEND;
                       }
                     } else {
                       if (code < 0xb40) {
@@ -798,16 +783,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        if (code < 0xbc0) {
-                          // Mc       TAMIL VOWEL SIGN I
-                          if (0xbbf === code) {
-                            return CLUSTER_BREAK.SPACINGMARK;
-                          }
-                        } else {
-                          // Mn       TAMIL VOWEL SIGN II
-                          if (0xbc0 === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
+                        // Mc       TAMIL VOWEL SIGN I
+                        if (0xbbf === code) {
+                          return CLUSTER_BREAK.SPACINGMARK;
+                        }
+                        // Mn       TAMIL VOWEL SIGN II
+                        if (0xbc0 === code) {
+                          return CLUSTER_BREAK.EXTEND;
                         }
                       }
                     }
@@ -838,16 +820,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        if (code < 0xc00) {
-                          // Mc       TAMIL AU LENGTH MARK
-                          if (0xbd7 === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
-                        } else {
-                          // Mn       TELUGU SIGN COMBINING CANDRABINDU ABOVE
-                          if (0xc00 === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
+                        // Mc       TAMIL AU LENGTH MARK
+                        if (0xbd7 === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                        // Mn       TELUGU SIGN COMBINING CANDRABINDU ABOVE
+                        if (0xc00 === code) {
+                          return CLUSTER_BREAK.EXTEND;
                         }
                       }
                     }
@@ -925,16 +904,13 @@ export default class Graphemer {
                 } else {
                   if (code < 0xcc3) {
                     if (code < 0xcbf) {
-                      if (code < 0xcbe) {
-                        // Mn       KANNADA SIGN NUKTA
-                        if (0xcbc === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                      } else {
-                        // Mc       KANNADA VOWEL SIGN AA
-                        if (0xcbe === code) {
-                          return CLUSTER_BREAK.SPACINGMARK;
-                        }
+                      // Mn       KANNADA SIGN NUKTA
+                      if (0xcbc === code) {
+                        return CLUSTER_BREAK.EXTEND;
+                      }
+                      // Mc       KANNADA VOWEL SIGN AA
+                      if (0xcbe === code) {
+                        return CLUSTER_BREAK.SPACINGMARK;
                       }
                     } else {
                       if (code < 0xcc0) {
@@ -1072,16 +1048,13 @@ export default class Graphemer {
                 } else {
                   if (code < 0xdca) {
                     if (code < 0xd62) {
-                      if (code < 0xd57) {
-                        // Lo       MALAYALAM LETTER DOT REPH
-                        if (0xd4e === code) {
-                          return CLUSTER_BREAK.PREPEND;
-                        }
-                      } else {
-                        // Mc       MALAYALAM AU LENGTH MARK
-                        if (0xd57 === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
+                      // Lo       MALAYALAM LETTER DOT REPH
+                      if (0xd4e === code) {
+                        return CLUSTER_BREAK.PREPEND;
+                      }
+                      // Mc       MALAYALAM AU LENGTH MARK
+                      if (0xd57 === code) {
+                        return CLUSTER_BREAK.EXTEND;
                       }
                     } else {
                       if (code < 0xd81) {
@@ -1188,16 +1161,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        if (code < 0xeb3) {
-                          // Mn       LAO VOWEL SIGN MAI KAN
-                          if (0xeb1 === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
-                        } else {
-                          // Lo       LAO VOWEL SIGN AM
-                          if (0xeb3 === code) {
-                            return CLUSTER_BREAK.SPACINGMARK;
-                          }
+                        // Mn       LAO VOWEL SIGN MAI KAN
+                        if (0xeb1 === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                        // Lo       LAO VOWEL SIGN AM
+                        if (0xeb3 === code) {
+                          return CLUSTER_BREAK.SPACINGMARK;
                         }
                       }
                     } else {
@@ -1224,16 +1194,13 @@ export default class Graphemer {
                 } else {
                   if (code < 0xf7f) {
                     if (code < 0xf39) {
-                      if (code < 0xf37) {
-                        // Mn       TIBETAN MARK NGAS BZUNG NYI ZLA
-                        if (0xf35 === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                      } else {
-                        // Mn       TIBETAN MARK NGAS BZUNG SGOR RTAGS
-                        if (0xf37 === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
+                      // Mn       TIBETAN MARK NGAS BZUNG NYI ZLA
+                      if (0xf35 === code) {
+                        return CLUSTER_BREAK.EXTEND;
+                      }
+                      // Mn       TIBETAN MARK NGAS BZUNG SGOR RTAGS
+                      if (0xf37 === code) {
+                        return CLUSTER_BREAK.EXTEND;
                       }
                     } else {
                       if (code < 0xf3e) {
@@ -1375,16 +1342,13 @@ export default class Graphemer {
                 } else {
                   if (code < 0x1100) {
                     if (code < 0x1085) {
-                      if (code < 0x1084) {
-                        // Mn       MYANMAR CONSONANT SIGN SHAN MEDIAL WA
-                        if (0x1082 === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                      } else {
-                        // Mc       MYANMAR VOWEL SIGN SHAN E
-                        if (0x1084 === code) {
-                          return CLUSTER_BREAK.SPACINGMARK;
-                        }
+                      // Mn       MYANMAR CONSONANT SIGN SHAN MEDIAL WA
+                      if (0x1082 === code) {
+                        return CLUSTER_BREAK.EXTEND;
+                      }
+                      // Mc       MYANMAR VOWEL SIGN SHAN E
+                      if (0x1084 === code) {
+                        return CLUSTER_BREAK.SPACINGMARK;
                       }
                     } else {
                       if (code < 0x108d) {
@@ -1393,16 +1357,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        if (code < 0x109d) {
-                          // Mn       MYANMAR SIGN SHAN COUNCIL EMPHATIC TONE
-                          if (0x108d === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
-                        } else {
-                          // Mn       MYANMAR VOWEL SIGN AITON AI
-                          if (0x109d === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
+                        // Mn       MYANMAR SIGN SHAN COUNCIL EMPHATIC TONE
+                        if (0x108d === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                        // Mn       MYANMAR VOWEL SIGN AITON AI
+                        if (0x109d === code) {
+                          return CLUSTER_BREAK.EXTEND;
                         }
                       }
                     }
@@ -1617,31 +1578,25 @@ export default class Graphemer {
                           return CLUSTER_BREAK.SPACINGMARK;
                         }
                       } else {
-                        if (code < 0x1a55) {
-                          // Mn       BUGINESE VOWEL SIGN AE
-                          if (0x1a1b === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
-                        } else {
-                          // Mc       TAI THAM CONSONANT SIGN MEDIAL RA
-                          if (0x1a55 === code) {
-                            return CLUSTER_BREAK.SPACINGMARK;
-                          }
+                        // Mn       BUGINESE VOWEL SIGN AE
+                        if (0x1a1b === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                        // Mc       TAI THAM CONSONANT SIGN MEDIAL RA
+                        if (0x1a55 === code) {
+                          return CLUSTER_BREAK.SPACINGMARK;
                         }
                       }
                     }
                   } else {
                     if (code < 0x1a58) {
-                      if (code < 0x1a57) {
-                        // Mn       TAI THAM CONSONANT SIGN MEDIAL LA
-                        if (0x1a56 === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                      } else {
-                        // Mc       TAI THAM CONSONANT SIGN LA TANG LAI
-                        if (0x1a57 === code) {
-                          return CLUSTER_BREAK.SPACINGMARK;
-                        }
+                      // Mn       TAI THAM CONSONANT SIGN MEDIAL LA
+                      if (0x1a56 === code) {
+                        return CLUSTER_BREAK.EXTEND;
+                      }
+                      // Mc       TAI THAM CONSONANT SIGN LA TANG LAI
+                      if (0x1a57 === code) {
+                        return CLUSTER_BREAK.SPACINGMARK;
                       }
                     } else {
                       if (code < 0x1a60) {
@@ -1650,16 +1605,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        if (code < 0x1a62) {
-                          // Mn       TAI THAM SIGN SAKOT
-                          if (0x1a60 === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
-                        } else {
-                          // Mn       TAI THAM VOWEL SIGN MAI SAT
-                          if (0x1a62 === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
+                        // Mn       TAI THAM SIGN SAKOT
+                        if (0x1a60 === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                        // Mn       TAI THAM VOWEL SIGN MAI SAT
+                        if (0x1a62 === code) {
+                          return CLUSTER_BREAK.EXTEND;
                         }
                       }
                     }
@@ -1725,16 +1677,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.SPACINGMARK;
                         }
                       } else {
-                        if (code < 0x1b35) {
-                          // Mn       BALINESE SIGN REREKAN
-                          if (0x1b34 === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
-                        } else {
-                          // Mc       BALINESE VOWEL SIGN TEDUNG
-                          if (0x1b35 === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
+                        // Mn       BALINESE SIGN REREKAN
+                        if (0x1b34 === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                        // Mc       BALINESE VOWEL SIGN TEDUNG
+                        if (0x1b35 === code) {
+                          return CLUSTER_BREAK.EXTEND;
                         }
                       }
                     }
@@ -1968,16 +1917,13 @@ export default class Graphemer {
                 } else {
                   if (code < 0x200b) {
                     if (code < 0x1cf8) {
-                      if (code < 0x1cf7) {
-                        // Mn       VEDIC TONE CANDRA ABOVE
-                        if (0x1cf4 === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                      } else {
-                        // Mc       VEDIC SIGN ATIKRAMA
-                        if (0x1cf7 === code) {
-                          return CLUSTER_BREAK.SPACINGMARK;
-                        }
+                      // Mn       VEDIC TONE CANDRA ABOVE
+                      if (0x1cf4 === code) {
+                        return CLUSTER_BREAK.EXTEND;
+                      }
+                      // Mc       VEDIC SIGN ATIKRAMA
+                      if (0x1cf7 === code) {
+                        return CLUSTER_BREAK.SPACINGMARK;
                       }
                     } else {
                       if (code < 0x1dc0) {
@@ -2007,16 +1953,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.CONTROL;
                         }
                       } else {
-                        if (code < 0x200d) {
-                          // Cf       ZERO WIDTH NON-JOINER
-                          if (0x200c === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
-                        } else {
-                          // Cf       ZERO WIDTH JOINER
-                          if (0x200d === code) {
-                            return CLUSTER_BREAK.ZWJ;
-                          }
+                        // Cf       ZERO WIDTH NON-JOINER
+                        if (0x200c === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                        // Cf       ZERO WIDTH JOINER
+                        if (0x200d === code) {
+                          return CLUSTER_BREAK.ZWJ;
                         }
                       }
                     } else {
@@ -2026,16 +1969,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.CONTROL;
                         }
                       } else {
-                        if (code < 0x2029) {
-                          // Zl       LINE SEPARATOR
-                          if (0x2028 === code) {
-                            return CLUSTER_BREAK.CONTROL;
-                          }
-                        } else {
-                          // Zp       PARAGRAPH SEPARATOR
-                          if (0x2029 === code) {
-                            return CLUSTER_BREAK.CONTROL;
-                          }
+                        // Zl       LINE SEPARATOR
+                        if (0x2028 === code) {
+                          return CLUSTER_BREAK.CONTROL;
+                        }
+                        // Zp       PARAGRAPH SEPARATOR
+                        if (0x2029 === code) {
+                          return CLUSTER_BREAK.CONTROL;
                         }
                       }
                     }
@@ -2178,16 +2118,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        if (code < 0xa806) {
-                          // Mn       SYLOTI NAGRI SIGN DVISVARA
-                          if (0xa802 === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
-                        } else {
-                          // Mn       SYLOTI NAGRI SIGN HASANTA
-                          if (0xa806 === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
+                        // Mn       SYLOTI NAGRI SIGN DVISVARA
+                        if (0xa802 === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                        // Mn       SYLOTI NAGRI SIGN HASANTA
+                        if (0xa806 === code) {
+                          return CLUSTER_BREAK.EXTEND;
                         }
                       }
                     }
@@ -2217,16 +2154,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        if (code < 0xa82c) {
-                          // Mc       SYLOTI NAGRI VOWEL SIGN OO
-                          if (0xa827 === code) {
-                            return CLUSTER_BREAK.SPACINGMARK;
-                          }
-                        } else {
-                          // Mn       SYLOTI NAGRI SIGN ALTERNATE HASANTA
-                          if (0xa82c === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
+                        // Mc       SYLOTI NAGRI VOWEL SIGN OO
+                        if (0xa827 === code) {
+                          return CLUSTER_BREAK.SPACINGMARK;
+                        }
+                        // Mn       SYLOTI NAGRI SIGN ALTERNATE HASANTA
+                        if (0xa82c === code) {
+                          return CLUSTER_BREAK.EXTEND;
                         }
                       }
                     }
@@ -2402,16 +2336,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        if (code < 0xaa7c) {
-                          // Mc       CHAM CONSONANT SIGN FINAL H
-                          if (0xaa4d === code) {
-                            return CLUSTER_BREAK.SPACINGMARK;
-                          }
-                        } else {
-                          // Mn       MYANMAR SIGN TAI LAING TONE-2
-                          if (0xaa7c === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
+                        // Mc       CHAM CONSONANT SIGN FINAL H
+                        if (0xaa4d === code) {
+                          return CLUSTER_BREAK.SPACINGMARK;
+                        }
+                        // Mn       MYANMAR SIGN TAI LAING TONE-2
+                        if (0xaa7c === code) {
+                          return CLUSTER_BREAK.EXTEND;
                         }
                       }
                     }
@@ -2537,16 +2468,13 @@ export default class Graphemer {
                     }
                   } else {
                     if (code < 0xac01) {
-                      if (code < 0xac00) {
-                        // Mn       MEETEI MAYEK APUN IYEK
-                        if (0xabed === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                      } else {
-                        // Lo       HANGUL SYLLABLE GA
-                        if (0xac00 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
+                      // Mn       MEETEI MAYEK APUN IYEK
+                      if (0xabed === code) {
+                        return CLUSTER_BREAK.EXTEND;
+                      }
+                      // Lo       HANGUL SYLLABLE GA
+                      if (0xac00 === code) {
+                        return CLUSTER_BREAK.LV;
                       }
                     } else {
                       if (code < 0xac1c) {
@@ -8268,16 +8196,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        if (code < 0x11001) {
-                          // Mc       BRAHMI SIGN CANDRABINDU
-                          if (0x11000 === code) {
-                            return CLUSTER_BREAK.SPACINGMARK;
-                          }
-                        } else {
-                          // Mn       BRAHMI SIGN ANUSVARA
-                          if (0x11001 === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
+                        // Mc       BRAHMI SIGN CANDRABINDU
+                        if (0x11000 === code) {
+                          return CLUSTER_BREAK.SPACINGMARK;
+                        }
+                        // Mn       BRAHMI SIGN ANUSVARA
+                        if (0x11001 === code) {
+                          return CLUSTER_BREAK.EXTEND;
                         }
                       }
                     } else {
@@ -8439,16 +8364,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        if (code < 0x111cf) {
-                          // Mc       SHARADA VOWEL SIGN PRISHTHAMATRA E
-                          if (0x111ce === code) {
-                            return CLUSTER_BREAK.SPACINGMARK;
-                          }
-                        } else {
-                          // Mn       SHARADA SIGN INVERTED CANDRABINDU
-                          if (0x111cf === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
+                        // Mc       SHARADA VOWEL SIGN PRISHTHAMATRA E
+                        if (0x111ce === code) {
+                          return CLUSTER_BREAK.SPACINGMARK;
+                        }
+                        // Mn       SHARADA SIGN INVERTED CANDRABINDU
+                        if (0x111cf === code) {
+                          return CLUSTER_BREAK.EXTEND;
                         }
                       }
                     }
@@ -8482,16 +8404,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.SPACINGMARK;
                         }
                       } else {
-                        if (code < 0x11235) {
-                          // Mn       KHOJKI SIGN ANUSVARA
-                          if (0x11234 === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
-                        } else {
-                          // Mc       KHOJKI SIGN VIRAMA
-                          if (0x11235 === code) {
-                            return CLUSTER_BREAK.SPACINGMARK;
-                          }
+                        // Mn       KHOJKI SIGN ANUSVARA
+                        if (0x11234 === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                        // Mc       KHOJKI SIGN VIRAMA
+                        if (0x11235 === code) {
+                          return CLUSTER_BREAK.SPACINGMARK;
                         }
                       }
                     }
@@ -8550,16 +8469,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        if (code < 0x1133f) {
-                          // Mc       GRANTHA VOWEL SIGN AA
-                          if (0x1133e === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
-                        } else {
-                          // Mc       GRANTHA VOWEL SIGN I
-                          if (0x1133f === code) {
-                            return CLUSTER_BREAK.SPACINGMARK;
-                          }
+                        // Mc       GRANTHA VOWEL SIGN AA
+                        if (0x1133e === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                        // Mc       GRANTHA VOWEL SIGN I
+                        if (0x1133f === code) {
+                          return CLUSTER_BREAK.SPACINGMARK;
                         }
                       }
                     }
@@ -8660,16 +8576,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        if (code < 0x114b0) {
-                          // Mn       NEWA SANDHI MARK
-                          if (0x1145e === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
-                        } else {
-                          // Mc       TIRHUTA VOWEL SIGN AA
-                          if (0x114b0 === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
+                        // Mn       NEWA SANDHI MARK
+                        if (0x1145e === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                        // Mc       TIRHUTA VOWEL SIGN AA
+                        if (0x114b0 === code) {
+                          return CLUSTER_BREAK.EXTEND;
                         }
                       }
                     }
@@ -8824,16 +8737,13 @@ export default class Graphemer {
                 } else {
                   if (code < 0x116ad) {
                     if (code < 0x1163f) {
-                      if (code < 0x1163e) {
-                        // Mn       MODI SIGN ANUSVARA
-                        if (0x1163d === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                      } else {
-                        // Mc       MODI SIGN VISARGA
-                        if (0x1163e === code) {
-                          return CLUSTER_BREAK.SPACINGMARK;
-                        }
+                      // Mn       MODI SIGN ANUSVARA
+                      if (0x1163d === code) {
+                        return CLUSTER_BREAK.EXTEND;
+                      }
+                      // Mc       MODI SIGN VISARGA
+                      if (0x1163e === code) {
+                        return CLUSTER_BREAK.SPACINGMARK;
                       }
                     } else {
                       if (code < 0x116ab) {
@@ -8842,16 +8752,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        if (code < 0x116ac) {
-                          // Mn       TAKRI SIGN ANUSVARA
-                          if (0x116ab === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
-                        } else {
-                          // Mc       TAKRI SIGN VISARGA
-                          if (0x116ac === code) {
-                            return CLUSTER_BREAK.SPACINGMARK;
-                          }
+                        // Mn       TAKRI SIGN ANUSVARA
+                        if (0x116ab === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                        // Mc       TAKRI SIGN VISARGA
+                        if (0x116ac === code) {
+                          return CLUSTER_BREAK.SPACINGMARK;
                         }
                       }
                     }
@@ -8994,16 +8901,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        if (code < 0x11940) {
-                          // Lo       DIVES AKURU PREFIXED NASAL SIGN
-                          if (0x1193f === code) {
-                            return CLUSTER_BREAK.PREPEND;
-                          }
-                        } else {
-                          // Mc       DIVES AKURU MEDIAL YA
-                          if (0x11940 === code) {
-                            return CLUSTER_BREAK.SPACINGMARK;
-                          }
+                        // Lo       DIVES AKURU PREFIXED NASAL SIGN
+                        if (0x1193f === code) {
+                          return CLUSTER_BREAK.PREPEND;
+                        }
+                        // Mc       DIVES AKURU MEDIAL YA
+                        if (0x11940 === code) {
+                          return CLUSTER_BREAK.SPACINGMARK;
                         }
                       }
                     }
@@ -9015,16 +8919,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.PREPEND;
                         }
                       } else {
-                        if (code < 0x11943) {
-                          // Mc       DIVES AKURU MEDIAL RA
-                          if (0x11942 === code) {
-                            return CLUSTER_BREAK.SPACINGMARK;
-                          }
-                        } else {
-                          // Mn       DIVES AKURU SIGN NUKTA
-                          if (0x11943 === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
+                        // Mc       DIVES AKURU MEDIAL RA
+                        if (0x11942 === code) {
+                          return CLUSTER_BREAK.SPACINGMARK;
+                        }
+                        // Mn       DIVES AKURU SIGN NUKTA
+                        if (0x11943 === code) {
+                          return CLUSTER_BREAK.EXTEND;
                         }
                       }
                     } else {
@@ -9090,16 +8991,13 @@ export default class Graphemer {
                     }
                   } else {
                     if (code < 0x11a3b) {
-                      if (code < 0x11a3a) {
-                        // Mc       ZANABAZAR SQUARE SIGN VISARGA
-                        if (0x11a39 === code) {
-                          return CLUSTER_BREAK.SPACINGMARK;
-                        }
-                      } else {
-                        // Lo       ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA
-                        if (0x11a3a === code) {
-                          return CLUSTER_BREAK.PREPEND;
-                        }
+                      // Mc       ZANABAZAR SQUARE SIGN VISARGA
+                      if (0x11a39 === code) {
+                        return CLUSTER_BREAK.SPACINGMARK;
+                      }
+                      // Lo       ZANABAZAR SQUARE CLUSTER-INITIAL LETTER RA
+                      if (0x11a3a === code) {
+                        return CLUSTER_BREAK.PREPEND;
                       }
                     } else {
                       if (code < 0x11a47) {
@@ -9183,16 +9081,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        if (code < 0x11c3f) {
-                          // Mc       BHAIKSUKI SIGN VISARGA
-                          if (0x11c3e === code) {
-                            return CLUSTER_BREAK.SPACINGMARK;
-                          }
-                        } else {
-                          // Mn       BHAIKSUKI SIGN VIRAMA
-                          if (0x11c3f === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
+                        // Mc       BHAIKSUKI SIGN VISARGA
+                        if (0x11c3e === code) {
+                          return CLUSTER_BREAK.SPACINGMARK;
+                        }
+                        // Mn       BHAIKSUKI SIGN VIRAMA
+                        if (0x11c3f === code) {
+                          return CLUSTER_BREAK.EXTEND;
                         }
                       }
                     }
@@ -9277,16 +9172,13 @@ export default class Graphemer {
                 } else {
                   if (code < 0x11d95) {
                     if (code < 0x11d8a) {
-                      if (code < 0x11d47) {
-                        // Lo       MASARAM GONDI REPHA
-                        if (0x11d46 === code) {
-                          return CLUSTER_BREAK.PREPEND;
-                        }
-                      } else {
-                        // Mn       MASARAM GONDI RA-KARA
-                        if (0x11d47 === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
+                      // Lo       MASARAM GONDI REPHA
+                      if (0x11d46 === code) {
+                        return CLUSTER_BREAK.PREPEND;
+                      }
+                      // Mn       MASARAM GONDI RA-KARA
+                      if (0x11d47 === code) {
+                        return CLUSTER_BREAK.EXTEND;
                       }
                     } else {
                       if (code < 0x11d90) {
@@ -9316,16 +9208,13 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        if (code < 0x11d97) {
-                          // Mc       GUNJALA GONDI SIGN VISARGA
-                          if (0x11d96 === code) {
-                            return CLUSTER_BREAK.SPACINGMARK;
-                          }
-                        } else {
-                          // Mn       GUNJALA GONDI VIRAMA
-                          if (0x11d97 === code) {
-                            return CLUSTER_BREAK.EXTEND;
-                          }
+                        // Mc       GUNJALA GONDI SIGN VISARGA
+                        if (0x11d96 === code) {
+                          return CLUSTER_BREAK.SPACINGMARK;
+                        }
+                        // Mn       GUNJALA GONDI VIRAMA
+                        if (0x11d97 === code) {
+                          return CLUSTER_BREAK.EXTEND;
                         }
                       }
                     } else {
@@ -9501,16 +9390,13 @@ export default class Graphemer {
                 if (code < 0x1e8d0) {
                   if (code < 0x1e008) {
                     if (code < 0x1da9b) {
-                      if (code < 0x1da84) {
-                        // Mn       SIGNWRITING UPPER BODY TILTING FROM HIP JOINTS
-                        if (0x1da75 === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                      } else {
-                        // Mn       SIGNWRITING LOCATION HEAD NECK
-                        if (0x1da84 === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
+                      // Mn       SIGNWRITING UPPER BODY TILTING FROM HIP JOINTS
+                      if (0x1da75 === code) {
+                        return CLUSTER_BREAK.EXTEND;
+                      }
+                      // Mn       SIGNWRITING LOCATION HEAD NECK
+                      if (0x1da84 === code) {
+                        return CLUSTER_BREAK.EXTEND;
                       }
                     } else {
                       if (code < 0x1daa1) {
