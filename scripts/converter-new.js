@@ -84,7 +84,37 @@ function convertNew(content, categoryFilter = () => true) {
     .filter((x) => categoryFilter(x.category))
     .sort((a, b) => a.range[0] - b.range[0]);
 
-  const tree = genTree(propertyRecords);
+  // Merge consecutive ranges with the same category.
+  let prev = undefined;
+  let optimizedRecords = [];
+  for (let i = 0; i != propertyRecords.length; ++i) {
+    let current = propertyRecords[i];
+    if (prev === undefined) {
+      prev = current;
+      continue;
+    }
+    if (
+      prev.category === current.category &&
+      prev.range[prev.range.length - 1] + 1 === current.range[0]
+    ) {
+      let curUpperBound = current.range[current.range.length - 1];
+      if (prev.range.length === 1) {
+        prev.range.push(curUpperBound);
+      } else {
+        prev.range[1] = curUpperBound;
+      }
+      prev.comment = `${prev.comment}\n//${current.comment}`;
+      continue;
+    }
+
+    optimizedRecords.push(prev);
+    prev = current;
+  }
+  if (prev !== undefined) {
+    optimizedRecords.push(prev);
+  }
+
+  const tree = genTree(optimizedRecords);
   return `${tree}
     // unlisted code points are treated as a break property of "Other"
     return ${formatCategory('Other')};
