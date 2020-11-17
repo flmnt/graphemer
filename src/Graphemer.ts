@@ -119,13 +119,16 @@ export default class Graphemer {
                 if (code < 0x5bf) {
                   if (code < 0x7f) {
                     if (code < 0xb) {
-                      // Cc       <control-000A>
-                      if (0xa === code) {
-                        return CLUSTER_BREAK.LF;
-                      }
-                      // Cc  [10] <control-0000>..<control-0009>
-                      if (0x0 <= code && code <= 0x9) {
-                        return CLUSTER_BREAK.CONTROL;
+                      if (code < 0xa) {
+                        // Cc  [10] <control-0000>..<control-0009>
+                        if (0x0 <= code && code <= 0x9) {
+                          return CLUSTER_BREAK.CONTROL;
+                        }
+                      } else {
+                        // Cc       <control-000A>
+                        if (0xa === code) {
+                          return CLUSTER_BREAK.LF;
+                        }
                       }
                     } else {
                       if (code < 0xd) {
@@ -149,13 +152,16 @@ export default class Graphemer {
                     }
                   } else {
                     if (code < 0x300) {
-                      // Cf       SOFT HYPHEN
-                      if (0xad === code) {
-                        return CLUSTER_BREAK.CONTROL;
-                      }
-                      // Cc  [33] <control-007F>..<control-009F>
-                      if (0x7f <= code && code <= 0x9f) {
-                        return CLUSTER_BREAK.CONTROL;
+                      if (code < 0xad) {
+                        // Cc  [33] <control-007F>..<control-009F>
+                        if (0x7f <= code && code <= 0x9f) {
+                          return CLUSTER_BREAK.CONTROL;
+                        }
+                      } else {
+                        // Cf       SOFT HYPHEN
+                        if (0xad === code) {
+                          return CLUSTER_BREAK.CONTROL;
+                        }
                       }
                     } else {
                       if (code < 0x483) {
@@ -240,13 +246,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        // Cf       ARABIC END OF AYAH
-                        if (0x6dd === code) {
-                          return CLUSTER_BREAK.PREPEND;
-                        }
-                        // Mn   [7] ARABIC SMALL HIGH LIGATURE SAD WITH LAM WITH ALEF MAKSURA..ARABIC SMALL HIGH SEEN
-                        if (0x6d6 <= code && code <= 0x6dc) {
-                          return CLUSTER_BREAK.EXTEND;
+                        if (code < 0x6dd) {
+                          // Mn   [7] ARABIC SMALL HIGH LIGATURE SAD WITH LAM WITH ALEF MAKSURA..ARABIC SMALL HIGH SEEN
+                          if (0x6d6 <= code && code <= 0x6dc) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
+                        } else {
+                          // Cf       ARABIC END OF AYAH
+                          if (0x6dd === code) {
+                            return CLUSTER_BREAK.PREPEND;
+                          }
                         }
                       }
                     }
@@ -360,13 +369,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.PREPEND;
                         }
                       } else {
-                        // Mc       DEVANAGARI SIGN VISARGA
-                        if (0x903 === code) {
-                          return CLUSTER_BREAK.SPACINGMARK;
-                        }
-                        // Mn  [32] ARABIC TURNED DAMMA BELOW..DEVANAGARI SIGN ANUSVARA
-                        if (0x8e3 <= code && code <= 0x902) {
-                          return CLUSTER_BREAK.EXTEND;
+                        if (code < 0x903) {
+                          // Mn  [32] ARABIC TURNED DAMMA BELOW..DEVANAGARI SIGN ANUSVARA
+                          if (0x8e3 <= code && code <= 0x902) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
+                        } else {
+                          // Mc       DEVANAGARI SIGN VISARGA
+                          if (0x903 === code) {
+                            return CLUSTER_BREAK.SPACINGMARK;
+                          }
                         }
                       }
                     } else {
@@ -445,13 +457,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        // Mn       BENGALI SIGN NUKTA
-                        if (0x9bc === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                        // Mc   [2] BENGALI SIGN ANUSVARA..BENGALI SIGN VISARGA
-                        if (0x982 <= code && code <= 0x983) {
-                          return CLUSTER_BREAK.SPACINGMARK;
+                        if (code < 0x9bc) {
+                          // Mc   [2] BENGALI SIGN ANUSVARA..BENGALI SIGN VISARGA
+                          if (0x982 <= code && code <= 0x983) {
+                            return CLUSTER_BREAK.SPACINGMARK;
+                          }
+                        } else {
+                          // Mn       BENGALI SIGN NUKTA
+                          if (0x9bc === code) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
                         }
                       }
                     }
@@ -517,13 +532,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        // Mc       GURMUKHI SIGN VISARGA
-                        if (0xa03 === code) {
-                          return CLUSTER_BREAK.SPACINGMARK;
-                        }
-                        // Mn   [2] GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
-                        if (0xa01 <= code && code <= 0xa02) {
-                          return CLUSTER_BREAK.EXTEND;
+                        if (code < 0xa03) {
+                          // Mn   [2] GURMUKHI SIGN ADAK BINDI..GURMUKHI SIGN BINDI
+                          if (0xa01 <= code && code <= 0xa02) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
+                        } else {
+                          // Mc       GURMUKHI SIGN VISARGA
+                          if (0xa03 === code) {
+                            return CLUSTER_BREAK.SPACINGMARK;
+                          }
                         }
                       }
                     }
@@ -584,13 +602,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        // Mc       GUJARATI SIGN VISARGA
-                        if (0xa83 === code) {
-                          return CLUSTER_BREAK.SPACINGMARK;
-                        }
-                        // Mn   [2] GUJARATI SIGN CANDRABINDU..GUJARATI SIGN ANUSVARA
-                        if (0xa81 <= code && code <= 0xa82) {
-                          return CLUSTER_BREAK.EXTEND;
+                        if (code < 0xa83) {
+                          // Mn   [2] GUJARATI SIGN CANDRABINDU..GUJARATI SIGN ANUSVARA
+                          if (0xa81 <= code && code <= 0xa82) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
+                        } else {
+                          // Mc       GUJARATI SIGN VISARGA
+                          if (0xa83 === code) {
+                            return CLUSTER_BREAK.SPACINGMARK;
+                          }
                         }
                       }
                     }
@@ -616,13 +637,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        // Mc       GUJARATI VOWEL SIGN CANDRA O
-                        if (0xac9 === code) {
-                          return CLUSTER_BREAK.SPACINGMARK;
-                        }
-                        // Mn   [2] GUJARATI VOWEL SIGN E..GUJARATI VOWEL SIGN AI
-                        if (0xac7 <= code && code <= 0xac8) {
-                          return CLUSTER_BREAK.EXTEND;
+                        if (code < 0xac9) {
+                          // Mn   [2] GUJARATI VOWEL SIGN E..GUJARATI VOWEL SIGN AI
+                          if (0xac7 <= code && code <= 0xac8) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
+                        } else {
+                          // Mc       GUJARATI VOWEL SIGN CANDRA O
+                          if (0xac9 === code) {
+                            return CLUSTER_BREAK.SPACINGMARK;
+                          }
                         }
                       }
                     }
@@ -710,13 +734,16 @@ export default class Graphemer {
                     }
                   } else {
                     if (code < 0xb55) {
-                      // Mn       ORIYA SIGN VIRAMA
-                      if (0xb4d === code) {
-                        return CLUSTER_BREAK.EXTEND;
-                      }
-                      // Mc   [2] ORIYA VOWEL SIGN O..ORIYA VOWEL SIGN AU
-                      if (0xb4b <= code && code <= 0xb4c) {
-                        return CLUSTER_BREAK.SPACINGMARK;
+                      if (code < 0xb4d) {
+                        // Mc   [2] ORIYA VOWEL SIGN O..ORIYA VOWEL SIGN AU
+                        if (0xb4b <= code && code <= 0xb4c) {
+                          return CLUSTER_BREAK.SPACINGMARK;
+                        }
+                      } else {
+                        // Mn       ORIYA SIGN VIRAMA
+                        if (0xb4d === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
                       }
                     } else {
                       if (code < 0xb62) {
@@ -726,13 +753,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        // Mn       TAMIL SIGN ANUSVARA
-                        if (0xb82 === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                        // Mn   [2] ORIYA VOWEL SIGN VOCALIC L..ORIYA VOWEL SIGN VOCALIC LL
-                        if (0xb62 <= code && code <= 0xb63) {
-                          return CLUSTER_BREAK.EXTEND;
+                        if (code < 0xb82) {
+                          // Mn   [2] ORIYA VOWEL SIGN VOCALIC L..ORIYA VOWEL SIGN VOCALIC LL
+                          if (0xb62 <= code && code <= 0xb63) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
+                        } else {
+                          // Mn       TAMIL SIGN ANUSVARA
+                          if (0xb82 === code) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
                         }
                       }
                     }
@@ -792,13 +822,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        // Mn       TELUGU SIGN COMBINING ANUSVARA ABOVE
-                        if (0xc04 === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                        // Mc   [3] TELUGU SIGN CANDRABINDU..TELUGU SIGN VISARGA
-                        if (0xc01 <= code && code <= 0xc03) {
-                          return CLUSTER_BREAK.SPACINGMARK;
+                        if (code < 0xc04) {
+                          // Mc   [3] TELUGU SIGN CANDRABINDU..TELUGU SIGN VISARGA
+                          if (0xc01 <= code && code <= 0xc03) {
+                            return CLUSTER_BREAK.SPACINGMARK;
+                          }
+                        } else {
+                          // Mn       TELUGU SIGN COMBINING ANUSVARA ABOVE
+                          if (0xc04 === code) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
                         }
                       }
                     }
@@ -841,13 +874,16 @@ export default class Graphemer {
                     }
                   } else {
                     if (code < 0xc82) {
-                      // Mn       KANNADA SIGN CANDRABINDU
-                      if (0xc81 === code) {
-                        return CLUSTER_BREAK.EXTEND;
-                      }
-                      // Mn   [2] TELUGU VOWEL SIGN VOCALIC L..TELUGU VOWEL SIGN VOCALIC LL
-                      if (0xc62 <= code && code <= 0xc63) {
-                        return CLUSTER_BREAK.EXTEND;
+                      if (code < 0xc81) {
+                        // Mn   [2] TELUGU VOWEL SIGN VOCALIC L..TELUGU VOWEL SIGN VOCALIC LL
+                        if (0xc62 <= code && code <= 0xc63) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                      } else {
+                        // Mn       KANNADA SIGN CANDRABINDU
+                        if (0xc81 === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
                       }
                     } else {
                       if (code < 0xcbc) {
@@ -888,13 +924,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        // Mn       KANNADA VOWEL SIGN E
-                        if (0xcc6 === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                        // Mc   [2] KANNADA VOWEL SIGN VOCALIC R..KANNADA VOWEL SIGN VOCALIC RR
-                        if (0xcc3 <= code && code <= 0xcc4) {
-                          return CLUSTER_BREAK.SPACINGMARK;
+                        if (code < 0xcc6) {
+                          // Mc   [2] KANNADA VOWEL SIGN VOCALIC R..KANNADA VOWEL SIGN VOCALIC RR
+                          if (0xcc3 <= code && code <= 0xcc4) {
+                            return CLUSTER_BREAK.SPACINGMARK;
+                          }
+                        } else {
+                          // Mn       KANNADA VOWEL SIGN E
+                          if (0xcc6 === code) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
                         }
                       }
                     }
@@ -1011,13 +1050,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xdd0) {
                     if (code < 0xd82) {
-                      // Mn       SINHALA SIGN CANDRABINDU
-                      if (0xd81 === code) {
-                        return CLUSTER_BREAK.EXTEND;
-                      }
-                      // Mn   [2] MALAYALAM VOWEL SIGN VOCALIC L..MALAYALAM VOWEL SIGN VOCALIC LL
-                      if (0xd62 <= code && code <= 0xd63) {
-                        return CLUSTER_BREAK.EXTEND;
+                      if (code < 0xd81) {
+                        // Mn   [2] MALAYALAM VOWEL SIGN VOCALIC L..MALAYALAM VOWEL SIGN VOCALIC LL
+                        if (0xd62 <= code && code <= 0xd63) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                      } else {
+                        // Mn       SINHALA SIGN CANDRABINDU
+                        if (0xd81 === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
                       }
                     } else {
                       if (code < 0xdca) {
@@ -1044,13 +1086,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.SPACINGMARK;
                         }
                       } else {
-                        // Mn       SINHALA VOWEL SIGN DIGA PAA-PILLA
-                        if (0xdd6 === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                        // Mn   [3] SINHALA VOWEL SIGN KETTI IS-PILLA..SINHALA VOWEL SIGN KETTI PAA-PILLA
-                        if (0xdd2 <= code && code <= 0xdd4) {
-                          return CLUSTER_BREAK.EXTEND;
+                        if (code < 0xdd6) {
+                          // Mn   [3] SINHALA VOWEL SIGN KETTI IS-PILLA..SINHALA VOWEL SIGN KETTI PAA-PILLA
+                          if (0xdd2 <= code && code <= 0xdd4) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
+                        } else {
+                          // Mn       SINHALA VOWEL SIGN DIGA PAA-PILLA
+                          if (0xdd6 === code) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
                         }
                       }
                     } else {
@@ -1094,13 +1139,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        // Mn       LAO VOWEL SIGN MAI KAN
-                        if (0xeb1 === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                        // Mn   [8] THAI CHARACTER MAITAIKHU..THAI CHARACTER YAMAKKAN
-                        if (0xe47 <= code && code <= 0xe4e) {
-                          return CLUSTER_BREAK.EXTEND;
+                        if (code < 0xeb1) {
+                          // Mn   [8] THAI CHARACTER MAITAIKHU..THAI CHARACTER YAMAKKAN
+                          if (0xe47 <= code && code <= 0xe4e) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
+                        } else {
+                          // Mn       LAO VOWEL SIGN MAI KAN
+                          if (0xeb1 === code) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
                         }
                       }
                     }
@@ -1124,13 +1172,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        // Mn       TIBETAN MARK NGAS BZUNG NYI ZLA
-                        if (0xf35 === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                        // Mn   [2] TIBETAN ASTROLOGICAL SIGN -KHYUD PA..TIBETAN ASTROLOGICAL SIGN SDONG TSHUGS
-                        if (0xf18 <= code && code <= 0xf19) {
-                          return CLUSTER_BREAK.EXTEND;
+                        if (code < 0xf35) {
+                          // Mn   [2] TIBETAN ASTROLOGICAL SIGN -KHYUD PA..TIBETAN ASTROLOGICAL SIGN SDONG TSHUGS
+                          if (0xf18 <= code && code <= 0xf19) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
+                        } else {
+                          // Mn       TIBETAN MARK NGAS BZUNG NYI ZLA
+                          if (0xf35 === code) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
                         }
                       }
                     }
@@ -1153,13 +1204,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.SPACINGMARK;
                         }
                       } else {
-                        // Mc       TIBETAN SIGN RNAM BCAD
-                        if (0xf7f === code) {
-                          return CLUSTER_BREAK.SPACINGMARK;
-                        }
-                        // Mn  [14] TIBETAN VOWEL SIGN AA..TIBETAN SIGN RJES SU NGA RO
-                        if (0xf71 <= code && code <= 0xf7e) {
-                          return CLUSTER_BREAK.EXTEND;
+                        if (code < 0xf7f) {
+                          // Mn  [14] TIBETAN VOWEL SIGN AA..TIBETAN SIGN RJES SU NGA RO
+                          if (0xf71 <= code && code <= 0xf7e) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
+                        } else {
+                          // Mc       TIBETAN SIGN RNAM BCAD
+                          if (0xf7f === code) {
+                            return CLUSTER_BREAK.SPACINGMARK;
+                          }
                         }
                       }
                     }
@@ -1266,13 +1320,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        // Mn       MYANMAR CONSONANT SIGN SHAN MEDIAL WA
-                        if (0x1082 === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                        // Mn   [4] MYANMAR VOWEL SIGN GEBA KAREN I..MYANMAR VOWEL SIGN KAYAH EE
-                        if (0x1071 <= code && code <= 0x1074) {
-                          return CLUSTER_BREAK.EXTEND;
+                        if (code < 0x1082) {
+                          // Mn   [4] MYANMAR VOWEL SIGN GEBA KAREN I..MYANMAR VOWEL SIGN KAYAH EE
+                          if (0x1071 <= code && code <= 0x1074) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
+                        } else {
+                          // Mn       MYANMAR CONSONANT SIGN SHAN MEDIAL WA
+                          if (0x1082 === code) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
                         }
                       }
                     }
@@ -1610,15 +1667,18 @@ export default class Graphemer {
                           return CLUSTER_BREAK.SPACINGMARK;
                         }
                       } else {
-                        // Mc       BALINESE VOWEL SIGN RA REPA TEDUNG
-                        if (0x1b3b === code) {
-                          return CLUSTER_BREAK.SPACINGMARK;
-                        }
-                        // Mn       BALINESE SIGN REREKAN
-                        // Mc       BALINESE VOWEL SIGN TEDUNG
-                        // Mn   [5] BALINESE VOWEL SIGN ULU..BALINESE VOWEL SIGN RA REPA
-                        if (0x1b34 <= code && code <= 0x1b3a) {
-                          return CLUSTER_BREAK.EXTEND;
+                        if (code < 0x1b3b) {
+                          // Mn       BALINESE SIGN REREKAN
+                          // Mc       BALINESE VOWEL SIGN TEDUNG
+                          // Mn   [5] BALINESE VOWEL SIGN ULU..BALINESE VOWEL SIGN RA REPA
+                          if (0x1b34 <= code && code <= 0x1b3a) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
+                        } else {
+                          // Mc       BALINESE VOWEL SIGN RA REPA TEDUNG
+                          if (0x1b3b === code) {
+                            return CLUSTER_BREAK.SPACINGMARK;
+                          }
                         }
                       }
                     } else {
@@ -1628,13 +1688,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        // Mn       BALINESE VOWEL SIGN PEPET
-                        if (0x1b42 === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                        // Mc   [5] BALINESE VOWEL SIGN LA LENGA TEDUNG..BALINESE VOWEL SIGN TALING REPA TEDUNG
-                        if (0x1b3d <= code && code <= 0x1b41) {
-                          return CLUSTER_BREAK.SPACINGMARK;
+                        if (code < 0x1b42) {
+                          // Mc   [5] BALINESE VOWEL SIGN LA LENGA TEDUNG..BALINESE VOWEL SIGN TALING REPA TEDUNG
+                          if (0x1b3d <= code && code <= 0x1b41) {
+                            return CLUSTER_BREAK.SPACINGMARK;
+                          }
+                        } else {
+                          // Mn       BALINESE VOWEL SIGN PEPET
+                          if (0x1b42 === code) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
                         }
                       }
                     }
@@ -1724,13 +1787,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        // Mn       BATAK VOWEL SIGN KARO O
-                        if (0x1bed === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                        // Mc   [3] BATAK VOWEL SIGN I..BATAK VOWEL SIGN O
-                        if (0x1bea <= code && code <= 0x1bec) {
-                          return CLUSTER_BREAK.SPACINGMARK;
+                        if (code < 0x1bed) {
+                          // Mc   [3] BATAK VOWEL SIGN I..BATAK VOWEL SIGN O
+                          if (0x1bea <= code && code <= 0x1bec) {
+                            return CLUSTER_BREAK.SPACINGMARK;
+                          }
+                        } else {
+                          // Mn       BATAK VOWEL SIGN KARO O
+                          if (0x1bed === code) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
                         }
                       }
                     }
@@ -1849,13 +1915,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0x2028) {
                     if (code < 0x200c) {
-                      // Cf       ZERO WIDTH SPACE
-                      if (0x200b === code) {
-                        return CLUSTER_BREAK.CONTROL;
-                      }
-                      // Mn   [5] COMBINING DELETION MARK..COMBINING RIGHT ARROWHEAD AND DOWN ARROWHEAD BELOW
-                      if (0x1dfb <= code && code <= 0x1dff) {
-                        return CLUSTER_BREAK.EXTEND;
+                      if (code < 0x200b) {
+                        // Mn   [5] COMBINING DELETION MARK..COMBINING RIGHT ARROWHEAD AND DOWN ARROWHEAD BELOW
+                        if (0x1dfb <= code && code <= 0x1dff) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                      } else {
+                        // Cf       ZERO WIDTH SPACE
+                        if (0x200b === code) {
+                          return CLUSTER_BREAK.CONTROL;
+                        }
                       }
                     } else {
                       if (code < 0x200d) {
@@ -1966,13 +2035,16 @@ export default class Graphemer {
                     }
                   } else {
                     if (code < 0xa806) {
-                      // Mn       SYLOTI NAGRI SIGN DVISVARA
-                      if (0xa802 === code) {
-                        return CLUSTER_BREAK.EXTEND;
-                      }
-                      // Mn   [2] BAMUM COMBINING MARK KOQNDON..BAMUM COMBINING MARK TUKWENTIS
-                      if (0xa6f0 <= code && code <= 0xa6f1) {
-                        return CLUSTER_BREAK.EXTEND;
+                      if (code < 0xa802) {
+                        // Mn   [2] BAMUM COMBINING MARK KOQNDON..BAMUM COMBINING MARK TUKWENTIS
+                        if (0xa6f0 <= code && code <= 0xa6f1) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                      } else {
+                        // Mn       SYLOTI NAGRI SIGN DVISVARA
+                        if (0xa802 === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
                       }
                     } else {
                       if (code < 0xa80b) {
@@ -1998,13 +2070,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xa8c4) {
                     if (code < 0xa82c) {
-                      // Mc       SYLOTI NAGRI VOWEL SIGN OO
-                      if (0xa827 === code) {
-                        return CLUSTER_BREAK.SPACINGMARK;
-                      }
-                      // Mn   [2] SYLOTI NAGRI VOWEL SIGN U..SYLOTI NAGRI VOWEL SIGN E
-                      if (0xa825 <= code && code <= 0xa826) {
-                        return CLUSTER_BREAK.EXTEND;
+                      if (code < 0xa827) {
+                        // Mn   [2] SYLOTI NAGRI VOWEL SIGN U..SYLOTI NAGRI VOWEL SIGN E
+                        if (0xa825 <= code && code <= 0xa826) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                      } else {
+                        // Mc       SYLOTI NAGRI VOWEL SIGN OO
+                        if (0xa827 === code) {
+                          return CLUSTER_BREAK.SPACINGMARK;
+                        }
                       }
                     } else {
                       if (code < 0xa880) {
@@ -2034,13 +2109,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        // Mn       DEVANAGARI VOWEL SIGN AY
-                        if (0xa8ff === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                        // Mn  [18] COMBINING DEVANAGARI DIGIT ZERO..COMBINING DEVANAGARI SIGN AVAGRAHA
-                        if (0xa8e0 <= code && code <= 0xa8f1) {
-                          return CLUSTER_BREAK.EXTEND;
+                        if (code < 0xa8ff) {
+                          // Mn  [18] COMBINING DEVANAGARI DIGIT ZERO..COMBINING DEVANAGARI SIGN AVAGRAHA
+                          if (0xa8e0 <= code && code <= 0xa8f1) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
+                        } else {
+                          // Mn       DEVANAGARI VOWEL SIGN AY
+                          if (0xa8ff === code) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
                         }
                       }
                     } else {
@@ -2122,13 +2200,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        // Mn       MYANMAR SIGN SHAN SAW
-                        if (0xa9e5 === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                        // Mc   [3] JAVANESE CONSONANT SIGN PENGKAL..JAVANESE PANGKON
-                        if (0xa9be <= code && code <= 0xa9c0) {
-                          return CLUSTER_BREAK.SPACINGMARK;
+                        if (code < 0xa9e5) {
+                          // Mc   [3] JAVANESE CONSONANT SIGN PENGKAL..JAVANESE PANGKON
+                          if (0xa9be <= code && code <= 0xa9c0) {
+                            return CLUSTER_BREAK.SPACINGMARK;
+                          }
+                        } else {
+                          // Mn       MYANMAR SIGN SHAN SAW
+                          if (0xa9e5 === code) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
                         }
                       }
                     }
@@ -2243,13 +2324,16 @@ export default class Graphemer {
                     }
                   } else {
                     if (code < 0xaaf6) {
-                      // Mc       MEETEI MAYEK VOWEL SIGN VISARGA
-                      if (0xaaf5 === code) {
-                        return CLUSTER_BREAK.SPACINGMARK;
-                      }
-                      // Mc   [2] MEETEI MAYEK VOWEL SIGN AU..MEETEI MAYEK VOWEL SIGN AAU
-                      if (0xaaee <= code && code <= 0xaaef) {
-                        return CLUSTER_BREAK.SPACINGMARK;
+                      if (code < 0xaaf5) {
+                        // Mc   [2] MEETEI MAYEK VOWEL SIGN AU..MEETEI MAYEK VOWEL SIGN AAU
+                        if (0xaaee <= code && code <= 0xaaef) {
+                          return CLUSTER_BREAK.SPACINGMARK;
+                        }
+                      } else {
+                        // Mc       MEETEI MAYEK VOWEL SIGN VISARGA
+                        if (0xaaf5 === code) {
+                          return CLUSTER_BREAK.SPACINGMARK;
+                        }
                       }
                     } else {
                       if (code < 0xabe3) {
@@ -2258,13 +2342,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        // Mn       MEETEI MAYEK VOWEL SIGN ANAP
-                        if (0xabe5 === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                        // Mc   [2] MEETEI MAYEK VOWEL SIGN ONAP..MEETEI MAYEK VOWEL SIGN INAP
-                        if (0xabe3 <= code && code <= 0xabe4) {
-                          return CLUSTER_BREAK.SPACINGMARK;
+                        if (code < 0xabe5) {
+                          // Mc   [2] MEETEI MAYEK VOWEL SIGN ONAP..MEETEI MAYEK VOWEL SIGN INAP
+                          if (0xabe3 <= code && code <= 0xabe4) {
+                            return CLUSTER_BREAK.SPACINGMARK;
+                          }
+                        } else {
+                          // Mn       MEETEI MAYEK VOWEL SIGN ANAP
+                          if (0xabe5 === code) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
                         }
                       }
                     }
@@ -2272,13 +2359,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xac00) {
                     if (code < 0xabe9) {
-                      // Mn       MEETEI MAYEK VOWEL SIGN UNAP
-                      if (0xabe8 === code) {
-                        return CLUSTER_BREAK.EXTEND;
-                      }
-                      // Mc   [2] MEETEI MAYEK VOWEL SIGN YENAP..MEETEI MAYEK VOWEL SIGN SOUNAP
-                      if (0xabe6 <= code && code <= 0xabe7) {
-                        return CLUSTER_BREAK.SPACINGMARK;
+                      if (code < 0xabe8) {
+                        // Mc   [2] MEETEI MAYEK VOWEL SIGN YENAP..MEETEI MAYEK VOWEL SIGN SOUNAP
+                        if (0xabe6 <= code && code <= 0xabe7) {
+                          return CLUSTER_BREAK.SPACINGMARK;
+                        }
+                      } else {
+                        // Mn       MEETEI MAYEK VOWEL SIGN UNAP
+                        if (0xabe8 === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
                       }
                     } else {
                       if (code < 0xabec) {
@@ -2305,13 +2395,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE GAE
-                        if (0xac1c === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE GAG..HANGUL SYLLABLE GAH
-                        if (0xac01 <= code && code <= 0xac1b) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xac1c) {
+                          // Lo  [27] HANGUL SYLLABLE GAG..HANGUL SYLLABLE GAH
+                          if (0xac01 <= code && code <= 0xac1b) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE GAE
+                          if (0xac1c === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     } else {
@@ -2366,25 +2459,31 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE GE
-                        if (0xac8c === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE GEOG..HANGUL SYLLABLE GEOH
-                        if (0xac71 <= code && code <= 0xac8b) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xac8c) {
+                          // Lo  [27] HANGUL SYLLABLE GEOG..HANGUL SYLLABLE GEOH
+                          if (0xac71 <= code && code <= 0xac8b) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE GE
+                          if (0xac8c === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
                   } else {
                     if (code < 0xaca9) {
-                      // Lo       HANGUL SYLLABLE GYEO
-                      if (0xaca8 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE GEG..HANGUL SYLLABLE GEH
-                      if (0xac8d <= code && code <= 0xaca7) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xaca8) {
+                        // Lo  [27] HANGUL SYLLABLE GEG..HANGUL SYLLABLE GEH
+                        if (0xac8d <= code && code <= 0xaca7) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE GYEO
+                        if (0xaca8 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xacc4) {
@@ -2428,13 +2527,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE GWAE
-                        if (0xad18 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE GWAG..HANGUL SYLLABLE GWAH
-                        if (0xacfd <= code && code <= 0xad17) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xad18) {
+                          // Lo  [27] HANGUL SYLLABLE GWAG..HANGUL SYLLABLE GWAH
+                          if (0xacfd <= code && code <= 0xad17) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE GWAE
+                          if (0xad18 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -2465,13 +2567,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE GU
-                        if (0xad6c === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE GYOG..HANGUL SYLLABLE GYOH
-                        if (0xad51 <= code && code <= 0xad6b) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xad6c) {
+                          // Lo  [27] HANGUL SYLLABLE GYOG..HANGUL SYLLABLE GYOH
+                          if (0xad51 <= code && code <= 0xad6b) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE GU
+                          if (0xad6c === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -2481,13 +2586,16 @@ export default class Graphemer {
                 if (code < 0xadf9) {
                   if (code < 0xadc0) {
                     if (code < 0xad89) {
-                      // Lo       HANGUL SYLLABLE GWEO
-                      if (0xad88 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE GUG..HANGUL SYLLABLE GUH
-                      if (0xad6d <= code && code <= 0xad87) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xad88) {
+                        // Lo  [27] HANGUL SYLLABLE GUG..HANGUL SYLLABLE GUH
+                        if (0xad6d <= code && code <= 0xad87) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE GWEO
+                        if (0xad88 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xada4) {
@@ -2529,13 +2637,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE GEU
-                        if (0xadf8 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE GYUG..HANGUL SYLLABLE GYUH
-                        if (0xaddd <= code && code <= 0xadf7) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xadf8) {
+                          // Lo  [27] HANGUL SYLLABLE GYUG..HANGUL SYLLABLE GYUH
+                          if (0xaddd <= code && code <= 0xadf7) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE GEU
+                          if (0xadf8 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -2543,13 +2654,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xae4c) {
                     if (code < 0xae15) {
-                      // Lo       HANGUL SYLLABLE GYI
-                      if (0xae14 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE GEUG..HANGUL SYLLABLE GEUH
-                      if (0xadf9 <= code && code <= 0xae13) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xae14) {
+                        // Lo  [27] HANGUL SYLLABLE GEUG..HANGUL SYLLABLE GEUH
+                        if (0xadf9 <= code && code <= 0xae13) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE GYI
+                        if (0xae14 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xae30) {
@@ -2579,13 +2693,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE GGAE
-                        if (0xae68 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE GGAG..HANGUL SYLLABLE GGAH
-                        if (0xae4d <= code && code <= 0xae67) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xae68) {
+                          // Lo  [27] HANGUL SYLLABLE GGAG..HANGUL SYLLABLE GGAH
+                          if (0xae4d <= code && code <= 0xae67) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE GGAE
+                          if (0xae68 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     } else {
@@ -2634,25 +2751,31 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE GGE
-                        if (0xaed8 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE GGEOG..HANGUL SYLLABLE GGEOH
-                        if (0xaebd <= code && code <= 0xaed7) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xaed8) {
+                          // Lo  [27] HANGUL SYLLABLE GGEOG..HANGUL SYLLABLE GGEOH
+                          if (0xaebd <= code && code <= 0xaed7) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE GGE
+                          if (0xaed8 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
                   } else {
                     if (code < 0xaef5) {
-                      // Lo       HANGUL SYLLABLE GGYEO
-                      if (0xaef4 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE GGEG..HANGUL SYLLABLE GGEH
-                      if (0xaed9 <= code && code <= 0xaef3) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xaef4) {
+                        // Lo  [27] HANGUL SYLLABLE GGEG..HANGUL SYLLABLE GGEH
+                        if (0xaed9 <= code && code <= 0xaef3) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE GGYEO
+                        if (0xaef4 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xaf10) {
@@ -2696,13 +2819,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE GGWAE
-                        if (0xaf64 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE GGWAG..HANGUL SYLLABLE GGWAH
-                        if (0xaf49 <= code && code <= 0xaf63) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xaf64) {
+                          // Lo  [27] HANGUL SYLLABLE GGWAG..HANGUL SYLLABLE GGWAH
+                          if (0xaf49 <= code && code <= 0xaf63) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE GGWAE
+                          if (0xaf64 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -2733,13 +2859,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE GGU
-                        if (0xafb8 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE GGYOG..HANGUL SYLLABLE GGYOH
-                        if (0xaf9d <= code && code <= 0xafb7) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xafb8) {
+                          // Lo  [27] HANGUL SYLLABLE GGYOG..HANGUL SYLLABLE GGYOH
+                          if (0xaf9d <= code && code <= 0xafb7) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE GGU
+                          if (0xafb8 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -2749,13 +2878,16 @@ export default class Graphemer {
                 if (code < 0xb045) {
                   if (code < 0xb00c) {
                     if (code < 0xafd5) {
-                      // Lo       HANGUL SYLLABLE GGWEO
-                      if (0xafd4 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE GGUG..HANGUL SYLLABLE GGUH
-                      if (0xafb9 <= code && code <= 0xafd3) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xafd4) {
+                        // Lo  [27] HANGUL SYLLABLE GGUG..HANGUL SYLLABLE GGUH
+                        if (0xafb9 <= code && code <= 0xafd3) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE GGWEO
+                        if (0xafd4 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xaff0) {
@@ -2797,13 +2929,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE GGEU
-                        if (0xb044 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE GGYUG..HANGUL SYLLABLE GGYUH
-                        if (0xb029 <= code && code <= 0xb043) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb044) {
+                          // Lo  [27] HANGUL SYLLABLE GGYUG..HANGUL SYLLABLE GGYUH
+                          if (0xb029 <= code && code <= 0xb043) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE GGEU
+                          if (0xb044 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -2811,13 +2946,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xb098) {
                     if (code < 0xb061) {
-                      // Lo       HANGUL SYLLABLE GGYI
-                      if (0xb060 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE GGEUG..HANGUL SYLLABLE GGEUH
-                      if (0xb045 <= code && code <= 0xb05f) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xb060) {
+                        // Lo  [27] HANGUL SYLLABLE GGEUG..HANGUL SYLLABLE GGEUH
+                        if (0xb045 <= code && code <= 0xb05f) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE GGYI
+                        if (0xb060 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xb07c) {
@@ -2847,13 +2985,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE NAE
-                        if (0xb0b4 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE NAG..HANGUL SYLLABLE NAH
-                        if (0xb099 <= code && code <= 0xb0b3) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb0b4) {
+                          // Lo  [27] HANGUL SYLLABLE NAG..HANGUL SYLLABLE NAH
+                          if (0xb099 <= code && code <= 0xb0b3) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE NAE
+                          if (0xb0b4 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     } else {
@@ -2904,25 +3045,31 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE NE
-                        if (0xb124 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE NEOG..HANGUL SYLLABLE NEOH
-                        if (0xb109 <= code && code <= 0xb123) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb124) {
+                          // Lo  [27] HANGUL SYLLABLE NEOG..HANGUL SYLLABLE NEOH
+                          if (0xb109 <= code && code <= 0xb123) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE NE
+                          if (0xb124 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
                   } else {
                     if (code < 0xb141) {
-                      // Lo       HANGUL SYLLABLE NYEO
-                      if (0xb140 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE NEG..HANGUL SYLLABLE NEH
-                      if (0xb125 <= code && code <= 0xb13f) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xb140) {
+                        // Lo  [27] HANGUL SYLLABLE NEG..HANGUL SYLLABLE NEH
+                        if (0xb125 <= code && code <= 0xb13f) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE NYEO
+                        if (0xb140 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xb15c) {
@@ -2966,13 +3113,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE NWAE
-                        if (0xb1b0 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE NWAG..HANGUL SYLLABLE NWAH
-                        if (0xb195 <= code && code <= 0xb1af) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb1b0) {
+                          // Lo  [27] HANGUL SYLLABLE NWAG..HANGUL SYLLABLE NWAH
+                          if (0xb195 <= code && code <= 0xb1af) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE NWAE
+                          if (0xb1b0 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -3003,13 +3153,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE NU
-                        if (0xb204 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE NYOG..HANGUL SYLLABLE NYOH
-                        if (0xb1e9 <= code && code <= 0xb203) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb204) {
+                          // Lo  [27] HANGUL SYLLABLE NYOG..HANGUL SYLLABLE NYOH
+                          if (0xb1e9 <= code && code <= 0xb203) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE NU
+                          if (0xb204 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -3019,13 +3172,16 @@ export default class Graphemer {
                 if (code < 0xb291) {
                   if (code < 0xb258) {
                     if (code < 0xb221) {
-                      // Lo       HANGUL SYLLABLE NWEO
-                      if (0xb220 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE NUG..HANGUL SYLLABLE NUH
-                      if (0xb205 <= code && code <= 0xb21f) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xb220) {
+                        // Lo  [27] HANGUL SYLLABLE NUG..HANGUL SYLLABLE NUH
+                        if (0xb205 <= code && code <= 0xb21f) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE NWEO
+                        if (0xb220 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xb23c) {
@@ -3067,13 +3223,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE NEU
-                        if (0xb290 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE NYUG..HANGUL SYLLABLE NYUH
-                        if (0xb275 <= code && code <= 0xb28f) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb290) {
+                          // Lo  [27] HANGUL SYLLABLE NYUG..HANGUL SYLLABLE NYUH
+                          if (0xb275 <= code && code <= 0xb28f) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE NEU
+                          if (0xb290 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -3081,13 +3240,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xb2e4) {
                     if (code < 0xb2ad) {
-                      // Lo       HANGUL SYLLABLE NYI
-                      if (0xb2ac === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE NEUG..HANGUL SYLLABLE NEUH
-                      if (0xb291 <= code && code <= 0xb2ab) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xb2ac) {
+                        // Lo  [27] HANGUL SYLLABLE NEUG..HANGUL SYLLABLE NEUH
+                        if (0xb291 <= code && code <= 0xb2ab) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE NYI
+                        if (0xb2ac === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xb2c8) {
@@ -3117,13 +3279,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE DAE
-                        if (0xb300 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE DAG..HANGUL SYLLABLE DAH
-                        if (0xb2e5 <= code && code <= 0xb2ff) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb300) {
+                          // Lo  [27] HANGUL SYLLABLE DAG..HANGUL SYLLABLE DAH
+                          if (0xb2e5 <= code && code <= 0xb2ff) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE DAE
+                          if (0xb300 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     } else {
@@ -3172,25 +3337,31 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE DE
-                        if (0xb370 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE DEOG..HANGUL SYLLABLE DEOH
-                        if (0xb355 <= code && code <= 0xb36f) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb370) {
+                          // Lo  [27] HANGUL SYLLABLE DEOG..HANGUL SYLLABLE DEOH
+                          if (0xb355 <= code && code <= 0xb36f) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE DE
+                          if (0xb370 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
                   } else {
                     if (code < 0xb38d) {
-                      // Lo       HANGUL SYLLABLE DYEO
-                      if (0xb38c === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE DEG..HANGUL SYLLABLE DEH
-                      if (0xb371 <= code && code <= 0xb38b) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xb38c) {
+                        // Lo  [27] HANGUL SYLLABLE DEG..HANGUL SYLLABLE DEH
+                        if (0xb371 <= code && code <= 0xb38b) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE DYEO
+                        if (0xb38c === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xb3a8) {
@@ -3234,13 +3405,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE DWAE
-                        if (0xb3fc === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE DWAG..HANGUL SYLLABLE DWAH
-                        if (0xb3e1 <= code && code <= 0xb3fb) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb3fc) {
+                          // Lo  [27] HANGUL SYLLABLE DWAG..HANGUL SYLLABLE DWAH
+                          if (0xb3e1 <= code && code <= 0xb3fb) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE DWAE
+                          if (0xb3fc === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -3271,13 +3445,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE DU
-                        if (0xb450 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE DYOG..HANGUL SYLLABLE DYOH
-                        if (0xb435 <= code && code <= 0xb44f) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb450) {
+                          // Lo  [27] HANGUL SYLLABLE DYOG..HANGUL SYLLABLE DYOH
+                          if (0xb435 <= code && code <= 0xb44f) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE DU
+                          if (0xb450 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -3287,13 +3464,16 @@ export default class Graphemer {
                 if (code < 0xb4dd) {
                   if (code < 0xb4a4) {
                     if (code < 0xb46d) {
-                      // Lo       HANGUL SYLLABLE DWEO
-                      if (0xb46c === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE DUG..HANGUL SYLLABLE DUH
-                      if (0xb451 <= code && code <= 0xb46b) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xb46c) {
+                        // Lo  [27] HANGUL SYLLABLE DUG..HANGUL SYLLABLE DUH
+                        if (0xb451 <= code && code <= 0xb46b) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE DWEO
+                        if (0xb46c === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xb488) {
@@ -3335,13 +3515,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE DEU
-                        if (0xb4dc === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE DYUG..HANGUL SYLLABLE DYUH
-                        if (0xb4c1 <= code && code <= 0xb4db) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb4dc) {
+                          // Lo  [27] HANGUL SYLLABLE DYUG..HANGUL SYLLABLE DYUH
+                          if (0xb4c1 <= code && code <= 0xb4db) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE DEU
+                          if (0xb4dc === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -3349,13 +3532,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xb530) {
                     if (code < 0xb4f9) {
-                      // Lo       HANGUL SYLLABLE DYI
-                      if (0xb4f8 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE DEUG..HANGUL SYLLABLE DEUH
-                      if (0xb4dd <= code && code <= 0xb4f7) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xb4f8) {
+                        // Lo  [27] HANGUL SYLLABLE DEUG..HANGUL SYLLABLE DEUH
+                        if (0xb4dd <= code && code <= 0xb4f7) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE DYI
+                        if (0xb4f8 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xb514) {
@@ -3385,13 +3571,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE DDAE
-                        if (0xb54c === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE DDAG..HANGUL SYLLABLE DDAH
-                        if (0xb531 <= code && code <= 0xb54b) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb54c) {
+                          // Lo  [27] HANGUL SYLLABLE DDAG..HANGUL SYLLABLE DDAH
+                          if (0xb531 <= code && code <= 0xb54b) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE DDAE
+                          if (0xb54c === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     } else {
@@ -3444,25 +3633,31 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE DDE
-                        if (0xb5bc === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE DDEOG..HANGUL SYLLABLE DDEOH
-                        if (0xb5a1 <= code && code <= 0xb5bb) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb5bc) {
+                          // Lo  [27] HANGUL SYLLABLE DDEOG..HANGUL SYLLABLE DDEOH
+                          if (0xb5a1 <= code && code <= 0xb5bb) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE DDE
+                          if (0xb5bc === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
                   } else {
                     if (code < 0xb5d9) {
-                      // Lo       HANGUL SYLLABLE DDYEO
-                      if (0xb5d8 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE DDEG..HANGUL SYLLABLE DDEH
-                      if (0xb5bd <= code && code <= 0xb5d7) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xb5d8) {
+                        // Lo  [27] HANGUL SYLLABLE DDEG..HANGUL SYLLABLE DDEH
+                        if (0xb5bd <= code && code <= 0xb5d7) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE DDYEO
+                        if (0xb5d8 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xb5f4) {
@@ -3506,13 +3701,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE DDWAE
-                        if (0xb648 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE DDWAG..HANGUL SYLLABLE DDWAH
-                        if (0xb62d <= code && code <= 0xb647) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb648) {
+                          // Lo  [27] HANGUL SYLLABLE DDWAG..HANGUL SYLLABLE DDWAH
+                          if (0xb62d <= code && code <= 0xb647) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE DDWAE
+                          if (0xb648 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -3543,13 +3741,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE DDU
-                        if (0xb69c === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE DDYOG..HANGUL SYLLABLE DDYOH
-                        if (0xb681 <= code && code <= 0xb69b) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb69c) {
+                          // Lo  [27] HANGUL SYLLABLE DDYOG..HANGUL SYLLABLE DDYOH
+                          if (0xb681 <= code && code <= 0xb69b) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE DDU
+                          if (0xb69c === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -3559,13 +3760,16 @@ export default class Graphemer {
                 if (code < 0xb729) {
                   if (code < 0xb6f0) {
                     if (code < 0xb6b9) {
-                      // Lo       HANGUL SYLLABLE DDWEO
-                      if (0xb6b8 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE DDUG..HANGUL SYLLABLE DDUH
-                      if (0xb69d <= code && code <= 0xb6b7) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xb6b8) {
+                        // Lo  [27] HANGUL SYLLABLE DDUG..HANGUL SYLLABLE DDUH
+                        if (0xb69d <= code && code <= 0xb6b7) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE DDWEO
+                        if (0xb6b8 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xb6d4) {
@@ -3607,13 +3811,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE DDEU
-                        if (0xb728 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE DDYUG..HANGUL SYLLABLE DDYUH
-                        if (0xb70d <= code && code <= 0xb727) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb728) {
+                          // Lo  [27] HANGUL SYLLABLE DDYUG..HANGUL SYLLABLE DDYUH
+                          if (0xb70d <= code && code <= 0xb727) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE DDEU
+                          if (0xb728 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -3621,13 +3828,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xb77c) {
                     if (code < 0xb745) {
-                      // Lo       HANGUL SYLLABLE DDYI
-                      if (0xb744 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE DDEUG..HANGUL SYLLABLE DDEUH
-                      if (0xb729 <= code && code <= 0xb743) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xb744) {
+                        // Lo  [27] HANGUL SYLLABLE DDEUG..HANGUL SYLLABLE DDEUH
+                        if (0xb729 <= code && code <= 0xb743) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE DDYI
+                        if (0xb744 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xb760) {
@@ -3657,13 +3867,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE RAE
-                        if (0xb798 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE RAG..HANGUL SYLLABLE RAH
-                        if (0xb77d <= code && code <= 0xb797) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb798) {
+                          // Lo  [27] HANGUL SYLLABLE RAG..HANGUL SYLLABLE RAH
+                          if (0xb77d <= code && code <= 0xb797) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE RAE
+                          if (0xb798 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     } else {
@@ -3712,25 +3925,31 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE RE
-                        if (0xb808 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE REOG..HANGUL SYLLABLE REOH
-                        if (0xb7ed <= code && code <= 0xb807) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb808) {
+                          // Lo  [27] HANGUL SYLLABLE REOG..HANGUL SYLLABLE REOH
+                          if (0xb7ed <= code && code <= 0xb807) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE RE
+                          if (0xb808 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
                   } else {
                     if (code < 0xb825) {
-                      // Lo       HANGUL SYLLABLE RYEO
-                      if (0xb824 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE REG..HANGUL SYLLABLE REH
-                      if (0xb809 <= code && code <= 0xb823) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xb824) {
+                        // Lo  [27] HANGUL SYLLABLE REG..HANGUL SYLLABLE REH
+                        if (0xb809 <= code && code <= 0xb823) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE RYEO
+                        if (0xb824 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xb840) {
@@ -3774,13 +3993,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE RWAE
-                        if (0xb894 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE RWAG..HANGUL SYLLABLE RWAH
-                        if (0xb879 <= code && code <= 0xb893) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb894) {
+                          // Lo  [27] HANGUL SYLLABLE RWAG..HANGUL SYLLABLE RWAH
+                          if (0xb879 <= code && code <= 0xb893) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE RWAE
+                          if (0xb894 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -3811,13 +4033,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE RU
-                        if (0xb8e8 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE RYOG..HANGUL SYLLABLE RYOH
-                        if (0xb8cd <= code && code <= 0xb8e7) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb8e8) {
+                          // Lo  [27] HANGUL SYLLABLE RYOG..HANGUL SYLLABLE RYOH
+                          if (0xb8cd <= code && code <= 0xb8e7) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE RU
+                          if (0xb8e8 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -3827,13 +4052,16 @@ export default class Graphemer {
                 if (code < 0xb975) {
                   if (code < 0xb93c) {
                     if (code < 0xb905) {
-                      // Lo       HANGUL SYLLABLE RWEO
-                      if (0xb904 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE RUG..HANGUL SYLLABLE RUH
-                      if (0xb8e9 <= code && code <= 0xb903) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xb904) {
+                        // Lo  [27] HANGUL SYLLABLE RUG..HANGUL SYLLABLE RUH
+                        if (0xb8e9 <= code && code <= 0xb903) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE RWEO
+                        if (0xb904 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xb920) {
@@ -3875,13 +4103,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE REU
-                        if (0xb974 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE RYUG..HANGUL SYLLABLE RYUH
-                        if (0xb959 <= code && code <= 0xb973) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb974) {
+                          // Lo  [27] HANGUL SYLLABLE RYUG..HANGUL SYLLABLE RYUH
+                          if (0xb959 <= code && code <= 0xb973) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE REU
+                          if (0xb974 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -3889,13 +4120,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xb9c8) {
                     if (code < 0xb991) {
-                      // Lo       HANGUL SYLLABLE RYI
-                      if (0xb990 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE REUG..HANGUL SYLLABLE REUH
-                      if (0xb975 <= code && code <= 0xb98f) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xb990) {
+                        // Lo  [27] HANGUL SYLLABLE REUG..HANGUL SYLLABLE REUH
+                        if (0xb975 <= code && code <= 0xb98f) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE RYI
+                        if (0xb990 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xb9ac) {
@@ -3925,13 +4159,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE MAE
-                        if (0xb9e4 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE MAG..HANGUL SYLLABLE MAH
-                        if (0xb9c9 <= code && code <= 0xb9e3) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xb9e4) {
+                          // Lo  [27] HANGUL SYLLABLE MAG..HANGUL SYLLABLE MAH
+                          if (0xb9c9 <= code && code <= 0xb9e3) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE MAE
+                          if (0xb9e4 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     } else {
@@ -3982,25 +4219,31 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE ME
-                        if (0xba54 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE MEOG..HANGUL SYLLABLE MEOH
-                        if (0xba39 <= code && code <= 0xba53) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xba54) {
+                          // Lo  [27] HANGUL SYLLABLE MEOG..HANGUL SYLLABLE MEOH
+                          if (0xba39 <= code && code <= 0xba53) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE ME
+                          if (0xba54 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
                   } else {
                     if (code < 0xba71) {
-                      // Lo       HANGUL SYLLABLE MYEO
-                      if (0xba70 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE MEG..HANGUL SYLLABLE MEH
-                      if (0xba55 <= code && code <= 0xba6f) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xba70) {
+                        // Lo  [27] HANGUL SYLLABLE MEG..HANGUL SYLLABLE MEH
+                        if (0xba55 <= code && code <= 0xba6f) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE MYEO
+                        if (0xba70 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xba8c) {
@@ -4044,13 +4287,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE MWAE
-                        if (0xbae0 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE MWAG..HANGUL SYLLABLE MWAH
-                        if (0xbac5 <= code && code <= 0xbadf) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xbae0) {
+                          // Lo  [27] HANGUL SYLLABLE MWAG..HANGUL SYLLABLE MWAH
+                          if (0xbac5 <= code && code <= 0xbadf) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE MWAE
+                          if (0xbae0 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -4081,13 +4327,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE MU
-                        if (0xbb34 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE MYOG..HANGUL SYLLABLE MYOH
-                        if (0xbb19 <= code && code <= 0xbb33) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xbb34) {
+                          // Lo  [27] HANGUL SYLLABLE MYOG..HANGUL SYLLABLE MYOH
+                          if (0xbb19 <= code && code <= 0xbb33) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE MU
+                          if (0xbb34 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -4097,13 +4346,16 @@ export default class Graphemer {
                 if (code < 0xbbc1) {
                   if (code < 0xbb88) {
                     if (code < 0xbb51) {
-                      // Lo       HANGUL SYLLABLE MWEO
-                      if (0xbb50 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE MUG..HANGUL SYLLABLE MUH
-                      if (0xbb35 <= code && code <= 0xbb4f) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xbb50) {
+                        // Lo  [27] HANGUL SYLLABLE MUG..HANGUL SYLLABLE MUH
+                        if (0xbb35 <= code && code <= 0xbb4f) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE MWEO
+                        if (0xbb50 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xbb6c) {
@@ -4145,13 +4397,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE MEU
-                        if (0xbbc0 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE MYUG..HANGUL SYLLABLE MYUH
-                        if (0xbba5 <= code && code <= 0xbbbf) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xbbc0) {
+                          // Lo  [27] HANGUL SYLLABLE MYUG..HANGUL SYLLABLE MYUH
+                          if (0xbba5 <= code && code <= 0xbbbf) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE MEU
+                          if (0xbbc0 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -4159,13 +4414,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xbc14) {
                     if (code < 0xbbdd) {
-                      // Lo       HANGUL SYLLABLE MYI
-                      if (0xbbdc === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE MEUG..HANGUL SYLLABLE MEUH
-                      if (0xbbc1 <= code && code <= 0xbbdb) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xbbdc) {
+                        // Lo  [27] HANGUL SYLLABLE MEUG..HANGUL SYLLABLE MEUH
+                        if (0xbbc1 <= code && code <= 0xbbdb) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE MYI
+                        if (0xbbdc === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xbbf8) {
@@ -4195,13 +4453,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE BAE
-                        if (0xbc30 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE BAG..HANGUL SYLLABLE BAH
-                        if (0xbc15 <= code && code <= 0xbc2f) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xbc30) {
+                          // Lo  [27] HANGUL SYLLABLE BAG..HANGUL SYLLABLE BAH
+                          if (0xbc15 <= code && code <= 0xbc2f) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE BAE
+                          if (0xbc30 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     } else {
@@ -4250,25 +4511,31 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE BE
-                        if (0xbca0 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE BEOG..HANGUL SYLLABLE BEOH
-                        if (0xbc85 <= code && code <= 0xbc9f) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xbca0) {
+                          // Lo  [27] HANGUL SYLLABLE BEOG..HANGUL SYLLABLE BEOH
+                          if (0xbc85 <= code && code <= 0xbc9f) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE BE
+                          if (0xbca0 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
                   } else {
                     if (code < 0xbcbd) {
-                      // Lo       HANGUL SYLLABLE BYEO
-                      if (0xbcbc === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE BEG..HANGUL SYLLABLE BEH
-                      if (0xbca1 <= code && code <= 0xbcbb) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xbcbc) {
+                        // Lo  [27] HANGUL SYLLABLE BEG..HANGUL SYLLABLE BEH
+                        if (0xbca1 <= code && code <= 0xbcbb) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE BYEO
+                        if (0xbcbc === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xbcd8) {
@@ -4312,13 +4579,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE BWAE
-                        if (0xbd2c === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE BWAG..HANGUL SYLLABLE BWAH
-                        if (0xbd11 <= code && code <= 0xbd2b) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xbd2c) {
+                          // Lo  [27] HANGUL SYLLABLE BWAG..HANGUL SYLLABLE BWAH
+                          if (0xbd11 <= code && code <= 0xbd2b) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE BWAE
+                          if (0xbd2c === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -4349,13 +4619,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE BU
-                        if (0xbd80 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE BYOG..HANGUL SYLLABLE BYOH
-                        if (0xbd65 <= code && code <= 0xbd7f) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xbd80) {
+                          // Lo  [27] HANGUL SYLLABLE BYOG..HANGUL SYLLABLE BYOH
+                          if (0xbd65 <= code && code <= 0xbd7f) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE BU
+                          if (0xbd80 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -4365,13 +4638,16 @@ export default class Graphemer {
                 if (code < 0xbe0d) {
                   if (code < 0xbdd4) {
                     if (code < 0xbd9d) {
-                      // Lo       HANGUL SYLLABLE BWEO
-                      if (0xbd9c === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE BUG..HANGUL SYLLABLE BUH
-                      if (0xbd81 <= code && code <= 0xbd9b) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xbd9c) {
+                        // Lo  [27] HANGUL SYLLABLE BUG..HANGUL SYLLABLE BUH
+                        if (0xbd81 <= code && code <= 0xbd9b) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE BWEO
+                        if (0xbd9c === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xbdb8) {
@@ -4413,13 +4689,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE BEU
-                        if (0xbe0c === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE BYUG..HANGUL SYLLABLE BYUH
-                        if (0xbdf1 <= code && code <= 0xbe0b) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xbe0c) {
+                          // Lo  [27] HANGUL SYLLABLE BYUG..HANGUL SYLLABLE BYUH
+                          if (0xbdf1 <= code && code <= 0xbe0b) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE BEU
+                          if (0xbe0c === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -4427,13 +4706,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xbe60) {
                     if (code < 0xbe29) {
-                      // Lo       HANGUL SYLLABLE BYI
-                      if (0xbe28 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE BEUG..HANGUL SYLLABLE BEUH
-                      if (0xbe0d <= code && code <= 0xbe27) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xbe28) {
+                        // Lo  [27] HANGUL SYLLABLE BEUG..HANGUL SYLLABLE BEUH
+                        if (0xbe0d <= code && code <= 0xbe27) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE BYI
+                        if (0xbe28 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xbe44) {
@@ -4463,13 +4745,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE BBAE
-                        if (0xbe7c === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE BBAG..HANGUL SYLLABLE BBAH
-                        if (0xbe61 <= code && code <= 0xbe7b) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xbe7c) {
+                          // Lo  [27] HANGUL SYLLABLE BBAG..HANGUL SYLLABLE BBAH
+                          if (0xbe61 <= code && code <= 0xbe7b) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE BBAE
+                          if (0xbe7c === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     } else {
@@ -4526,25 +4811,31 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE BBE
-                        if (0xbeec === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE BBEOG..HANGUL SYLLABLE BBEOH
-                        if (0xbed1 <= code && code <= 0xbeeb) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xbeec) {
+                          // Lo  [27] HANGUL SYLLABLE BBEOG..HANGUL SYLLABLE BBEOH
+                          if (0xbed1 <= code && code <= 0xbeeb) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE BBE
+                          if (0xbeec === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
                   } else {
                     if (code < 0xbf09) {
-                      // Lo       HANGUL SYLLABLE BBYEO
-                      if (0xbf08 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE BBEG..HANGUL SYLLABLE BBEH
-                      if (0xbeed <= code && code <= 0xbf07) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xbf08) {
+                        // Lo  [27] HANGUL SYLLABLE BBEG..HANGUL SYLLABLE BBEH
+                        if (0xbeed <= code && code <= 0xbf07) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE BBYEO
+                        if (0xbf08 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xbf24) {
@@ -4588,13 +4879,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE BBWAE
-                        if (0xbf78 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE BBWAG..HANGUL SYLLABLE BBWAH
-                        if (0xbf5d <= code && code <= 0xbf77) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xbf78) {
+                          // Lo  [27] HANGUL SYLLABLE BBWAG..HANGUL SYLLABLE BBWAH
+                          if (0xbf5d <= code && code <= 0xbf77) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE BBWAE
+                          if (0xbf78 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -4625,13 +4919,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE BBU
-                        if (0xbfcc === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE BBYOG..HANGUL SYLLABLE BBYOH
-                        if (0xbfb1 <= code && code <= 0xbfcb) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xbfcc) {
+                          // Lo  [27] HANGUL SYLLABLE BBYOG..HANGUL SYLLABLE BBYOH
+                          if (0xbfb1 <= code && code <= 0xbfcb) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE BBU
+                          if (0xbfcc === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -4641,13 +4938,16 @@ export default class Graphemer {
                 if (code < 0xc059) {
                   if (code < 0xc020) {
                     if (code < 0xbfe9) {
-                      // Lo       HANGUL SYLLABLE BBWEO
-                      if (0xbfe8 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE BBUG..HANGUL SYLLABLE BBUH
-                      if (0xbfcd <= code && code <= 0xbfe7) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xbfe8) {
+                        // Lo  [27] HANGUL SYLLABLE BBUG..HANGUL SYLLABLE BBUH
+                        if (0xbfcd <= code && code <= 0xbfe7) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE BBWEO
+                        if (0xbfe8 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xc004) {
@@ -4689,13 +4989,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE BBEU
-                        if (0xc058 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE BBYUG..HANGUL SYLLABLE BBYUH
-                        if (0xc03d <= code && code <= 0xc057) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc058) {
+                          // Lo  [27] HANGUL SYLLABLE BBYUG..HANGUL SYLLABLE BBYUH
+                          if (0xc03d <= code && code <= 0xc057) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE BBEU
+                          if (0xc058 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -4703,13 +5006,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xc0ac) {
                     if (code < 0xc075) {
-                      // Lo       HANGUL SYLLABLE BBYI
-                      if (0xc074 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE BBEUG..HANGUL SYLLABLE BBEUH
-                      if (0xc059 <= code && code <= 0xc073) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xc074) {
+                        // Lo  [27] HANGUL SYLLABLE BBEUG..HANGUL SYLLABLE BBEUH
+                        if (0xc059 <= code && code <= 0xc073) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE BBYI
+                        if (0xc074 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xc090) {
@@ -4739,13 +5045,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE SAE
-                        if (0xc0c8 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE SAG..HANGUL SYLLABLE SAH
-                        if (0xc0ad <= code && code <= 0xc0c7) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc0c8) {
+                          // Lo  [27] HANGUL SYLLABLE SAG..HANGUL SYLLABLE SAH
+                          if (0xc0ad <= code && code <= 0xc0c7) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE SAE
+                          if (0xc0c8 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     } else {
@@ -4794,25 +5103,31 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE SE
-                        if (0xc138 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE SEOG..HANGUL SYLLABLE SEOH
-                        if (0xc11d <= code && code <= 0xc137) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc138) {
+                          // Lo  [27] HANGUL SYLLABLE SEOG..HANGUL SYLLABLE SEOH
+                          if (0xc11d <= code && code <= 0xc137) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE SE
+                          if (0xc138 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
                   } else {
                     if (code < 0xc155) {
-                      // Lo       HANGUL SYLLABLE SYEO
-                      if (0xc154 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE SEG..HANGUL SYLLABLE SEH
-                      if (0xc139 <= code && code <= 0xc153) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xc154) {
+                        // Lo  [27] HANGUL SYLLABLE SEG..HANGUL SYLLABLE SEH
+                        if (0xc139 <= code && code <= 0xc153) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE SYEO
+                        if (0xc154 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xc170) {
@@ -4856,13 +5171,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE SWAE
-                        if (0xc1c4 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE SWAG..HANGUL SYLLABLE SWAH
-                        if (0xc1a9 <= code && code <= 0xc1c3) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc1c4) {
+                          // Lo  [27] HANGUL SYLLABLE SWAG..HANGUL SYLLABLE SWAH
+                          if (0xc1a9 <= code && code <= 0xc1c3) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE SWAE
+                          if (0xc1c4 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -4893,13 +5211,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE SU
-                        if (0xc218 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE SYOG..HANGUL SYLLABLE SYOH
-                        if (0xc1fd <= code && code <= 0xc217) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc218) {
+                          // Lo  [27] HANGUL SYLLABLE SYOG..HANGUL SYLLABLE SYOH
+                          if (0xc1fd <= code && code <= 0xc217) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE SU
+                          if (0xc218 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -4909,13 +5230,16 @@ export default class Graphemer {
                 if (code < 0xc2a5) {
                   if (code < 0xc26c) {
                     if (code < 0xc235) {
-                      // Lo       HANGUL SYLLABLE SWEO
-                      if (0xc234 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE SUG..HANGUL SYLLABLE SUH
-                      if (0xc219 <= code && code <= 0xc233) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xc234) {
+                        // Lo  [27] HANGUL SYLLABLE SUG..HANGUL SYLLABLE SUH
+                        if (0xc219 <= code && code <= 0xc233) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE SWEO
+                        if (0xc234 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xc250) {
@@ -4957,13 +5281,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE SEU
-                        if (0xc2a4 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE SYUG..HANGUL SYLLABLE SYUH
-                        if (0xc289 <= code && code <= 0xc2a3) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc2a4) {
+                          // Lo  [27] HANGUL SYLLABLE SYUG..HANGUL SYLLABLE SYUH
+                          if (0xc289 <= code && code <= 0xc2a3) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE SEU
+                          if (0xc2a4 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -4971,13 +5298,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xc2f8) {
                     if (code < 0xc2c1) {
-                      // Lo       HANGUL SYLLABLE SYI
-                      if (0xc2c0 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE SEUG..HANGUL SYLLABLE SEUH
-                      if (0xc2a5 <= code && code <= 0xc2bf) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xc2c0) {
+                        // Lo  [27] HANGUL SYLLABLE SEUG..HANGUL SYLLABLE SEUH
+                        if (0xc2a5 <= code && code <= 0xc2bf) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE SYI
+                        if (0xc2c0 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xc2dc) {
@@ -5007,13 +5337,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE SSAE
-                        if (0xc314 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE SSAG..HANGUL SYLLABLE SSAH
-                        if (0xc2f9 <= code && code <= 0xc313) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc314) {
+                          // Lo  [27] HANGUL SYLLABLE SSAG..HANGUL SYLLABLE SSAH
+                          if (0xc2f9 <= code && code <= 0xc313) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE SSAE
+                          if (0xc314 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     } else {
@@ -5064,25 +5397,31 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE SSE
-                        if (0xc384 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE SSEOG..HANGUL SYLLABLE SSEOH
-                        if (0xc369 <= code && code <= 0xc383) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc384) {
+                          // Lo  [27] HANGUL SYLLABLE SSEOG..HANGUL SYLLABLE SSEOH
+                          if (0xc369 <= code && code <= 0xc383) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE SSE
+                          if (0xc384 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
                   } else {
                     if (code < 0xc3a1) {
-                      // Lo       HANGUL SYLLABLE SSYEO
-                      if (0xc3a0 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE SSEG..HANGUL SYLLABLE SSEH
-                      if (0xc385 <= code && code <= 0xc39f) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xc3a0) {
+                        // Lo  [27] HANGUL SYLLABLE SSEG..HANGUL SYLLABLE SSEH
+                        if (0xc385 <= code && code <= 0xc39f) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE SSYEO
+                        if (0xc3a0 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xc3bc) {
@@ -5126,13 +5465,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE SSWAE
-                        if (0xc410 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE SSWAG..HANGUL SYLLABLE SSWAH
-                        if (0xc3f5 <= code && code <= 0xc40f) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc410) {
+                          // Lo  [27] HANGUL SYLLABLE SSWAG..HANGUL SYLLABLE SSWAH
+                          if (0xc3f5 <= code && code <= 0xc40f) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE SSWAE
+                          if (0xc410 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -5163,13 +5505,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE SSU
-                        if (0xc464 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE SSYOG..HANGUL SYLLABLE SSYOH
-                        if (0xc449 <= code && code <= 0xc463) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc464) {
+                          // Lo  [27] HANGUL SYLLABLE SSYOG..HANGUL SYLLABLE SSYOH
+                          if (0xc449 <= code && code <= 0xc463) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE SSU
+                          if (0xc464 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -5179,13 +5524,16 @@ export default class Graphemer {
                 if (code < 0xc4f1) {
                   if (code < 0xc4b8) {
                     if (code < 0xc481) {
-                      // Lo       HANGUL SYLLABLE SSWEO
-                      if (0xc480 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE SSUG..HANGUL SYLLABLE SSUH
-                      if (0xc465 <= code && code <= 0xc47f) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xc480) {
+                        // Lo  [27] HANGUL SYLLABLE SSUG..HANGUL SYLLABLE SSUH
+                        if (0xc465 <= code && code <= 0xc47f) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE SSWEO
+                        if (0xc480 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xc49c) {
@@ -5227,13 +5575,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE SSEU
-                        if (0xc4f0 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE SSYUG..HANGUL SYLLABLE SSYUH
-                        if (0xc4d5 <= code && code <= 0xc4ef) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc4f0) {
+                          // Lo  [27] HANGUL SYLLABLE SSYUG..HANGUL SYLLABLE SSYUH
+                          if (0xc4d5 <= code && code <= 0xc4ef) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE SSEU
+                          if (0xc4f0 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -5241,13 +5592,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xc544) {
                     if (code < 0xc50d) {
-                      // Lo       HANGUL SYLLABLE SSYI
-                      if (0xc50c === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE SSEUG..HANGUL SYLLABLE SSEUH
-                      if (0xc4f1 <= code && code <= 0xc50b) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xc50c) {
+                        // Lo  [27] HANGUL SYLLABLE SSEUG..HANGUL SYLLABLE SSEUH
+                        if (0xc4f1 <= code && code <= 0xc50b) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE SSYI
+                        if (0xc50c === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xc528) {
@@ -5277,13 +5631,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE AE
-                        if (0xc560 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE AG..HANGUL SYLLABLE AH
-                        if (0xc545 <= code && code <= 0xc55f) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc560) {
+                          // Lo  [27] HANGUL SYLLABLE AG..HANGUL SYLLABLE AH
+                          if (0xc545 <= code && code <= 0xc55f) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE AE
+                          if (0xc560 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     } else {
@@ -5332,25 +5689,31 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE E
-                        if (0xc5d0 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE EOG..HANGUL SYLLABLE EOH
-                        if (0xc5b5 <= code && code <= 0xc5cf) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc5d0) {
+                          // Lo  [27] HANGUL SYLLABLE EOG..HANGUL SYLLABLE EOH
+                          if (0xc5b5 <= code && code <= 0xc5cf) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE E
+                          if (0xc5d0 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
                   } else {
                     if (code < 0xc5ed) {
-                      // Lo       HANGUL SYLLABLE YEO
-                      if (0xc5ec === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE EG..HANGUL SYLLABLE EH
-                      if (0xc5d1 <= code && code <= 0xc5eb) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xc5ec) {
+                        // Lo  [27] HANGUL SYLLABLE EG..HANGUL SYLLABLE EH
+                        if (0xc5d1 <= code && code <= 0xc5eb) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE YEO
+                        if (0xc5ec === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xc608) {
@@ -5394,13 +5757,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE WAE
-                        if (0xc65c === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE WAG..HANGUL SYLLABLE WAH
-                        if (0xc641 <= code && code <= 0xc65b) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc65c) {
+                          // Lo  [27] HANGUL SYLLABLE WAG..HANGUL SYLLABLE WAH
+                          if (0xc641 <= code && code <= 0xc65b) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE WAE
+                          if (0xc65c === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -5431,13 +5797,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE U
-                        if (0xc6b0 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE YOG..HANGUL SYLLABLE YOH
-                        if (0xc695 <= code && code <= 0xc6af) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc6b0) {
+                          // Lo  [27] HANGUL SYLLABLE YOG..HANGUL SYLLABLE YOH
+                          if (0xc695 <= code && code <= 0xc6af) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE U
+                          if (0xc6b0 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -5447,13 +5816,16 @@ export default class Graphemer {
                 if (code < 0xc73d) {
                   if (code < 0xc704) {
                     if (code < 0xc6cd) {
-                      // Lo       HANGUL SYLLABLE WEO
-                      if (0xc6cc === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE UG..HANGUL SYLLABLE UH
-                      if (0xc6b1 <= code && code <= 0xc6cb) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xc6cc) {
+                        // Lo  [27] HANGUL SYLLABLE UG..HANGUL SYLLABLE UH
+                        if (0xc6b1 <= code && code <= 0xc6cb) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE WEO
+                        if (0xc6cc === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xc6e8) {
@@ -5495,13 +5867,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE EU
-                        if (0xc73c === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE YUG..HANGUL SYLLABLE YUH
-                        if (0xc721 <= code && code <= 0xc73b) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc73c) {
+                          // Lo  [27] HANGUL SYLLABLE YUG..HANGUL SYLLABLE YUH
+                          if (0xc721 <= code && code <= 0xc73b) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE EU
+                          if (0xc73c === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -5509,13 +5884,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xc790) {
                     if (code < 0xc759) {
-                      // Lo       HANGUL SYLLABLE YI
-                      if (0xc758 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE EUG..HANGUL SYLLABLE EUH
-                      if (0xc73d <= code && code <= 0xc757) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xc758) {
+                        // Lo  [27] HANGUL SYLLABLE EUG..HANGUL SYLLABLE EUH
+                        if (0xc73d <= code && code <= 0xc757) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE YI
+                        if (0xc758 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xc774) {
@@ -5545,13 +5923,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE JAE
-                        if (0xc7ac === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE JAG..HANGUL SYLLABLE JAH
-                        if (0xc791 <= code && code <= 0xc7ab) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc7ac) {
+                          // Lo  [27] HANGUL SYLLABLE JAG..HANGUL SYLLABLE JAH
+                          if (0xc791 <= code && code <= 0xc7ab) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE JAE
+                          if (0xc7ac === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     } else {
@@ -5604,25 +5985,31 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE JE
-                        if (0xc81c === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE JEOG..HANGUL SYLLABLE JEOH
-                        if (0xc801 <= code && code <= 0xc81b) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc81c) {
+                          // Lo  [27] HANGUL SYLLABLE JEOG..HANGUL SYLLABLE JEOH
+                          if (0xc801 <= code && code <= 0xc81b) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE JE
+                          if (0xc81c === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
                   } else {
                     if (code < 0xc839) {
-                      // Lo       HANGUL SYLLABLE JYEO
-                      if (0xc838 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE JEG..HANGUL SYLLABLE JEH
-                      if (0xc81d <= code && code <= 0xc837) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xc838) {
+                        // Lo  [27] HANGUL SYLLABLE JEG..HANGUL SYLLABLE JEH
+                        if (0xc81d <= code && code <= 0xc837) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE JYEO
+                        if (0xc838 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xc854) {
@@ -5666,13 +6053,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE JWAE
-                        if (0xc8a8 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE JWAG..HANGUL SYLLABLE JWAH
-                        if (0xc88d <= code && code <= 0xc8a7) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc8a8) {
+                          // Lo  [27] HANGUL SYLLABLE JWAG..HANGUL SYLLABLE JWAH
+                          if (0xc88d <= code && code <= 0xc8a7) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE JWAE
+                          if (0xc8a8 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -5703,13 +6093,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE JU
-                        if (0xc8fc === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE JYOG..HANGUL SYLLABLE JYOH
-                        if (0xc8e1 <= code && code <= 0xc8fb) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc8fc) {
+                          // Lo  [27] HANGUL SYLLABLE JYOG..HANGUL SYLLABLE JYOH
+                          if (0xc8e1 <= code && code <= 0xc8fb) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE JU
+                          if (0xc8fc === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -5719,13 +6112,16 @@ export default class Graphemer {
                 if (code < 0xc989) {
                   if (code < 0xc950) {
                     if (code < 0xc919) {
-                      // Lo       HANGUL SYLLABLE JWEO
-                      if (0xc918 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE JUG..HANGUL SYLLABLE JUH
-                      if (0xc8fd <= code && code <= 0xc917) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xc918) {
+                        // Lo  [27] HANGUL SYLLABLE JUG..HANGUL SYLLABLE JUH
+                        if (0xc8fd <= code && code <= 0xc917) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE JWEO
+                        if (0xc918 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xc934) {
@@ -5767,13 +6163,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE JEU
-                        if (0xc988 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE JYUG..HANGUL SYLLABLE JYUH
-                        if (0xc96d <= code && code <= 0xc987) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc988) {
+                          // Lo  [27] HANGUL SYLLABLE JYUG..HANGUL SYLLABLE JYUH
+                          if (0xc96d <= code && code <= 0xc987) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE JEU
+                          if (0xc988 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -5781,13 +6180,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xc9dc) {
                     if (code < 0xc9a5) {
-                      // Lo       HANGUL SYLLABLE JYI
-                      if (0xc9a4 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE JEUG..HANGUL SYLLABLE JEUH
-                      if (0xc989 <= code && code <= 0xc9a3) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xc9a4) {
+                        // Lo  [27] HANGUL SYLLABLE JEUG..HANGUL SYLLABLE JEUH
+                        if (0xc989 <= code && code <= 0xc9a3) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE JYI
+                        if (0xc9a4 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xc9c0) {
@@ -5817,13 +6219,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE JJAE
-                        if (0xc9f8 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE JJAG..HANGUL SYLLABLE JJAH
-                        if (0xc9dd <= code && code <= 0xc9f7) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xc9f8) {
+                          // Lo  [27] HANGUL SYLLABLE JJAG..HANGUL SYLLABLE JJAH
+                          if (0xc9dd <= code && code <= 0xc9f7) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE JJAE
+                          if (0xc9f8 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     } else {
@@ -5872,25 +6277,31 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE JJE
-                        if (0xca68 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE JJEOG..HANGUL SYLLABLE JJEOH
-                        if (0xca4d <= code && code <= 0xca67) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xca68) {
+                          // Lo  [27] HANGUL SYLLABLE JJEOG..HANGUL SYLLABLE JJEOH
+                          if (0xca4d <= code && code <= 0xca67) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE JJE
+                          if (0xca68 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
                   } else {
                     if (code < 0xca85) {
-                      // Lo       HANGUL SYLLABLE JJYEO
-                      if (0xca84 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE JJEG..HANGUL SYLLABLE JJEH
-                      if (0xca69 <= code && code <= 0xca83) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xca84) {
+                        // Lo  [27] HANGUL SYLLABLE JJEG..HANGUL SYLLABLE JJEH
+                        if (0xca69 <= code && code <= 0xca83) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE JJYEO
+                        if (0xca84 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xcaa0) {
@@ -5934,13 +6345,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE JJWAE
-                        if (0xcaf4 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE JJWAG..HANGUL SYLLABLE JJWAH
-                        if (0xcad9 <= code && code <= 0xcaf3) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xcaf4) {
+                          // Lo  [27] HANGUL SYLLABLE JJWAG..HANGUL SYLLABLE JJWAH
+                          if (0xcad9 <= code && code <= 0xcaf3) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE JJWAE
+                          if (0xcaf4 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -5971,13 +6385,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE JJU
-                        if (0xcb48 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE JJYOG..HANGUL SYLLABLE JJYOH
-                        if (0xcb2d <= code && code <= 0xcb47) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xcb48) {
+                          // Lo  [27] HANGUL SYLLABLE JJYOG..HANGUL SYLLABLE JJYOH
+                          if (0xcb2d <= code && code <= 0xcb47) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE JJU
+                          if (0xcb48 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -5987,13 +6404,16 @@ export default class Graphemer {
                 if (code < 0xcbd5) {
                   if (code < 0xcb9c) {
                     if (code < 0xcb65) {
-                      // Lo       HANGUL SYLLABLE JJWEO
-                      if (0xcb64 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE JJUG..HANGUL SYLLABLE JJUH
-                      if (0xcb49 <= code && code <= 0xcb63) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xcb64) {
+                        // Lo  [27] HANGUL SYLLABLE JJUG..HANGUL SYLLABLE JJUH
+                        if (0xcb49 <= code && code <= 0xcb63) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE JJWEO
+                        if (0xcb64 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xcb80) {
@@ -6035,13 +6455,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE JJEU
-                        if (0xcbd4 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE JJYUG..HANGUL SYLLABLE JJYUH
-                        if (0xcbb9 <= code && code <= 0xcbd3) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xcbd4) {
+                          // Lo  [27] HANGUL SYLLABLE JJYUG..HANGUL SYLLABLE JJYUH
+                          if (0xcbb9 <= code && code <= 0xcbd3) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE JJEU
+                          if (0xcbd4 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -6049,13 +6472,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xcc28) {
                     if (code < 0xcbf1) {
-                      // Lo       HANGUL SYLLABLE JJYI
-                      if (0xcbf0 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE JJEUG..HANGUL SYLLABLE JJEUH
-                      if (0xcbd5 <= code && code <= 0xcbef) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xcbf0) {
+                        // Lo  [27] HANGUL SYLLABLE JJEUG..HANGUL SYLLABLE JJEUH
+                        if (0xcbd5 <= code && code <= 0xcbef) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE JJYI
+                        if (0xcbf0 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xcc0c) {
@@ -6085,13 +6511,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE CAE
-                        if (0xcc44 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE CAG..HANGUL SYLLABLE CAH
-                        if (0xcc29 <= code && code <= 0xcc43) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xcc44) {
+                          // Lo  [27] HANGUL SYLLABLE CAG..HANGUL SYLLABLE CAH
+                          if (0xcc29 <= code && code <= 0xcc43) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE CAE
+                          if (0xcc44 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     } else {
@@ -6142,25 +6571,31 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE CE
-                        if (0xccb4 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE CEOG..HANGUL SYLLABLE CEOH
-                        if (0xcc99 <= code && code <= 0xccb3) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xccb4) {
+                          // Lo  [27] HANGUL SYLLABLE CEOG..HANGUL SYLLABLE CEOH
+                          if (0xcc99 <= code && code <= 0xccb3) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE CE
+                          if (0xccb4 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
                   } else {
                     if (code < 0xccd1) {
-                      // Lo       HANGUL SYLLABLE CYEO
-                      if (0xccd0 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE CEG..HANGUL SYLLABLE CEH
-                      if (0xccb5 <= code && code <= 0xcccf) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xccd0) {
+                        // Lo  [27] HANGUL SYLLABLE CEG..HANGUL SYLLABLE CEH
+                        if (0xccb5 <= code && code <= 0xcccf) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE CYEO
+                        if (0xccd0 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xccec) {
@@ -6204,13 +6639,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE CWAE
-                        if (0xcd40 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE CWAG..HANGUL SYLLABLE CWAH
-                        if (0xcd25 <= code && code <= 0xcd3f) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xcd40) {
+                          // Lo  [27] HANGUL SYLLABLE CWAG..HANGUL SYLLABLE CWAH
+                          if (0xcd25 <= code && code <= 0xcd3f) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE CWAE
+                          if (0xcd40 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -6241,13 +6679,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE CU
-                        if (0xcd94 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE CYOG..HANGUL SYLLABLE CYOH
-                        if (0xcd79 <= code && code <= 0xcd93) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xcd94) {
+                          // Lo  [27] HANGUL SYLLABLE CYOG..HANGUL SYLLABLE CYOH
+                          if (0xcd79 <= code && code <= 0xcd93) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE CU
+                          if (0xcd94 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -6257,13 +6698,16 @@ export default class Graphemer {
                 if (code < 0xce21) {
                   if (code < 0xcde8) {
                     if (code < 0xcdb1) {
-                      // Lo       HANGUL SYLLABLE CWEO
-                      if (0xcdb0 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE CUG..HANGUL SYLLABLE CUH
-                      if (0xcd95 <= code && code <= 0xcdaf) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xcdb0) {
+                        // Lo  [27] HANGUL SYLLABLE CUG..HANGUL SYLLABLE CUH
+                        if (0xcd95 <= code && code <= 0xcdaf) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE CWEO
+                        if (0xcdb0 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xcdcc) {
@@ -6305,13 +6749,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE CEU
-                        if (0xce20 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE CYUG..HANGUL SYLLABLE CYUH
-                        if (0xce05 <= code && code <= 0xce1f) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xce20) {
+                          // Lo  [27] HANGUL SYLLABLE CYUG..HANGUL SYLLABLE CYUH
+                          if (0xce05 <= code && code <= 0xce1f) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE CEU
+                          if (0xce20 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -6319,13 +6766,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xce74) {
                     if (code < 0xce3d) {
-                      // Lo       HANGUL SYLLABLE CYI
-                      if (0xce3c === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE CEUG..HANGUL SYLLABLE CEUH
-                      if (0xce21 <= code && code <= 0xce3b) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xce3c) {
+                        // Lo  [27] HANGUL SYLLABLE CEUG..HANGUL SYLLABLE CEUH
+                        if (0xce21 <= code && code <= 0xce3b) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE CYI
+                        if (0xce3c === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xce58) {
@@ -6355,13 +6805,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE KAE
-                        if (0xce90 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE KAG..HANGUL SYLLABLE KAH
-                        if (0xce75 <= code && code <= 0xce8f) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xce90) {
+                          // Lo  [27] HANGUL SYLLABLE KAG..HANGUL SYLLABLE KAH
+                          if (0xce75 <= code && code <= 0xce8f) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE KAE
+                          if (0xce90 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     } else {
@@ -6410,25 +6863,31 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE KE
-                        if (0xcf00 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE KEOG..HANGUL SYLLABLE KEOH
-                        if (0xcee5 <= code && code <= 0xceff) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xcf00) {
+                          // Lo  [27] HANGUL SYLLABLE KEOG..HANGUL SYLLABLE KEOH
+                          if (0xcee5 <= code && code <= 0xceff) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE KE
+                          if (0xcf00 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
                   } else {
                     if (code < 0xcf1d) {
-                      // Lo       HANGUL SYLLABLE KYEO
-                      if (0xcf1c === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE KEG..HANGUL SYLLABLE KEH
-                      if (0xcf01 <= code && code <= 0xcf1b) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xcf1c) {
+                        // Lo  [27] HANGUL SYLLABLE KEG..HANGUL SYLLABLE KEH
+                        if (0xcf01 <= code && code <= 0xcf1b) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE KYEO
+                        if (0xcf1c === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xcf38) {
@@ -6472,13 +6931,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE KWAE
-                        if (0xcf8c === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE KWAG..HANGUL SYLLABLE KWAH
-                        if (0xcf71 <= code && code <= 0xcf8b) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xcf8c) {
+                          // Lo  [27] HANGUL SYLLABLE KWAG..HANGUL SYLLABLE KWAH
+                          if (0xcf71 <= code && code <= 0xcf8b) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE KWAE
+                          if (0xcf8c === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -6509,13 +6971,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE KU
-                        if (0xcfe0 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE KYOG..HANGUL SYLLABLE KYOH
-                        if (0xcfc5 <= code && code <= 0xcfdf) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xcfe0) {
+                          // Lo  [27] HANGUL SYLLABLE KYOG..HANGUL SYLLABLE KYOH
+                          if (0xcfc5 <= code && code <= 0xcfdf) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE KU
+                          if (0xcfe0 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -6525,13 +6990,16 @@ export default class Graphemer {
                 if (code < 0xd06d) {
                   if (code < 0xd034) {
                     if (code < 0xcffd) {
-                      // Lo       HANGUL SYLLABLE KWEO
-                      if (0xcffc === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE KUG..HANGUL SYLLABLE KUH
-                      if (0xcfe1 <= code && code <= 0xcffb) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xcffc) {
+                        // Lo  [27] HANGUL SYLLABLE KUG..HANGUL SYLLABLE KUH
+                        if (0xcfe1 <= code && code <= 0xcffb) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE KWEO
+                        if (0xcffc === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xd018) {
@@ -6573,13 +7041,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE KEU
-                        if (0xd06c === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE KYUG..HANGUL SYLLABLE KYUH
-                        if (0xd051 <= code && code <= 0xd06b) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xd06c) {
+                          // Lo  [27] HANGUL SYLLABLE KYUG..HANGUL SYLLABLE KYUH
+                          if (0xd051 <= code && code <= 0xd06b) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE KEU
+                          if (0xd06c === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -6587,13 +7058,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xd0c0) {
                     if (code < 0xd089) {
-                      // Lo       HANGUL SYLLABLE KYI
-                      if (0xd088 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE KEUG..HANGUL SYLLABLE KEUH
-                      if (0xd06d <= code && code <= 0xd087) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xd088) {
+                        // Lo  [27] HANGUL SYLLABLE KEUG..HANGUL SYLLABLE KEUH
+                        if (0xd06d <= code && code <= 0xd087) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE KYI
+                        if (0xd088 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xd0a4) {
@@ -6623,13 +7097,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE TAE
-                        if (0xd0dc === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE TAG..HANGUL SYLLABLE TAH
-                        if (0xd0c1 <= code && code <= 0xd0db) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xd0dc) {
+                          // Lo  [27] HANGUL SYLLABLE TAG..HANGUL SYLLABLE TAH
+                          if (0xd0c1 <= code && code <= 0xd0db) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE TAE
+                          if (0xd0dc === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     } else {
@@ -6684,25 +7161,31 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE TE
-                        if (0xd14c === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE TEOG..HANGUL SYLLABLE TEOH
-                        if (0xd131 <= code && code <= 0xd14b) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xd14c) {
+                          // Lo  [27] HANGUL SYLLABLE TEOG..HANGUL SYLLABLE TEOH
+                          if (0xd131 <= code && code <= 0xd14b) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE TE
+                          if (0xd14c === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
                   } else {
                     if (code < 0xd169) {
-                      // Lo       HANGUL SYLLABLE TYEO
-                      if (0xd168 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE TEG..HANGUL SYLLABLE TEH
-                      if (0xd14d <= code && code <= 0xd167) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xd168) {
+                        // Lo  [27] HANGUL SYLLABLE TEG..HANGUL SYLLABLE TEH
+                        if (0xd14d <= code && code <= 0xd167) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE TYEO
+                        if (0xd168 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xd184) {
@@ -6746,13 +7229,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE TWAE
-                        if (0xd1d8 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE TWAG..HANGUL SYLLABLE TWAH
-                        if (0xd1bd <= code && code <= 0xd1d7) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xd1d8) {
+                          // Lo  [27] HANGUL SYLLABLE TWAG..HANGUL SYLLABLE TWAH
+                          if (0xd1bd <= code && code <= 0xd1d7) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE TWAE
+                          if (0xd1d8 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -6783,13 +7269,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE TU
-                        if (0xd22c === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE TYOG..HANGUL SYLLABLE TYOH
-                        if (0xd211 <= code && code <= 0xd22b) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xd22c) {
+                          // Lo  [27] HANGUL SYLLABLE TYOG..HANGUL SYLLABLE TYOH
+                          if (0xd211 <= code && code <= 0xd22b) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE TU
+                          if (0xd22c === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -6799,13 +7288,16 @@ export default class Graphemer {
                 if (code < 0xd2b9) {
                   if (code < 0xd280) {
                     if (code < 0xd249) {
-                      // Lo       HANGUL SYLLABLE TWEO
-                      if (0xd248 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE TUG..HANGUL SYLLABLE TUH
-                      if (0xd22d <= code && code <= 0xd247) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xd248) {
+                        // Lo  [27] HANGUL SYLLABLE TUG..HANGUL SYLLABLE TUH
+                        if (0xd22d <= code && code <= 0xd247) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE TWEO
+                        if (0xd248 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xd264) {
@@ -6847,13 +7339,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE TEU
-                        if (0xd2b8 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE TYUG..HANGUL SYLLABLE TYUH
-                        if (0xd29d <= code && code <= 0xd2b7) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xd2b8) {
+                          // Lo  [27] HANGUL SYLLABLE TYUG..HANGUL SYLLABLE TYUH
+                          if (0xd29d <= code && code <= 0xd2b7) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE TEU
+                          if (0xd2b8 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -6861,13 +7356,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xd30c) {
                     if (code < 0xd2d5) {
-                      // Lo       HANGUL SYLLABLE TYI
-                      if (0xd2d4 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE TEUG..HANGUL SYLLABLE TEUH
-                      if (0xd2b9 <= code && code <= 0xd2d3) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xd2d4) {
+                        // Lo  [27] HANGUL SYLLABLE TEUG..HANGUL SYLLABLE TEUH
+                        if (0xd2b9 <= code && code <= 0xd2d3) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE TYI
+                        if (0xd2d4 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xd2f0) {
@@ -6897,13 +7395,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE PAE
-                        if (0xd328 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE PAG..HANGUL SYLLABLE PAH
-                        if (0xd30d <= code && code <= 0xd327) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xd328) {
+                          // Lo  [27] HANGUL SYLLABLE PAG..HANGUL SYLLABLE PAH
+                          if (0xd30d <= code && code <= 0xd327) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE PAE
+                          if (0xd328 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     } else {
@@ -6952,25 +7453,31 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE PE
-                        if (0xd398 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE PEOG..HANGUL SYLLABLE PEOH
-                        if (0xd37d <= code && code <= 0xd397) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xd398) {
+                          // Lo  [27] HANGUL SYLLABLE PEOG..HANGUL SYLLABLE PEOH
+                          if (0xd37d <= code && code <= 0xd397) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE PE
+                          if (0xd398 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
                   } else {
                     if (code < 0xd3b5) {
-                      // Lo       HANGUL SYLLABLE PYEO
-                      if (0xd3b4 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE PEG..HANGUL SYLLABLE PEH
-                      if (0xd399 <= code && code <= 0xd3b3) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xd3b4) {
+                        // Lo  [27] HANGUL SYLLABLE PEG..HANGUL SYLLABLE PEH
+                        if (0xd399 <= code && code <= 0xd3b3) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE PYEO
+                        if (0xd3b4 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xd3d0) {
@@ -7014,13 +7521,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE PWAE
-                        if (0xd424 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE PWAG..HANGUL SYLLABLE PWAH
-                        if (0xd409 <= code && code <= 0xd423) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xd424) {
+                          // Lo  [27] HANGUL SYLLABLE PWAG..HANGUL SYLLABLE PWAH
+                          if (0xd409 <= code && code <= 0xd423) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE PWAE
+                          if (0xd424 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -7051,13 +7561,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE PU
-                        if (0xd478 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE PYOG..HANGUL SYLLABLE PYOH
-                        if (0xd45d <= code && code <= 0xd477) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xd478) {
+                          // Lo  [27] HANGUL SYLLABLE PYOG..HANGUL SYLLABLE PYOH
+                          if (0xd45d <= code && code <= 0xd477) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE PU
+                          if (0xd478 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -7067,13 +7580,16 @@ export default class Graphemer {
                 if (code < 0xd505) {
                   if (code < 0xd4cc) {
                     if (code < 0xd495) {
-                      // Lo       HANGUL SYLLABLE PWEO
-                      if (0xd494 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE PUG..HANGUL SYLLABLE PUH
-                      if (0xd479 <= code && code <= 0xd493) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xd494) {
+                        // Lo  [27] HANGUL SYLLABLE PUG..HANGUL SYLLABLE PUH
+                        if (0xd479 <= code && code <= 0xd493) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE PWEO
+                        if (0xd494 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xd4b0) {
@@ -7115,13 +7631,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE PEU
-                        if (0xd504 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE PYUG..HANGUL SYLLABLE PYUH
-                        if (0xd4e9 <= code && code <= 0xd503) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xd504) {
+                          // Lo  [27] HANGUL SYLLABLE PYUG..HANGUL SYLLABLE PYUH
+                          if (0xd4e9 <= code && code <= 0xd503) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE PEU
+                          if (0xd504 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -7129,13 +7648,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xd558) {
                     if (code < 0xd521) {
-                      // Lo       HANGUL SYLLABLE PYI
-                      if (0xd520 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE PEUG..HANGUL SYLLABLE PEUH
-                      if (0xd505 <= code && code <= 0xd51f) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xd520) {
+                        // Lo  [27] HANGUL SYLLABLE PEUG..HANGUL SYLLABLE PEUH
+                        if (0xd505 <= code && code <= 0xd51f) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE PYI
+                        if (0xd520 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xd53c) {
@@ -7165,13 +7687,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE HAE
-                        if (0xd574 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE HAG..HANGUL SYLLABLE HAH
-                        if (0xd559 <= code && code <= 0xd573) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xd574) {
+                          // Lo  [27] HANGUL SYLLABLE HAG..HANGUL SYLLABLE HAH
+                          if (0xd559 <= code && code <= 0xd573) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE HAE
+                          if (0xd574 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     } else {
@@ -7222,25 +7747,31 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE HE
-                        if (0xd5e4 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE HEOG..HANGUL SYLLABLE HEOH
-                        if (0xd5c9 <= code && code <= 0xd5e3) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xd5e4) {
+                          // Lo  [27] HANGUL SYLLABLE HEOG..HANGUL SYLLABLE HEOH
+                          if (0xd5c9 <= code && code <= 0xd5e3) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE HE
+                          if (0xd5e4 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
                   } else {
                     if (code < 0xd601) {
-                      // Lo       HANGUL SYLLABLE HYEO
-                      if (0xd600 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE HEG..HANGUL SYLLABLE HEH
-                      if (0xd5e5 <= code && code <= 0xd5ff) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xd600) {
+                        // Lo  [27] HANGUL SYLLABLE HEG..HANGUL SYLLABLE HEH
+                        if (0xd5e5 <= code && code <= 0xd5ff) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE HYEO
+                        if (0xd600 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xd61c) {
@@ -7284,13 +7815,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE HWAE
-                        if (0xd670 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE HWAG..HANGUL SYLLABLE HWAH
-                        if (0xd655 <= code && code <= 0xd66f) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xd670) {
+                          // Lo  [27] HANGUL SYLLABLE HWAG..HANGUL SYLLABLE HWAH
+                          if (0xd655 <= code && code <= 0xd66f) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE HWAE
+                          if (0xd670 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -7321,13 +7855,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE HU
-                        if (0xd6c4 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE HYOG..HANGUL SYLLABLE HYOH
-                        if (0xd6a9 <= code && code <= 0xd6c3) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xd6c4) {
+                          // Lo  [27] HANGUL SYLLABLE HYOG..HANGUL SYLLABLE HYOH
+                          if (0xd6a9 <= code && code <= 0xd6c3) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE HU
+                          if (0xd6c4 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -7337,13 +7874,16 @@ export default class Graphemer {
                 if (code < 0xd751) {
                   if (code < 0xd718) {
                     if (code < 0xd6e1) {
-                      // Lo       HANGUL SYLLABLE HWEO
-                      if (0xd6e0 === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE HUG..HANGUL SYLLABLE HUH
-                      if (0xd6c5 <= code && code <= 0xd6df) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xd6e0) {
+                        // Lo  [27] HANGUL SYLLABLE HUG..HANGUL SYLLABLE HUH
+                        if (0xd6c5 <= code && code <= 0xd6df) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE HWEO
+                        if (0xd6e0 === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xd6fc) {
@@ -7385,13 +7925,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.LV;
                         }
                       } else {
-                        // Lo       HANGUL SYLLABLE HEU
-                        if (0xd750 === code) {
-                          return CLUSTER_BREAK.LV;
-                        }
-                        // Lo  [27] HANGUL SYLLABLE HYUG..HANGUL SYLLABLE HYUH
-                        if (0xd735 <= code && code <= 0xd74f) {
-                          return CLUSTER_BREAK.LVT;
+                        if (code < 0xd750) {
+                          // Lo  [27] HANGUL SYLLABLE HYUG..HANGUL SYLLABLE HYUH
+                          if (0xd735 <= code && code <= 0xd74f) {
+                            return CLUSTER_BREAK.LVT;
+                          }
+                        } else {
+                          // Lo       HANGUL SYLLABLE HEU
+                          if (0xd750 === code) {
+                            return CLUSTER_BREAK.LV;
+                          }
                         }
                       }
                     }
@@ -7399,13 +7942,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0xd7b0) {
                     if (code < 0xd76d) {
-                      // Lo       HANGUL SYLLABLE HYI
-                      if (0xd76c === code) {
-                        return CLUSTER_BREAK.LV;
-                      }
-                      // Lo  [27] HANGUL SYLLABLE HEUG..HANGUL SYLLABLE HEUH
-                      if (0xd751 <= code && code <= 0xd76b) {
-                        return CLUSTER_BREAK.LVT;
+                      if (code < 0xd76c) {
+                        // Lo  [27] HANGUL SYLLABLE HEUG..HANGUL SYLLABLE HEUH
+                        if (0xd751 <= code && code <= 0xd76b) {
+                          return CLUSTER_BREAK.LVT;
+                        }
+                      } else {
+                        // Lo       HANGUL SYLLABLE HYI
+                        if (0xd76c === code) {
+                          return CLUSTER_BREAK.LV;
+                        }
                       }
                     } else {
                       if (code < 0xd788) {
@@ -7435,13 +7981,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.V;
                         }
                       } else {
-                        // Mn       HEBREW POINT JUDEO-SPANISH VARIKA
-                        if (0xfb1e === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                        // Lo  [49] HANGUL JONGSEONG NIEUN-RIEUL..HANGUL JONGSEONG PHIEUPH-THIEUTH
-                        if (0xd7cb <= code && code <= 0xd7fb) {
-                          return CLUSTER_BREAK.T;
+                        if (code < 0xfb1e) {
+                          // Lo  [49] HANGUL JONGSEONG NIEUN-RIEUL..HANGUL JONGSEONG PHIEUPH-THIEUTH
+                          if (0xd7cb <= code && code <= 0xd7fb) {
+                            return CLUSTER_BREAK.T;
+                          }
+                        } else {
+                          // Mn       HEBREW POINT JUDEO-SPANISH VARIKA
+                          if (0xfb1e === code) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
                         }
                       }
                     } else {
@@ -7451,13 +8000,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        // Cf       ZERO WIDTH NO-BREAK SPACE
-                        if (0xfeff === code) {
-                          return CLUSTER_BREAK.CONTROL;
-                        }
-                        // Mn  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITLO RIGHT HALF
-                        if (0xfe20 <= code && code <= 0xfe2f) {
-                          return CLUSTER_BREAK.EXTEND;
+                        if (code < 0xfeff) {
+                          // Mn  [16] COMBINING LIGATURE LEFT HALF..COMBINING CYRILLIC TITLO RIGHT HALF
+                          if (0xfe20 <= code && code <= 0xfe2f) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
+                        } else {
+                          // Cf       ZERO WIDTH NO-BREAK SPACE
+                          if (0xfeff === code) {
+                            return CLUSTER_BREAK.CONTROL;
+                          }
                         }
                       }
                     }
@@ -7521,13 +8073,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        // Mn       KHAROSHTHI VIRAMA
-                        if (0x10a3f === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                        // Mn   [3] KHAROSHTHI SIGN BAR ABOVE..KHAROSHTHI SIGN DOT BELOW
-                        if (0x10a38 <= code && code <= 0x10a3a) {
-                          return CLUSTER_BREAK.EXTEND;
+                        if (code < 0x10a3f) {
+                          // Mn   [3] KHAROSHTHI SIGN BAR ABOVE..KHAROSHTHI SIGN DOT BELOW
+                          if (0x10a38 <= code && code <= 0x10a3a) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
+                        } else {
+                          // Mn       KHAROSHTHI VIRAMA
+                          if (0x10a3f === code) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
                         }
                       }
                     }
@@ -7553,13 +8108,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        // Mc       BRAHMI SIGN CANDRABINDU
-                        if (0x11000 === code) {
-                          return CLUSTER_BREAK.SPACINGMARK;
-                        }
-                        // Mn  [11] SOGDIAN COMBINING DOT BELOW..SOGDIAN COMBINING STROKE BELOW
-                        if (0x10f46 <= code && code <= 0x10f50) {
-                          return CLUSTER_BREAK.EXTEND;
+                        if (code < 0x11000) {
+                          // Mn  [11] SOGDIAN COMBINING DOT BELOW..SOGDIAN COMBINING STROKE BELOW
+                          if (0x10f46 <= code && code <= 0x10f50) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
+                        } else {
+                          // Mc       BRAHMI SIGN CANDRABINDU
+                          if (0x11000 === code) {
+                            return CLUSTER_BREAK.SPACINGMARK;
+                          }
                         }
                       }
                     }
@@ -7961,13 +8519,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0x114be) {
                     if (code < 0x114ba) {
-                      // Mc       TIRHUTA VOWEL SIGN E
-                      if (0x114b9 === code) {
-                        return CLUSTER_BREAK.SPACINGMARK;
-                      }
-                      // Mn   [6] TIRHUTA VOWEL SIGN U..TIRHUTA VOWEL SIGN VOCALIC LL
-                      if (0x114b3 <= code && code <= 0x114b8) {
-                        return CLUSTER_BREAK.EXTEND;
+                      if (code < 0x114b9) {
+                        // Mn   [6] TIRHUTA VOWEL SIGN U..TIRHUTA VOWEL SIGN VOCALIC LL
+                        if (0x114b3 <= code && code <= 0x114b8) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                      } else {
+                        // Mc       TIRHUTA VOWEL SIGN E
+                        if (0x114b9 === code) {
+                          return CLUSTER_BREAK.SPACINGMARK;
+                        }
                       }
                     } else {
                       if (code < 0x114bb) {
@@ -7976,13 +8537,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        // Mc       TIRHUTA VOWEL SIGN SHORT O
-                        if (0x114bd === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                        // Mc   [2] TIRHUTA VOWEL SIGN AI..TIRHUTA VOWEL SIGN O
-                        if (0x114bb <= code && code <= 0x114bc) {
-                          return CLUSTER_BREAK.SPACINGMARK;
+                        if (code < 0x114bd) {
+                          // Mc   [2] TIRHUTA VOWEL SIGN AI..TIRHUTA VOWEL SIGN O
+                          if (0x114bb <= code && code <= 0x114bc) {
+                            return CLUSTER_BREAK.SPACINGMARK;
+                          }
+                        } else {
+                          // Mc       TIRHUTA VOWEL SIGN SHORT O
+                          if (0x114bd === code) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
                         }
                       }
                     }
@@ -7994,13 +8558,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.SPACINGMARK;
                         }
                       } else {
-                        // Mc       TIRHUTA SIGN VISARGA
-                        if (0x114c1 === code) {
-                          return CLUSTER_BREAK.SPACINGMARK;
-                        }
-                        // Mn   [2] TIRHUTA SIGN CANDRABINDU..TIRHUTA SIGN ANUSVARA
-                        if (0x114bf <= code && code <= 0x114c0) {
-                          return CLUSTER_BREAK.EXTEND;
+                        if (code < 0x114c1) {
+                          // Mn   [2] TIRHUTA SIGN CANDRABINDU..TIRHUTA SIGN ANUSVARA
+                          if (0x114bf <= code && code <= 0x114c0) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
+                        } else {
+                          // Mc       TIRHUTA SIGN VISARGA
+                          if (0x114c1 === code) {
+                            return CLUSTER_BREAK.SPACINGMARK;
+                          }
                         }
                       }
                     } else {
@@ -8082,13 +8649,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.EXTEND;
                         }
                       } else {
-                        // Mn       MODI SIGN ANUSVARA
-                        if (0x1163d === code) {
-                          return CLUSTER_BREAK.EXTEND;
-                        }
-                        // Mc   [2] MODI VOWEL SIGN O..MODI VOWEL SIGN AU
-                        if (0x1163b <= code && code <= 0x1163c) {
-                          return CLUSTER_BREAK.SPACINGMARK;
+                        if (code < 0x1163d) {
+                          // Mc   [2] MODI VOWEL SIGN O..MODI VOWEL SIGN AU
+                          if (0x1163b <= code && code <= 0x1163c) {
+                            return CLUSTER_BREAK.SPACINGMARK;
+                          }
+                        } else {
+                          // Mn       MODI SIGN ANUSVARA
+                          if (0x1163d === code) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
                         }
                       }
                     }
@@ -8132,13 +8702,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.SPACINGMARK;
                         }
                       } else {
-                        // Mc       TAKRI SIGN VIRAMA
-                        if (0x116b6 === code) {
-                          return CLUSTER_BREAK.SPACINGMARK;
-                        }
-                        // Mn   [6] TAKRI VOWEL SIGN U..TAKRI VOWEL SIGN AU
-                        if (0x116b0 <= code && code <= 0x116b5) {
-                          return CLUSTER_BREAK.EXTEND;
+                        if (code < 0x116b6) {
+                          // Mn   [6] TAKRI VOWEL SIGN U..TAKRI VOWEL SIGN AU
+                          if (0x116b0 <= code && code <= 0x116b5) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
+                        } else {
+                          // Mc       TAKRI SIGN VIRAMA
+                          if (0x116b6 === code) {
+                            return CLUSTER_BREAK.SPACINGMARK;
+                          }
                         }
                       }
                     } else {
@@ -8167,13 +8740,16 @@ export default class Graphemer {
                 if (code < 0x1193b) {
                   if (code < 0x11838) {
                     if (code < 0x11727) {
-                      // Mc       AHOM VOWEL SIGN E
-                      if (0x11726 === code) {
-                        return CLUSTER_BREAK.SPACINGMARK;
-                      }
-                      // Mn   [4] AHOM VOWEL SIGN I..AHOM VOWEL SIGN UU
-                      if (0x11722 <= code && code <= 0x11725) {
-                        return CLUSTER_BREAK.EXTEND;
+                      if (code < 0x11726) {
+                        // Mn   [4] AHOM VOWEL SIGN I..AHOM VOWEL SIGN UU
+                        if (0x11722 <= code && code <= 0x11725) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                      } else {
+                        // Mc       AHOM VOWEL SIGN E
+                        if (0x11726 === code) {
+                          return CLUSTER_BREAK.SPACINGMARK;
+                        }
                       }
                     } else {
                       if (code < 0x1182c) {
@@ -8232,13 +8808,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0x11941) {
                     if (code < 0x1193e) {
-                      // Mc       DIVES AKURU SIGN HALANTA
-                      if (0x1193d === code) {
-                        return CLUSTER_BREAK.SPACINGMARK;
-                      }
-                      // Mn   [2] DIVES AKURU SIGN ANUSVARA..DIVES AKURU SIGN CANDRABINDU
-                      if (0x1193b <= code && code <= 0x1193c) {
-                        return CLUSTER_BREAK.EXTEND;
+                      if (code < 0x1193d) {
+                        // Mn   [2] DIVES AKURU SIGN ANUSVARA..DIVES AKURU SIGN CANDRABINDU
+                        if (0x1193b <= code && code <= 0x1193c) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                      } else {
+                        // Mc       DIVES AKURU SIGN HALANTA
+                        if (0x1193d === code) {
+                          return CLUSTER_BREAK.SPACINGMARK;
+                        }
                       }
                     } else {
                       if (code < 0x1193f) {
@@ -8304,13 +8883,16 @@ export default class Graphemer {
                 if (code < 0x11a57) {
                   if (code < 0x11a39) {
                     if (code < 0x119e4) {
-                      // Mn       NANDINAGARI SIGN VIRAMA
-                      if (0x119e0 === code) {
-                        return CLUSTER_BREAK.EXTEND;
-                      }
-                      // Mc   [4] NANDINAGARI VOWEL SIGN O..NANDINAGARI SIGN VISARGA
-                      if (0x119dc <= code && code <= 0x119df) {
-                        return CLUSTER_BREAK.SPACINGMARK;
+                      if (code < 0x119e0) {
+                        // Mc   [4] NANDINAGARI VOWEL SIGN O..NANDINAGARI SIGN VISARGA
+                        if (0x119dc <= code && code <= 0x119df) {
+                          return CLUSTER_BREAK.SPACINGMARK;
+                        }
+                      } else {
+                        // Mn       NANDINAGARI SIGN VIRAMA
+                        if (0x119e0 === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
                       }
                     } else {
                       if (code < 0x11a01) {
@@ -8384,13 +8966,16 @@ export default class Graphemer {
                           return CLUSTER_BREAK.PREPEND;
                         }
                       } else {
-                        // Mc       SOYOMBO SIGN VISARGA
-                        if (0x11a97 === code) {
-                          return CLUSTER_BREAK.SPACINGMARK;
-                        }
-                        // Mn  [13] SOYOMBO FINAL CONSONANT SIGN G..SOYOMBO SIGN ANUSVARA
-                        if (0x11a8a <= code && code <= 0x11a96) {
-                          return CLUSTER_BREAK.EXTEND;
+                        if (code < 0x11a97) {
+                          // Mn  [13] SOYOMBO FINAL CONSONANT SIGN G..SOYOMBO SIGN ANUSVARA
+                          if (0x11a8a <= code && code <= 0x11a96) {
+                            return CLUSTER_BREAK.EXTEND;
+                          }
+                        } else {
+                          // Mc       SOYOMBO SIGN VISARGA
+                          if (0x11a97 === code) {
+                            return CLUSTER_BREAK.SPACINGMARK;
+                          }
                         }
                       }
                     }
@@ -8437,13 +9022,16 @@ export default class Graphemer {
                 if (code < 0x11d3f) {
                   if (code < 0x11cb4) {
                     if (code < 0x11caa) {
-                      // Mc       MARCHEN SUBJOINED LETTER YA
-                      if (0x11ca9 === code) {
-                        return CLUSTER_BREAK.SPACINGMARK;
-                      }
-                      // Mn  [22] MARCHEN SUBJOINED LETTER KA..MARCHEN SUBJOINED LETTER ZA
-                      if (0x11c92 <= code && code <= 0x11ca7) {
-                        return CLUSTER_BREAK.EXTEND;
+                      if (code < 0x11ca9) {
+                        // Mn  [22] MARCHEN SUBJOINED LETTER KA..MARCHEN SUBJOINED LETTER ZA
+                        if (0x11c92 <= code && code <= 0x11ca7) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                      } else {
+                        // Mc       MARCHEN SUBJOINED LETTER YA
+                        if (0x11ca9 === code) {
+                          return CLUSTER_BREAK.SPACINGMARK;
+                        }
                       }
                     } else {
                       if (code < 0x11cb1) {
@@ -8502,13 +9090,16 @@ export default class Graphemer {
                 } else {
                   if (code < 0x11d93) {
                     if (code < 0x11d47) {
-                      // Lo       MASARAM GONDI REPHA
-                      if (0x11d46 === code) {
-                        return CLUSTER_BREAK.PREPEND;
-                      }
-                      // Mn   [7] MASARAM GONDI VOWEL SIGN AU..MASARAM GONDI VIRAMA
-                      if (0x11d3f <= code && code <= 0x11d45) {
-                        return CLUSTER_BREAK.EXTEND;
+                      if (code < 0x11d46) {
+                        // Mn   [7] MASARAM GONDI VOWEL SIGN AU..MASARAM GONDI VIRAMA
+                        if (0x11d3f <= code && code <= 0x11d45) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                      } else {
+                        // Lo       MASARAM GONDI REPHA
+                        if (0x11d46 === code) {
+                          return CLUSTER_BREAK.PREPEND;
+                        }
                       }
                     } else {
                       if (code < 0x11d8a) {
@@ -8608,13 +9199,16 @@ export default class Graphemer {
                     }
                   } else {
                     if (code < 0x16ff0) {
-                      // Mn       KHITAN SMALL SCRIPT FILLER
-                      if (0x16fe4 === code) {
-                        return CLUSTER_BREAK.EXTEND;
-                      }
-                      // Mn   [4] MIAO TONE RIGHT..MIAO TONE BELOW
-                      if (0x16f8f <= code && code <= 0x16f92) {
-                        return CLUSTER_BREAK.EXTEND;
+                      if (code < 0x16fe4) {
+                        // Mn   [4] MIAO TONE RIGHT..MIAO TONE BELOW
+                        if (0x16f8f <= code && code <= 0x16f92) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                      } else {
+                        // Mn       KHITAN SMALL SCRIPT FILLER
+                        if (0x16fe4 === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
                       }
                     } else {
                       if (code < 0x1bc9d) {
@@ -8714,13 +9308,16 @@ export default class Graphemer {
                 if (code < 0x1e130) {
                   if (code < 0x1e000) {
                     if (code < 0x1da84) {
-                      // Mn       SIGNWRITING UPPER BODY TILTING FROM HIP JOINTS
-                      if (0x1da75 === code) {
-                        return CLUSTER_BREAK.EXTEND;
-                      }
-                      // Mn  [50] SIGNWRITING MOUTH CLOSED NEUTRAL..SIGNWRITING EXCITEMENT
-                      if (0x1da3b <= code && code <= 0x1da6c) {
-                        return CLUSTER_BREAK.EXTEND;
+                      if (code < 0x1da75) {
+                        // Mn  [50] SIGNWRITING MOUTH CLOSED NEUTRAL..SIGNWRITING EXCITEMENT
+                        if (0x1da3b <= code && code <= 0x1da6c) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
+                      } else {
+                        // Mn       SIGNWRITING UPPER BODY TILTING FROM HIP JOINTS
+                        if (0x1da75 === code) {
+                          return CLUSTER_BREAK.EXTEND;
+                        }
                       }
                     } else {
                       if (code < 0x1da9b) {
@@ -9166,13 +9763,16 @@ export default class Graphemer {
         } else {
           if (code < 0x2753) {
             if (code < 0x2747) {
-              // E0.6   [1] (❄️)       snowflake
-              if (0x2744 === code) {
-                return EXTENDED_PICTOGRAPHIC;
-              }
-              // E0.6   [2] (✳️..✴️)    eight-spoked asterisk..eight-pointed star
-              if (0x2733 <= code && code <= 0x2734) {
-                return EXTENDED_PICTOGRAPHIC;
+              if (code < 0x2744) {
+                // E0.6   [2] (✳️..✴️)    eight-spoked asterisk..eight-pointed star
+                if (0x2733 <= code && code <= 0x2734) {
+                  return EXTENDED_PICTOGRAPHIC;
+                }
+              } else {
+                // E0.6   [1] (❄️)       snowflake
+                if (0x2744 === code) {
+                  return EXTENDED_PICTOGRAPHIC;
+                }
               }
             } else {
               if (code < 0x274c) {
@@ -9193,13 +9793,16 @@ export default class Graphemer {
             }
           } else {
             if (code < 0x2763) {
-              // E0.6   [1] (❗)       exclamation mark
-              if (0x2757 === code) {
-                return EXTENDED_PICTOGRAPHIC;
-              }
-              // E0.6   [3] (❓..❕)    question mark..white exclamation mark
-              if (0x2753 <= code && code <= 0x2755) {
-                return EXTENDED_PICTOGRAPHIC;
+              if (code < 0x2757) {
+                // E0.6   [3] (❓..❕)    question mark..white exclamation mark
+                if (0x2753 <= code && code <= 0x2755) {
+                  return EXTENDED_PICTOGRAPHIC;
+                }
+              } else {
+                // E0.6   [1] (❗)       exclamation mark
+                if (0x2757 === code) {
+                  return EXTENDED_PICTOGRAPHIC;
+                }
               }
             } else {
               if (code < 0x2795) {
@@ -9210,13 +9813,16 @@ export default class Graphemer {
                   return EXTENDED_PICTOGRAPHIC;
                 }
               } else {
-                // E0.6   [1] (➡️)       right arrow
-                if (0x27a1 === code) {
-                  return EXTENDED_PICTOGRAPHIC;
-                }
-                // E0.6   [3] (➕..➗)    plus..divide
-                if (0x2795 <= code && code <= 0x2797) {
-                  return EXTENDED_PICTOGRAPHIC;
+                if (code < 0x27a1) {
+                  // E0.6   [3] (➕..➗)    plus..divide
+                  if (0x2795 <= code && code <= 0x2797) {
+                    return EXTENDED_PICTOGRAPHIC;
+                  }
+                } else {
+                  // E0.6   [1] (➡️)       right arrow
+                  if (0x27a1 === code) {
+                    return EXTENDED_PICTOGRAPHIC;
+                  }
                 }
               }
             }
@@ -9251,13 +9857,16 @@ export default class Graphemer {
             }
           } else {
             if (code < 0x2b55) {
-              // E0.6   [1] (⭐)       star
-              if (0x2b50 === code) {
-                return EXTENDED_PICTOGRAPHIC;
-              }
-              // E0.6   [2] (⬛..⬜)    black large square..white large square
-              if (0x2b1b <= code && code <= 0x2b1c) {
-                return EXTENDED_PICTOGRAPHIC;
+              if (code < 0x2b50) {
+                // E0.6   [2] (⬛..⬜)    black large square..white large square
+                if (0x2b1b <= code && code <= 0x2b1c) {
+                  return EXTENDED_PICTOGRAPHIC;
+                }
+              } else {
+                // E0.6   [1] (⭐)       star
+                if (0x2b50 === code) {
+                  return EXTENDED_PICTOGRAPHIC;
+                }
               }
             } else {
               if (code < 0x3030) {
@@ -9299,13 +9908,16 @@ export default class Graphemer {
                   return EXTENDED_PICTOGRAPHIC;
                 }
               } else {
-                // E0.0   [1] (🄯)       COPYLEFT SYMBOL
-                if (0x1f12f === code) {
-                  return EXTENDED_PICTOGRAPHIC;
-                }
-                // E0.0   [3] (🄍..🄏)    CIRCLED ZERO WITH SLASH..CIRCLED DOLLAR SIGN WITH OVERLAID BACKSLASH
-                if (0x1f10d <= code && code <= 0x1f10f) {
-                  return EXTENDED_PICTOGRAPHIC;
+                if (code < 0x1f12f) {
+                  // E0.0   [3] (🄍..🄏)    CIRCLED ZERO WITH SLASH..CIRCLED DOLLAR SIGN WITH OVERLAID BACKSLASH
+                  if (0x1f10d <= code && code <= 0x1f10f) {
+                    return EXTENDED_PICTOGRAPHIC;
+                  }
+                } else {
+                  // E0.0   [1] (🄯)       COPYLEFT SYMBOL
+                  if (0x1f12f === code) {
+                    return EXTENDED_PICTOGRAPHIC;
+                  }
                 }
               }
             }
@@ -9349,14 +9961,17 @@ export default class Graphemer {
         if (code < 0x1f7d5) {
           if (code < 0x1f249) {
             if (code < 0x1f22f) {
-              // E0.6   [1] (🈚)       Japanese “free of charge” button
-              if (0x1f21a === code) {
-                return EXTENDED_PICTOGRAPHIC;
-              }
-              // E0.6   [2] (🈁..🈂️)    Japanese “here” button..Japanese “service charge” button
-              // E0.0  [13] (🈃..🈏)    <reserved-1F203>..<reserved-1F20F>
-              if (0x1f201 <= code && code <= 0x1f20f) {
-                return EXTENDED_PICTOGRAPHIC;
+              if (code < 0x1f21a) {
+                // E0.6   [2] (🈁..🈂️)    Japanese “here” button..Japanese “service charge” button
+                // E0.0  [13] (🈃..🈏)    <reserved-1F203>..<reserved-1F20F>
+                if (0x1f201 <= code && code <= 0x1f20f) {
+                  return EXTENDED_PICTOGRAPHIC;
+                }
+              } else {
+                // E0.6   [1] (🈚)       Japanese “free of charge” button
+                if (0x1f21a === code) {
+                  return EXTENDED_PICTOGRAPHIC;
+                }
               }
             } else {
               if (code < 0x1f232) {

@@ -66,17 +66,6 @@ function genTree(ranges) {
       result = `\
           ${ifTemplate(conditionTemplate(l.range), l.category, l.comment)}
           ${ifTemplate(conditionTemplate(h.range), h.category, h.comment)}`;
-    } else if (
-      loRange.length === 1 &&
-      hiRange.length === 1 &&
-      loRange[0].range.length === 2 &&
-      hiRange[0].range.length === 1
-    ) {
-      const l = loRange[0];
-      const h = hiRange[0];
-      result = `\
-          ${ifTemplate(conditionTemplate(h.range), h.category, h.comment)}
-          ${ifTemplate(conditionTemplate(l.range), l.category, l.comment)}`;
     } else {
       result = `if (code < 0x${m.range[0].toString(16)}) {
           ${genTree(loRange)}
