@@ -9570,30 +9570,24 @@ export default class Graphemer {
                       return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
-                    if (code < 0x203c) {
-                      // E0.6   [1] (®️)       registered
-                      if (0xae === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (‼️)       double exclamation mark
-                      if (0x203c === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (®️)       registered
+                    if (0xae === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (‼️)       double exclamation mark
+                    if (0x203c === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 } else {
                   if (code < 0x2139) {
-                    if (code < 0x2122) {
-                      // E0.6   [1] (⁉️)       exclamation question mark
-                      if (0x2049 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (™️)       trade mark
-                      if (0x2122 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (⁉️)       exclamation question mark
+                    if (0x2049 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (™️)       trade mark
+                    if (0x2122 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
                     if (code < 0x2194) {
@@ -9624,16 +9618,13 @@ export default class Graphemer {
                       }
                     }
                   } else {
-                    if (code < 0x2388) {
-                      // E1.0   [1] (⌨️)       keyboard
-                      if (0x2328 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.0   [1] (⎈)       HELM SYMBOL
-                      if (0x2388 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E1.0   [1] (⌨️)       keyboard
+                    if (0x2328 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.0   [1] (⎈)       HELM SYMBOL
+                    if (0x2388 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 } else {
@@ -9741,16 +9732,13 @@ export default class Graphemer {
                   }
                 } else {
                   if (code < 0x2607) {
-                    if (code < 0x2605) {
-                      // E1.0   [1] (☄️)       comet
-                      if (0x2604 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.0   [1] (★)       BLACK STAR
-                      if (0x2605 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E1.0   [1] (☄️)       comet
+                    if (0x2604 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.0   [1] (★)       BLACK STAR
+                    if (0x2605 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
                     if (code < 0x260e) {
@@ -9778,16 +9766,13 @@ export default class Graphemer {
                       return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
-                    if (code < 0x2612) {
-                      // E0.6   [1] (☑️)       check box with check
-                      if (0x2611 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.0   [1] (☒)       BALLOT BOX WITH X
-                      if (0x2612 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (☑️)       check box with check
+                    if (0x2611 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.0   [1] (☒)       BALLOT BOX WITH X
+                    if (0x2612 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 } else {
@@ -9832,16 +9817,13 @@ export default class Graphemer {
                       }
                     }
                   } else {
-                    if (code < 0x2621) {
-                      // E1.0   [1] (☠️)       skull and crossbones
-                      if (0x2620 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.0   [1] (☡)       CAUTION SIGN
-                      if (0x2621 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E1.0   [1] (☠️)       skull and crossbones
+                    if (0x2620 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.0   [1] (☡)       CAUTION SIGN
+                    if (0x2621 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 } else {
@@ -9888,16 +9870,13 @@ export default class Graphemer {
                       }
                     }
                   } else {
-                    if (code < 0x262f) {
-                      // E1.0   [1] (☮️)       peace symbol
-                      if (0x262e === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.7   [1] (☯️)       yin yang
-                      if (0x262f === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E1.0   [1] (☮️)       peace symbol
+                    if (0x262e === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.7   [1] (☯️)       yin yang
+                    if (0x262f === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 } else {
@@ -9930,16 +9909,13 @@ export default class Graphemer {
               } else {
                 if (code < 0x2648) {
                   if (code < 0x2642) {
-                    if (code < 0x2641) {
-                      // E4.0   [1] (♀️)       female sign
-                      if (0x2640 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.0   [1] (♁)       EARTH
-                      if (0x2641 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E4.0   [1] (♀️)       female sign
+                    if (0x2640 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.0   [1] (♁)       EARTH
+                    if (0x2641 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
                     if (code < 0x2643) {
@@ -9968,16 +9944,13 @@ export default class Graphemer {
                       }
                     }
                   } else {
-                    if (code < 0x2660) {
-                      // E11.0  [1] (♟️)       chess pawn
-                      if (0x265f === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (♠️)       spade suit
-                      if (0x2660 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E11.0  [1] (♟️)       chess pawn
+                    if (0x265f === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (♠️)       spade suit
+                    if (0x2660 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 }
@@ -9995,16 +9968,13 @@ export default class Graphemer {
                       return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
-                    if (code < 0x2664) {
-                      // E0.6   [1] (♣️)       club suit
-                      if (0x2663 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.0   [1] (♤)       WHITE SPADE SUIT
-                      if (0x2664 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (♣️)       club suit
+                    if (0x2663 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.0   [1] (♤)       WHITE SPADE SUIT
+                    if (0x2664 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 } else {
@@ -10049,16 +10019,13 @@ export default class Graphemer {
                       }
                     }
                   } else {
-                    if (code < 0x267f) {
-                      // E11.0  [1] (♾️)       infinity
-                      if (0x267e === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (♿)       wheelchair symbol
-                      if (0x267f === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E11.0  [1] (♾️)       infinity
+                    if (0x267e === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (♿)       wheelchair symbol
+                    if (0x267f === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 } else {
@@ -10075,16 +10042,13 @@ export default class Graphemer {
                       }
                     }
                   } else {
-                    if (code < 0x2693) {
-                      // E1.0   [1] (⚒️)       hammer and pick
-                      if (0x2692 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (⚓)       anchor
-                      if (0x2693 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E1.0   [1] (⚒️)       hammer and pick
+                    if (0x2692 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (⚓)       anchor
+                    if (0x2693 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 }
@@ -10112,16 +10076,13 @@ export default class Graphemer {
                   }
                 } else {
                   if (code < 0x269a) {
-                    if (code < 0x2699) {
-                      // E0.0   [1] (⚘)       FLOWER
-                      if (0x2698 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E1.0   [1] (⚙️)       gear
-                      if (0x2699 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.0   [1] (⚘)       FLOWER
+                    if (0x2698 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E1.0   [1] (⚙️)       gear
+                    if (0x2699 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
                     if (code < 0x269b) {
@@ -10245,42 +10206,33 @@ export default class Graphemer {
               } else {
                 if (code < 0x26d2) {
                   if (code < 0x26d0) {
-                    if (code < 0x26cf) {
-                      // E0.6   [1] (⛎)       Ophiuchus
-                      if (0x26ce === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.7   [1] (⛏️)       pick
-                      if (0x26cf === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (⛎)       Ophiuchus
+                    if (0x26ce === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.7   [1] (⛏️)       pick
+                    if (0x26cf === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
-                    if (code < 0x26d1) {
-                      // E0.0   [1] (⛐)       CAR SLIDING
-                      if (0x26d0 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.7   [1] (⛑️)       rescue worker’s helmet
-                      if (0x26d1 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.0   [1] (⛐)       CAR SLIDING
+                    if (0x26d0 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.7   [1] (⛑️)       rescue worker’s helmet
+                    if (0x26d1 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 } else {
                   if (code < 0x26d4) {
-                    if (code < 0x26d3) {
-                      // E0.0   [1] (⛒)       CIRCLED CROSSING LANES
-                      if (0x26d2 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.7   [1] (⛓️)       chains
-                      if (0x26d3 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.0   [1] (⛒)       CIRCLED CROSSING LANES
+                    if (0x26d2 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.7   [1] (⛓️)       chains
+                    if (0x26d3 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
                     if (code < 0x26d5) {
@@ -10301,16 +10253,13 @@ export default class Graphemer {
               if (code < 0x26f7) {
                 if (code < 0x26f2) {
                   if (code < 0x26eb) {
-                    if (code < 0x26ea) {
-                      // E0.7   [1] (⛩️)       shinto shrine
-                      if (0x26e9 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (⛪)       church
-                      if (0x26ea === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.7   [1] (⛩️)       shinto shrine
+                    if (0x26e9 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (⛪)       church
+                    if (0x26ea === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
                     if (code < 0x26f0) {
@@ -10339,16 +10288,13 @@ export default class Graphemer {
                       }
                     }
                   } else {
-                    if (code < 0x26f6) {
-                      // E0.6   [1] (⛵)       sailboat
-                      if (0x26f5 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.0   [1] (⛶)       SQUARE FOUR CORNERS
-                      if (0x26f6 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (⛵)       sailboat
+                    if (0x26f5 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.0   [1] (⛶)       SQUARE FOUR CORNERS
+                    if (0x26f6 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 }
@@ -10422,16 +10368,13 @@ export default class Graphemer {
                       return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
-                    if (code < 0x270e) {
-                      // E0.7   [1] (✍️)       writing hand
-                      if (0x270d === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.0   [1] (✎)       LOWER RIGHT PENCIL
-                      if (0x270e === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.7   [1] (✍️)       writing hand
+                    if (0x270d === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.0   [1] (✎)       LOWER RIGHT PENCIL
+                    if (0x270e === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 } else {
@@ -10448,44 +10391,35 @@ export default class Graphemer {
                       }
                     }
                   } else {
-                    if (code < 0x2714) {
-                      // E0.6   [1] (✒️)       black nib
-                      if (0x2712 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (✔️)       check mark
-                      if (0x2714 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (✒️)       black nib
+                    if (0x2712 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (✔️)       check mark
+                    if (0x2714 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 }
               } else {
                 if (code < 0x2733) {
                   if (code < 0x2721) {
-                    if (code < 0x271d) {
-                      // E0.6   [1] (✖️)       multiply
-                      if (0x2716 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.7   [1] (✝️)       latin cross
-                      if (0x271d === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (✖️)       multiply
+                    if (0x2716 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.7   [1] (✝️)       latin cross
+                    if (0x271d === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
-                    if (code < 0x2728) {
-                      // E0.7   [1] (✡️)       star of David
-                      if (0x2721 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (✨)       sparkles
-                      if (0x2728 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.7   [1] (✡️)       star of David
+                    if (0x2721 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (✨)       sparkles
+                    if (0x2728 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 } else {
@@ -10502,16 +10436,13 @@ export default class Graphemer {
                       }
                     }
                   } else {
-                    if (code < 0x274c) {
-                      // E0.6   [1] (❇️)       sparkle
-                      if (0x2747 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (❌)       cross mark
-                      if (0x274c === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (❇️)       sparkle
+                    if (0x2747 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (❌)       cross mark
+                    if (0x274c === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 }
@@ -10539,16 +10470,13 @@ export default class Graphemer {
                   }
                 } else {
                   if (code < 0x2765) {
-                    if (code < 0x2764) {
-                      // E1.0   [1] (❣️)       heart exclamation
-                      if (0x2763 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (❤️)       red heart
-                      if (0x2764 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E1.0   [1] (❣️)       heart exclamation
+                    if (0x2763 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (❤️)       red heart
+                    if (0x2764 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
                     if (code < 0x2795) {
@@ -10567,16 +10495,13 @@ export default class Graphemer {
               } else {
                 if (code < 0x2b05) {
                   if (code < 0x27bf) {
-                    if (code < 0x27b0) {
-                      // E0.6   [1] (➡️)       right arrow
-                      if (0x27a1 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (➰)       curly loop
-                      if (0x27b0 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (➡️)       right arrow
+                    if (0x27a1 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (➰)       curly loop
+                    if (0x27b0 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
                     if (code < 0x2934) {
@@ -10605,16 +10530,13 @@ export default class Graphemer {
                       }
                     }
                   } else {
-                    if (code < 0x2b55) {
-                      // E0.6   [1] (⭐)       star
-                      if (0x2b50 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (⭕)       hollow red circle
-                      if (0x2b55 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (⭐)       star
+                    if (0x2b50 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (⭕)       hollow red circle
+                    if (0x2b55 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 }
@@ -10630,16 +10552,13 @@ export default class Graphemer {
                       return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
-                    if (code < 0x3297) {
-                      // E0.6   [1] (〽️)       part alternation mark
-                      if (0x303d === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (㊗️)       Japanese “congratulations” button
-                      if (0x3297 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (〽️)       part alternation mark
+                    if (0x303d === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (㊗️)       Japanese “congratulations” button
+                    if (0x3297 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 } else {
@@ -10754,16 +10673,13 @@ export default class Graphemer {
                   }
                 } else {
                   if (code < 0x1f232) {
-                    if (code < 0x1f22f) {
-                      // E0.6   [1] (🈚)       Japanese “free of charge” button
-                      if (0x1f21a === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (🈯)       Japanese “reserved” button
-                      if (0x1f22f === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (🈚)       Japanese “free of charge” button
+                    if (0x1f21a === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (🈯)       Japanese “reserved” button
+                    if (0x1f22f === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
                     if (code < 0x1f23c) {
@@ -10820,16 +10736,13 @@ export default class Graphemer {
                       }
                     }
                   } else {
-                    if (code < 0x1f311) {
-                      // E1.0   [1] (🌐)       globe with meridians
-                      if (0x1f310 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (🌑)       new moon
-                      if (0x1f311 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E1.0   [1] (🌐)       globe with meridians
+                    if (0x1f310 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (🌑)       new moon
+                    if (0x1f311 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 }
@@ -10861,28 +10774,22 @@ export default class Graphemer {
                   }
                 } else {
                   if (code < 0x1f31b) {
-                    if (code < 0x1f31a) {
-                      // E0.6   [1] (🌙)       crescent moon
-                      if (0x1f319 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E1.0   [1] (🌚)       new moon face
-                      if (0x1f31a === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (🌙)       crescent moon
+                    if (0x1f319 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E1.0   [1] (🌚)       new moon face
+                    if (0x1f31a === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
-                    if (code < 0x1f31c) {
-                      // E0.6   [1] (🌛)       first quarter moon face
-                      if (0x1f31b === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.7   [1] (🌜)       last quarter moon face
-                      if (0x1f31c === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (🌛)       first quarter moon face
+                    if (0x1f31b === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.7   [1] (🌜)       last quarter moon face
+                    if (0x1f31c === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 }
@@ -11076,28 +10983,22 @@ export default class Graphemer {
                   }
                 } else {
                   if (code < 0x1f3c8) {
-                    if (code < 0x1f3c7) {
-                      // E0.6   [1] (🏆)       trophy
-                      if (0x1f3c6 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E1.0   [1] (🏇)       horse racing
-                      if (0x1f3c7 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (🏆)       trophy
+                    if (0x1f3c6 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E1.0   [1] (🏇)       horse racing
+                    if (0x1f3c7 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
-                    if (code < 0x1f3c9) {
-                      // E0.6   [1] (🏈)       american football
-                      if (0x1f3c8 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E1.0   [1] (🏉)       rugby football
-                      if (0x1f3c9 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (🏈)       american football
+                    if (0x1f3c8 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E1.0   [1] (🏉)       rugby football
+                    if (0x1f3c9 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 }
@@ -11160,28 +11061,22 @@ export default class Graphemer {
               if (code < 0x1f409) {
                 if (code < 0x1f3f7) {
                   if (code < 0x1f3f5) {
-                    if (code < 0x1f3f4) {
-                      // E0.7   [1] (🏳️)       white flag
-                      if (0x1f3f3 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E1.0   [1] (🏴)       black flag
-                      if (0x1f3f4 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.7   [1] (🏳️)       white flag
+                    if (0x1f3f3 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E1.0   [1] (🏴)       black flag
+                    if (0x1f3f4 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
-                    if (code < 0x1f3f6) {
-                      // E0.7   [1] (🏵️)       rosette
-                      if (0x1f3f5 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.0   [1] (🏶)       BLACK ROSETTE
-                      if (0x1f3f6 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.7   [1] (🏵️)       rosette
+                    if (0x1f3f5 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.0   [1] (🏶)       BLACK ROSETTE
+                    if (0x1f3f6 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 } else {
@@ -11240,28 +11135,22 @@ export default class Graphemer {
                   }
                 } else {
                   if (code < 0x1f415) {
-                    if (code < 0x1f414) {
-                      // E1.0   [1] (🐓)       rooster
-                      if (0x1f413 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (🐔)       chicken
-                      if (0x1f414 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E1.0   [1] (🐓)       rooster
+                    if (0x1f413 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (🐔)       chicken
+                    if (0x1f414 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
-                    if (code < 0x1f416) {
-                      // E0.7   [1] (🐕)       dog
-                      if (0x1f415 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E1.0   [1] (🐖)       pig
-                      if (0x1f416 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.7   [1] (🐕)       dog
+                    if (0x1f415 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E1.0   [1] (🐖)       pig
+                    if (0x1f416 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 }
@@ -11297,16 +11186,13 @@ export default class Graphemer {
                   }
                 } else {
                   if (code < 0x1f441) {
-                    if (code < 0x1f440) {
-                      // E0.7   [1] (🐿️)       chipmunk
-                      if (0x1f43f === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (👀)       eyes
-                      if (0x1f440 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.7   [1] (🐿️)       chipmunk
+                    if (0x1f43f === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (👀)       eyes
+                    if (0x1f440 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
                     if (code < 0x1f442) {
@@ -11386,16 +11272,13 @@ export default class Graphemer {
                       return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
-                    if (code < 0x1f4ef) {
-                      // E0.6   [1] (📮)       postbox
-                      if (0x1f4ee === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E1.0   [1] (📯)       postal horn
-                      if (0x1f4ef === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (📮)       postbox
+                    if (0x1f4ee === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E1.0   [1] (📯)       postal horn
+                    if (0x1f4ef === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 } else {
@@ -11466,16 +11349,13 @@ export default class Graphemer {
                       }
                     }
                   } else {
-                    if (code < 0x1f509) {
-                      // E0.7   [1] (🔈)       speaker low volume
-                      if (0x1f508 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E1.0   [1] (🔉)       speaker medium volume
-                      if (0x1f509 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.7   [1] (🔈)       speaker low volume
+                    if (0x1f508 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E1.0   [1] (🔉)       speaker medium volume
+                    if (0x1f509 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 }
@@ -11655,16 +11535,13 @@ export default class Graphemer {
                       }
                     }
                   } else {
-                    if (code < 0x1f5a5) {
-                      // E3.0   [1] (🖤)       black heart
-                      if (0x1f5a4 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.7   [1] (🖥️)       desktop computer
-                      if (0x1f5a5 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E3.0   [1] (🖤)       black heart
+                    if (0x1f5a4 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.7   [1] (🖥️)       desktop computer
+                    if (0x1f5a5 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 } else {
@@ -11762,16 +11639,13 @@ export default class Graphemer {
                       }
                     }
                   } else {
-                    if (code < 0x1f5e2) {
-                      // E0.7   [1] (🗡️)       dagger
-                      if (0x1f5e1 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.0   [1] (🗢)       LIPS
-                      if (0x1f5e2 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.7   [1] (🗡️)       dagger
+                    if (0x1f5e1 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.0   [1] (🗢)       LIPS
+                    if (0x1f5e2 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 } else {
@@ -11872,30 +11746,24 @@ export default class Graphemer {
                       }
                     }
                   } else {
-                    if (code < 0x1f60f) {
-                      // E1.0   [1] (😎)       smiling face with sunglasses
-                      if (0x1f60e === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (😏)       smirking face
-                      if (0x1f60f === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E1.0   [1] (😎)       smiling face with sunglasses
+                    if (0x1f60e === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (😏)       smirking face
+                    if (0x1f60f === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 } else {
                   if (code < 0x1f612) {
-                    if (code < 0x1f611) {
-                      // E0.7   [1] (😐)       neutral face
-                      if (0x1f610 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E1.0   [1] (😑)       expressionless face
-                      if (0x1f611 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.7   [1] (😐)       neutral face
+                    if (0x1f610 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E1.0   [1] (😑)       expressionless face
+                    if (0x1f611 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
                     if (code < 0x1f615) {
@@ -11923,30 +11791,24 @@ export default class Graphemer {
                       return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
-                    if (code < 0x1f618) {
-                      // E1.0   [1] (😗)       kissing face
-                      if (0x1f617 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (😘)       face blowing a kiss
-                      if (0x1f618 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E1.0   [1] (😗)       kissing face
+                    if (0x1f617 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (😘)       face blowing a kiss
+                    if (0x1f618 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 } else {
                   if (code < 0x1f61b) {
-                    if (code < 0x1f61a) {
-                      // E1.0   [1] (😙)       kissing face with smiling eyes
-                      if (0x1f619 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (😚)       kissing face with closed eyes
-                      if (0x1f61a === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E1.0   [1] (😙)       kissing face with smiling eyes
+                    if (0x1f619 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (😚)       kissing face with closed eyes
+                    if (0x1f61a === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
                     if (code < 0x1f61c) {
@@ -11991,16 +11853,13 @@ export default class Graphemer {
                   }
                 } else {
                   if (code < 0x1f62e) {
-                    if (code < 0x1f62d) {
-                      // E1.0   [1] (😬)       grimacing face
-                      if (0x1f62c === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (😭)       loudly crying face
-                      if (0x1f62d === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E1.0   [1] (😬)       grimacing face
+                    if (0x1f62c === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (😭)       loudly crying face
+                    if (0x1f62d === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
                     if (code < 0x1f630) {
@@ -12021,16 +11880,13 @@ export default class Graphemer {
               if (code < 0x1f683) {
                 if (code < 0x1f641) {
                   if (code < 0x1f636) {
-                    if (code < 0x1f635) {
-                      // E1.0   [1] (😴)       sleeping face
-                      if (0x1f634 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (😵)       dizzy face
-                      if (0x1f635 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E1.0   [1] (😴)       sleeping face
+                    if (0x1f634 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (😵)       dizzy face
+                    if (0x1f635 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
                     if (code < 0x1f637) {
@@ -12087,16 +11943,13 @@ export default class Graphemer {
                       }
                     }
                   } else {
-                    if (code < 0x1f688) {
-                      // E0.6   [1] (🚇)       metro
-                      if (0x1f687 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E1.0   [1] (🚈)       light rail
-                      if (0x1f688 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (🚇)       metro
+                    if (0x1f687 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E1.0   [1] (🚈)       light rail
+                    if (0x1f688 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 } else {
@@ -12113,16 +11966,13 @@ export default class Graphemer {
                       }
                     }
                   } else {
-                    if (code < 0x1f68d) {
-                      // E0.6   [1] (🚌)       bus
-                      if (0x1f68c === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.7   [1] (🚍)       oncoming bus
-                      if (0x1f68d === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (🚌)       bus
+                    if (0x1f68c === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.7   [1] (🚍)       oncoming bus
+                    if (0x1f68d === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 }
@@ -12142,16 +11992,13 @@ export default class Graphemer {
                       return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
-                    if (code < 0x1f690) {
-                      // E0.6   [1] (🚏)       bus stop
-                      if (0x1f68f === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E1.0   [1] (🚐)       minibus
-                      if (0x1f690 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (🚏)       bus stop
+                    if (0x1f68f === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E1.0   [1] (🚐)       minibus
+                    if (0x1f690 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 } else {
@@ -12168,32 +12015,26 @@ export default class Graphemer {
                       }
                     }
                   } else {
-                    if (code < 0x1f696) {
-                      // E0.6   [1] (🚕)       taxi
-                      if (0x1f695 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E1.0   [1] (🚖)       oncoming taxi
-                      if (0x1f696 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (🚕)       taxi
+                    if (0x1f695 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E1.0   [1] (🚖)       oncoming taxi
+                    if (0x1f696 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 }
               } else {
                 if (code < 0x1f6a2) {
                   if (code < 0x1f699) {
-                    if (code < 0x1f698) {
-                      // E0.6   [1] (🚗)       automobile
-                      if (0x1f697 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.7   [1] (🚘)       oncoming automobile
-                      if (0x1f698 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (🚗)       automobile
+                    if (0x1f697 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.7   [1] (🚘)       oncoming automobile
+                    if (0x1f698 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
                     if (code < 0x1f69b) {
@@ -12210,16 +12051,13 @@ export default class Graphemer {
                   }
                 } else {
                   if (code < 0x1f6a4) {
-                    if (code < 0x1f6a3) {
-                      // E0.6   [1] (🚢)       ship
-                      if (0x1f6a2 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E1.0   [1] (🚣)       person rowing boat
-                      if (0x1f6a3 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.6   [1] (🚢)       ship
+                    if (0x1f6a2 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E1.0   [1] (🚣)       person rowing boat
+                    if (0x1f6a3 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
                     if (code < 0x1f6a6) {
@@ -12287,16 +12125,13 @@ export default class Graphemer {
               } else {
                 if (code < 0x1f6cb) {
                   if (code < 0x1f6c1) {
-                    if (code < 0x1f6c0) {
-                      // E1.0   [1] (🚿)       shower
-                      if (0x1f6bf === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.6   [1] (🛀)       person taking bath
-                      if (0x1f6c0 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E1.0   [1] (🚿)       shower
+                    if (0x1f6bf === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.6   [1] (🛀)       person taking bath
+                    if (0x1f6c0 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
                     if (code < 0x1f6c6) {
@@ -12313,16 +12148,13 @@ export default class Graphemer {
                   }
                 } else {
                   if (code < 0x1f6cd) {
-                    if (code < 0x1f6cc) {
-                      // E0.7   [1] (🛋️)       couch and lamp
-                      if (0x1f6cb === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E1.0   [1] (🛌)       person in bed
-                      if (0x1f6cc === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.7   [1] (🛋️)       couch and lamp
+                    if (0x1f6cb === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E1.0   [1] (🛌)       person in bed
+                    if (0x1f6cc === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
                     if (code < 0x1f6d0) {
@@ -12392,16 +12224,13 @@ export default class Graphemer {
               } else {
                 if (code < 0x1f6f0) {
                   if (code < 0x1f6eb) {
-                    if (code < 0x1f6ea) {
-                      // E0.7   [1] (🛩️)       small airplane
-                      if (0x1f6e9 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.0   [1] (🛪)       NORTHEAST-POINTING AIRPLANE
-                      if (0x1f6ea === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.7   [1] (🛩️)       small airplane
+                    if (0x1f6e9 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.0   [1] (🛪)       NORTHEAST-POINTING AIRPLANE
+                    if (0x1f6ea === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
                     if (code < 0x1f6ed) {
@@ -12677,16 +12506,13 @@ export default class Graphemer {
                       }
                     }
                   } else {
-                    if (code < 0x1f972) {
-                      // E12.0  [1] (🥱)       yawning face
-                      if (0x1f971 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E13.0  [1] (🥲)       smiling face with tear
-                      if (0x1f972 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E12.0  [1] (🥱)       yawning face
+                    if (0x1f971 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E13.0  [1] (🥲)       smiling face with tear
+                    if (0x1f972 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 } else {
@@ -12703,16 +12529,13 @@ export default class Graphemer {
                       }
                     }
                   } else {
-                    if (code < 0x1f97a) {
-                      // E0.0   [1] (🥹)       <reserved-1F979>
-                      if (0x1f979 === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E11.0  [1] (🥺)       pleading face
-                      if (0x1f97a === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E0.0   [1] (🥹)       <reserved-1F979>
+                    if (0x1f979 === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E11.0  [1] (🥺)       pleading face
+                    if (0x1f97a === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   }
                 }
@@ -12824,16 +12647,13 @@ export default class Graphemer {
               } else {
                 if (code < 0x1f9e7) {
                   if (code < 0x1f9cd) {
-                    if (code < 0x1f9cc) {
-                      // E13.0  [1] (🧋)       bubble tea
-                      if (0x1f9cb === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
-                    } else {
-                      // E0.0   [1] (🧌)       <reserved-1F9CC>
-                      if (0x1f9cc === code) {
-                        return EXTENDED_PICTOGRAPHIC;
-                      }
+                    // E13.0  [1] (🧋)       bubble tea
+                    if (0x1f9cb === code) {
+                      return EXTENDED_PICTOGRAPHIC;
+                    }
+                    // E0.0   [1] (🧌)       <reserved-1F9CC>
+                    if (0x1f9cc === code) {
+                      return EXTENDED_PICTOGRAPHIC;
                     }
                   } else {
                     if (code < 0x1f9d0) {
