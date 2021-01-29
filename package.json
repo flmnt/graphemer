@@ -1,6 +1,6 @@
 {
   "name": "graphemer",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "A JavaScript library that breaks strings into their individual user-perceived characters (including emojis!)",
   "homepage": "https://github.com/flmnt/graphemer",
   "author": "Matt Davies <matt@filament.so> (https://github.com/mattpauldavies)",
