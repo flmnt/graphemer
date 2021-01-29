@@ -123,7 +123,7 @@ Save the file.
 
 **Step 5**
 
-Run `npm run fix:prettier` to format the code.
+Run `npm run prettier:fix` to format the code.
 
 Run `npm test` to check everything is working.
 
