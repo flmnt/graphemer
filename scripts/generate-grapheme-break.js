@@ -3,7 +3,7 @@
  */
 const fs = require('fs');
 const path = require('path');
-const convert = require('./converter');
+const convertNew = require('./converter');
 
 const content = fs.readFileSync(
   path.resolve(__dirname, './GraphemeBreakProperty.txt'),
@@ -12,4 +12,5 @@ const content = fs.readFileSync(
   },
 );
 
-console.log(convert(content));
+const converted = convertNew(content);
+console.log(converted);

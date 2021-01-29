@@ -9457,8 +9457,7 @@ export default class Graphemer {
         }
       }
     }
-
-    // all unlisted characters have a grapheme break property of "Other"
+    // unlisted code points are treated as a break property of "Other"
     return CLUSTER_BREAK.OTHER;
   }
 

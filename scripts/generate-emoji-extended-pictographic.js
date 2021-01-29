@@ -3,14 +3,14 @@
  */
 const fs = require('fs');
 const path = require('path');
-const convert = require('./converter');
+const convertNew = require('./converter');
 
 const content = fs.readFileSync(path.resolve(__dirname, './emoji-data.txt'), {
   encoding: 'utf8',
 });
 
 console.log(
-  convert(content, function (category) {
+  convertNew(content, function (category) {
     return category === 'Extended_Pictographic';
   }),
 );
