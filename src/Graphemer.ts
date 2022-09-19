@@ -77,7 +77,7 @@ export default class Graphemer {
    * @returns {GraphemerIterator}
    */
   iterateGraphemes(str: string): GraphemerIterator {
-    return new GraphemerIterator(str);
+    return new GraphemerIterator(str, Graphemer.nextBreak);
   }
 
   /**
