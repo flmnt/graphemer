@@ -4,6 +4,7 @@
 
 This library continues the work of [Grapheme Splitter](https://github.com/orling/grapheme-splitter) and supports the following unicode versions:
 
+- Unicode 15 and below `[v1.4.0]`
 - Unicode 14 and below `[v1.3.0]`
 - Unicode 13 and below `[v1.1.0]`
 - Unicode 11 and below `[v1.0.0]` (Unicode 10 supported by `grapheme-splitter`)
