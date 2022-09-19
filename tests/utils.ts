@@ -15,9 +15,10 @@ function ucs2encode(array: number[]): string {
     .join('');
 }
 
-export function testDataFromLine(
-  line: string,
-): { input: string; expected: string[] } {
+export function testDataFromLine(line: string): {
+  input: string;
+  expected: string[];
+} {
   const codePoints = line.split(/\s*[×÷]\s*/).map((c) => parseInt(c, 16));
   const input = ucs2encode(codePoints);
 
