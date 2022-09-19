@@ -10569,6 +10569,7 @@ export default class Graphemer {
         }
       }
     }
+
     // unlisted code points are treated as a break property of "Other"
     return CLUSTER_BREAK.OTHER;
   }
